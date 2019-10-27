@@ -2,6 +2,12 @@
 //scr_menu
 //Contains all the menu logic
 if(keyboard_check_pressed(vk_up)){
+    menu--;
+    
+    
+} else if(keyboard_check_pressed(vk_down)){
+    menu++;
+    
     
 }
 
