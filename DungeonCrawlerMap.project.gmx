@@ -20,7 +20,7 @@
         <sprite>sprites\spr_bar</sprite>
         <sprite>sprites\spr_menuBar</sprite>
         <sprite>sprites\spr_headIcons</sprite>
-        <sprite>sprites\spr_back</sprite>
+        <sprite>sprites\spr_backButton</sprite>
       </sprites>
       <sprite>sprites\spr_enemy</sprite>
     </sprites>

@@ -74,6 +74,9 @@ skillSelectWidth =  floor(180.5*guiScale);
 skillSelectHeightBase = 25;
 skillSelectHeight = floor((skillSelectHeightBase+7.5)*guiScale)
 
+backButtonX = (sprite_get_width(spr_backButton)/2) * guiScale;
+backButtonY = view_hview[0] - ((sprite_get_height(spr_backButton)/2) * guiScale);
+
 enemy_x = 180;
 enemy_y = 260;
 
@@ -186,11 +189,10 @@ if(state != STATE_TARGET){
 }
 
 if(state == STATE_TARGET){
-    
     draw_sprite_ext(spr_bar,0,(enemy_x-90 + (enemySelect * 80))*2,90*2,guiScale,guiScale,0,image_blend,image_alpha);
     draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*1,sprite_get_height(spr_bar),49*guiScale,2*guiScale,guiScale,guiScale,image_blend,image_alpha)
+    draw_sprite_ext(spr_backButton,0,backButtonX,backButtonY,guiScale,guiScale,0,image_blend,image_alpha);
 }
-
 
 </string>
           </argument>
