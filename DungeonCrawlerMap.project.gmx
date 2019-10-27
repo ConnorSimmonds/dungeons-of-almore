@@ -42,6 +42,7 @@
     <object>objects\obj_map</object>
     <object>objects\obj_dungeon</object>
     <object>objects\obj_combat</object>
+    <object>objects\obj_party</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_combat</room>
