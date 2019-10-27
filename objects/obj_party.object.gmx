@@ -26,8 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>//manages the party
-names[4] = "";
-hp[4] = 0;
+names[4] = ""; //Names of party members
+hp[4] = 0; //HP of party members
+skills[4] = ""; //Skill list of party members
 </string>
           </argument>
         </arguments>
