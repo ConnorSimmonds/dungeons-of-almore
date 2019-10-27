@@ -10,3 +10,6 @@ Features:
   - Specifically, a feature-complete mobile port, which swaps to a dedicated map mode upon detection of a desktop client
 - Server intergration (Incomplete)
 - File-based map loading (In-progress)
+- Drop in and drop out functionality (Incomplete)
+
+The final product will allow for offline play with minimal functional loss, with the ability to choose between what data to use and upload to the server.
