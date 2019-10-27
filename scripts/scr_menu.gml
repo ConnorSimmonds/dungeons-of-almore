@@ -37,8 +37,8 @@ if(keyboard_check_pressed(vk_space)){
 //Android/Mouse controls
 if(device_mouse_check_button(0,mb_left)){
     if(device_mouse_x_to_gui(0) < selectWidth){
-        if(device_mouse_y_to_gui(0) >= 48*guiScale && device_mouse_y_to_gui(0) < sprite_get_height(spr_menuBar)*guiScale){
-            menu = floor((device_mouse_y_to_gui(0) - (48*guiScale))/(15*guiScale))
+        if(device_mouse_y_to_gui(0) >= 48*guiScale && device_mouse_y_to_gui(0) <= (sprite_get_height(spr_menuBar))*guiScale){
+            menu = floor((device_mouse_y_to_gui(0) - (48*guiScale))/(18*guiScale))
         }
     }
 } else if(device_mouse_check_button_released(0,mb_left)){
