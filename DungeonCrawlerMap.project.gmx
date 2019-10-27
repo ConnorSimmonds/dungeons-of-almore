@@ -39,10 +39,18 @@
     <shader type="GLSLES">shaders\sh_selectionShader.shader</shader>
   </shaders>
   <objects name="objects">
-    <object>objects\obj_map</object>
-    <object>objects\obj_dungeon</object>
-    <object>objects\obj_combat</object>
-    <object>objects\obj_party</object>
+    <objects name="Dungeon">
+      <object>objects\obj_combat</object>
+      <object>objects\obj_dungeon</object>
+      <object>objects\obj_map</object>
+    </objects>
+    <objects name="Manager">
+      <object>objects\obj_party</object>
+    </objects>
+    <objects name="Menus">
+      <object>objects\obj_town</object>
+      <object>objects\obj_menu</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_combat</room>

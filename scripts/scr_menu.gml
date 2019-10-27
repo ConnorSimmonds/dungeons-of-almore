@@ -31,14 +31,21 @@ if(keyboard_check_pressed(vk_down)){
 }
 
 if(keyboard_check_pressed(vk_space)){
-    prevState = state;
-    switch(menu){
-        case(ATTACK_OPTION): state = STATE_ATTACK; break;
-        case(SKILL_OPTION): state = STATE_SKILL; break;
-        case(DEFEND_OPTION): state = STATE_DEFEND; break;
-        case(ITEM_OPTION): state = STATE_ITEM; break;
-        case(DOUBLE_OPTION): state = STATE_DOUBLE_ATTACK; break;
-        case(FLEE_OPTION): state = STATE_FLEE; break;
+    scr_combat_select_main();
+}
+
+//Android/Mouse controls
+if(device_mouse_check_button(0,mb_left)){
+    if(device_mouse_x_to_gui(0) < selectWidth){
+        if(device_mouse_y_to_gui(0) >= 48*guiScale && device_mouse_y_to_gui(0) < sprite_get_height(spr_menuBar)*guiScale){
+            menu = floor((device_mouse_y_to_gui(0) - (48*guiScale))/(15*guiScale))
+        }
+    }
+} else if(device_mouse_check_button_released(0,mb_left)){
+    if(device_mouse_x_to_gui(0) < selectWidth){
+        if(device_mouse_y_to_gui(0) >= 48*guiScale && device_mouse_y_to_gui(0) < sprite_get_height(spr_menuBar)*guiScale){
+            scr_combat_select_main();
+        }
     }
 }
 
@@ -75,3 +82,13 @@ switch(state){
         break;
     }
 }
+#define scr_combat_select_main
+prevState = state;
+    switch(menu){
+        case(ATTACK_OPTION): state = STATE_ATTACK; break;
+        case(SKILL_OPTION): state = STATE_SKILL; break;
+        case(DEFEND_OPTION): state = STATE_DEFEND; break;
+        case(ITEM_OPTION): state = STATE_ITEM; break;
+        case(DOUBLE_OPTION): state = STATE_DOUBLE_ATTACK; break;
+        case(FLEE_OPTION): state = STATE_FLEE; break;
+    }
