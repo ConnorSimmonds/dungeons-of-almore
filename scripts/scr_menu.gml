@@ -20,18 +20,16 @@ if(keyboard_check_pressed(vk_up)){
     if(menu < ATTACK_OPTION){
         menu = FLEE_OPTION;
     }
-}
-
-if(keyboard_check_pressed(vk_down)){
+} else if(keyboard_check_pressed(vk_down)){
     menu++;
     
     if(menu > FLEE_OPTION){
         menu = ATTACK_OPTION;
     }
-}
-
-if(keyboard_check_pressed(vk_space)){
+} else if(keyboard_check_pressed(vk_space)){
     scr_combat_select_main();
+} else if(keyboard_check_pressed(vk_shift)){
+    
 }
 
 //Android/Mouse controls
@@ -80,8 +78,14 @@ switch(state){
     case(STATE_TARGET):{
         scr_target_script();
         break;
+    } case(STATE_TURN_END):{
+        scr_turn_end();
+        break;
+    } case(STATE_EXECUTE):{
+        
     }
 }
+
 #define scr_combat_select_main
 prevState = state;
     switch(menu){
@@ -92,3 +96,26 @@ prevState = state;
         case(DOUBLE_OPTION): state = STATE_DOUBLE_ATTACK; break;
         case(FLEE_OPTION): state = STATE_FLEE; break;
     }
+#define scr_turn_end
+//scr_turn_end
+//Ends the turn
+if(playerSelect < 5){
+    playerSelect++;
+    state = STATE_MAIN;
+} else {
+    state = STATE_EXECUTE;
+}
+
+#define scr_turn_back
+//scr_turn_back
+//Ends the turn
+if(playerSelect != 0){ 
+    playerSelect--;
+    state = STATE_MAIN;
+} else {
+    //give some feedback
+}
+
+#define scr_combat_execute
+//scr_combat_execute
+
