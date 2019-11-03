@@ -37,14 +37,16 @@ DOUBLE_OPTION = 4;
 FLEE_OPTION = 5;
 
 //States
-STATE_MAIN = 0;
-STATE_ATTACK = 1;
-STATE_SKILL = 2;
-STATE_DEFEND = 3;
-STATE_ITEM = 4;
-STATE_DOUBLE_ATTACK = 5;
-STATE_FLEE = 6;
-STATE_TARGET = 7;
+STATE_MAIN = 0; //Main state of selecting attacks etc. basically main menu
+STATE_ATTACK = 1; //Attack menu
+STATE_SKILL = 2; //SKill menu
+STATE_DEFEND = 3; //Defend menu
+STATE_ITEM = 4; //Item menu
+STATE_DOUBLE_ATTACK = 5; //Team attack menu
+STATE_FLEE = 6; //Flee menu
+STATE_TARGET = 7; //Targeting menu
+STATE_TURN_END = 8; //Turn end
+STATE_EXECUTE = 9; //Executing turn menu
 </string>
           </argument>
         </arguments>
@@ -106,10 +108,14 @@ prevState = state;
 skillSelect = 0;
 skillString = "TEST#TEST2";
 
+//Enemy Selection
 enemies[2] = 0; //Enemy ID - determines stats etc.
 enemySelect = 0; //we have at least one enemy at all times
 
-
+//Turn Vars
+playerSelect = 0;
+target[4] = 0;
+action[4] = 0;
 </string>
           </argument>
         </arguments>
