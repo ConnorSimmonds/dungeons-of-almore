@@ -28,7 +28,10 @@
             <string>//manages the party
 names[4] = ""; //Names of party members
 class[4] = 0;
-hp[4] = 0; //HP of party members
+hp[4] = 1; //HP of party members
+max_hp[4] = 1;
+mp[4] = 1;
+max_mp[4] = 1;
 skills[4] = ""; //Skill list of party members
 
 //skills etc. of party members

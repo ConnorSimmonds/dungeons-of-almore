@@ -167,8 +167,8 @@ draw_sprite_ext(spr_menuBar,1,0,0,guiScale,guiScale,0,image_blend,image_alpha);
 //Draw the HP bars
 draw_sprite_ext(spr_bar,0,72*guiScale,4*guiScale,guiScale,guiScale,0,image_blend,image_alpha);
 draw_sprite_ext(spr_bar,0,72*guiScale,11*guiScale,guiScale,guiScale,0,image_blend,image_alpha);
-draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*1,sprite_get_height(spr_bar),49*guiScale,2*guiScale,guiScale,guiScale,image_blend,image_alpha)
-draw_sprite_part_ext(spr_bar,2,0,0,sprite_get_width(spr_bar)*1,sprite_get_height(spr_bar),49*guiScale,9*guiScale,guiScale,guiScale,image_blend,image_alpha)
+draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*(obj_party.hp[playerSelect]/obj_party.max_hp[playerSelect]),sprite_get_height(spr_bar),49*guiScale,2*guiScale,guiScale,guiScale,image_blend,image_alpha)
+draw_sprite_part_ext(spr_bar,2,0,0,sprite_get_width(spr_bar)*(obj_party.mp[playerSelect]/obj_party.max_mp[playerSelect]),sprite_get_height(spr_bar),49*guiScale,9*guiScale,guiScale,guiScale,image_blend,image_alpha)
 
 if(state != STATE_TARGET){
     draw_sprite_ext(spr_menuBar,0,0,0,guiScale,guiScale,0,image_blend,image_alpha);
@@ -196,7 +196,7 @@ if(state != STATE_TARGET){
 
 if(state == STATE_TARGET){
     draw_sprite_ext(spr_bar,0,(enemy_x-90 + (enemySelect * 80))*2,90*2,guiScale,guiScale,0,image_blend,image_alpha);
-    draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*1,sprite_get_height(spr_bar),49*guiScale,2*guiScale,guiScale,guiScale,image_blend,image_alpha)
+    draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*1,sprite_get_height(spr_bar),(enemy_x-113 + (enemySelect * 80))*2,88*2,guiScale,guiScale,image_blend,image_alpha)
     draw_sprite_ext(spr_backButton,0,backButtonX,backButtonY,guiScale,guiScale,0,image_blend,image_alpha);
 }
 
