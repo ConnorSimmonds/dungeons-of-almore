@@ -21,6 +21,8 @@
         <sprite>sprites\spr_menuBar</sprite>
         <sprite>sprites\spr_headIcons</sprite>
         <sprite>sprites\spr_backButton</sprite>
+        <sprite>sprites\spr_partyui</sprite>
+        <sprite>sprites\spr_partybars</sprite>
       </sprites>
       <sprite>sprites\spr_enemy</sprite>
     </sprites>
