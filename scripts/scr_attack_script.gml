@@ -4,7 +4,12 @@
 if(prevState != STATE_TARGET){
     state = STATE_TARGET;
 } else { //We've selected a target, so we can create a turn
-    scr_turn_script(0,enemySelect);
+    var turn;
+    turn[0] = scr_turn_script;
+    turn[1] = 0;
+    turn[2] = enemySelect;
+    turn[3] = playerSelect;
+    ds_priority_add(turn_queue,turn,obj_party.spd[playerSelect]);
     state = STATE_TURN_END;
 }
 
@@ -66,6 +71,29 @@ if(keyboard_check_pressed(vk_shift)){
 var action, targ;
 action = argument0;
 targ = argument1;
+source = argument2;
 
-action[playerSelect] = action;
-target[playerSelect] = targ;
+//First off, check we're still alive. This can also allow us to split players and enemies up easily
+if(source > 5){
+    switch(action){
+        case(0): { //generic attack
+            enemyHP[targ] -= 5;
+            break;
+        }
+    }
+} else {
+    
+}
+
+
+
+#define scr_turn_execute
+//scr_turn_execute
+//We go through our priority queue, and do our turn
+var turn, i;
+while(!ds_priority_empty(turn_queue)){
+    turn = ds_priority_delete_max(turn_queue);
+    script_execute(turn[0], turn[1], turn[2], turn[3]);
+}
+
+state = STATE_MAIN;

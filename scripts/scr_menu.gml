@@ -4,10 +4,8 @@
 if(keyboard_check_pressed(vk_up)){
     menu--;
     
-    
 } else if(keyboard_check_pressed(vk_down)){
     menu++;
-    
     
 }
 
@@ -82,7 +80,7 @@ switch(state){
         scr_turn_end();
         break;
     } case(STATE_EXECUTE):{
-        
+        scr_turn_execute(); //Based off of that information, we execute the turn order
     }
 }
 
@@ -99,7 +97,7 @@ prevState = state;
 #define scr_turn_end
 //scr_turn_end
 //Ends the turn
-if(playerSelect < 5){
+if(playerSelect < 4){
     playerSelect++;
     state = STATE_MAIN;
 } else {
@@ -118,4 +116,3 @@ if(playerSelect != 0){
 
 #define scr_combat_execute
 //scr_combat_execute
-
