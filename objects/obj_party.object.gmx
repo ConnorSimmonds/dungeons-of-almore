@@ -33,6 +33,7 @@ max_hp[4] = 1;
 mp[4] = 1;
 max_mp[4] = 1;
 skills[4] = ""; //Skill list of party members
+formation[2,2] = -1; //Formation of party - uses their ID (0 - 4) for their position.
 
 //skills etc. of party members
 attack[4] = 0;

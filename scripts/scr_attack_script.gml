@@ -72,9 +72,10 @@ var action, targ;
 action = argument0;
 targ = argument1;
 source = argument2;
+show_debug_message("Hey, we're doing a turn");
 
 //First off, check we're still alive. This can also allow us to split players and enemies up easily
-if(source > 5){
+if(source < 5){
     switch(action){
         case(0): { //generic attack
             enemyHP[targ] -= 5;

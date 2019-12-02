@@ -69,7 +69,7 @@ STATE_EXECUTE = 9; //Executing turn menu
             <kind>1</kind>
             <string>//UI vars
 guiScale = 2;
-selectWidth =  floor(75.5*guiScale);
+selectWidth = floor(75.5*guiScale);
 selectHeight = floor((48+15.5)*guiScale)
 
 skillSelectWidth =  floor(180.5*guiScale);
@@ -78,6 +78,9 @@ skillSelectHeight = floor((skillSelectHeightBase+7.5)*guiScale)
 
 backButtonX = (sprite_get_width(spr_backButton)/2) * guiScale;
 backButtonY = view_hview[0] - ((sprite_get_height(spr_backButton)/2) * guiScale);
+
+partyX = 80 * guiScale;
+partyY = view_hview[0] - ((sprite_get_height(spr_partyui) * 2) * guiScale);
 
 enemy_x = 180;
 enemy_y = 260;
@@ -186,7 +189,8 @@ turn_queue = ds_priority_create();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(spr_headIcons,0,0,0,guiScale,guiScale,0,image_blend,image_alpha);
+            <string>var i;
+draw_sprite_ext(spr_headIcons,0,0,0,guiScale,guiScale,0,image_blend,image_alpha);
 draw_sprite_ext(spr_menuBar,1,0,0,guiScale,guiScale,0,image_blend,image_alpha);
 
 //Draw the HP bars
@@ -195,7 +199,7 @@ draw_sprite_ext(spr_bar,0,72*guiScale,11*guiScale,guiScale,guiScale,0,image_blen
 draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*(obj_party.hp[playerSelect]/obj_party.max_hp[playerSelect]),sprite_get_height(spr_bar),49*guiScale,2*guiScale,guiScale,guiScale,image_blend,image_alpha)
 draw_sprite_part_ext(spr_bar,2,0,0,sprite_get_width(spr_bar)*(obj_party.mp[playerSelect]/obj_party.max_mp[playerSelect]),sprite_get_height(spr_bar),49*guiScale,9*guiScale,guiScale,guiScale,image_blend,image_alpha)
 
-if(state != STATE_TARGET){
+if(state != STATE_TARGET || state != STATE_EXECUTE){
     draw_sprite_ext(spr_menuBar,0,0,0,guiScale,guiScale,0,image_blend,image_alpha);
     
     //Draw the selection square
@@ -225,6 +229,11 @@ if(state == STATE_TARGET){
     draw_sprite_ext(spr_backButton,0,backButtonX,backButtonY,guiScale,guiScale,0,image_blend,image_alpha);
 }
 
+if(playerSelect != -1){ //Combat isn't playing out
+    for(i = 0; i &lt; 3; i++){
+        draw_sprite_ext(spr_partyui,0,partyX + (guiScale * (sprite_get_width(spr_partyui)+1)*i),partyY,guiScale,guiScale,0,image_blend,image_alpha);
+    }
+}
 </string>
           </argument>
         </arguments>
