@@ -81,6 +81,8 @@ switch(state){
         break;
     } case(STATE_EXECUTE):{
         scr_turn_execute(); //Based off of that information, we execute the turn order
+        scr_round_end();
+        state = STATE_MAIN;
     }
 }
 

@@ -51,15 +51,16 @@ if(keyboard_check_pressed(vk_shift)){
     state = prevState;
 } else if(keyboard_check_pressed(vk_left)){
     enemySelect--;
+    
     if(enemySelect < 0){
         enemySelect = array_length_1d(enemies)-1;
     }
 } else if(keyboard_check_pressed(vk_right)){
     enemySelect++;
-    
     if(enemySelect > array_length_1d(enemies)-1){
         enemySelect = 0;
     }
+    
 } else if(keyboard_check_pressed(vk_space)){
     prevState = state;
     state = STATE_ATTACK;
@@ -81,6 +82,9 @@ if(source < 5){
             break;
         }
     }
+    if(enemyHP[targ] <= 0){
+        enemies[targ] = -1; //we baleet the enemy
+    }
 } else {
     
 }
@@ -90,10 +94,34 @@ if(source < 5){
 #define scr_turn_execute
 //scr_turn_execute
 //We go through our priority queue, and do our turn
-var turn, i;
+var turn;
 while(!ds_priority_empty(turn_queue)){
     turn = ds_priority_delete_max(turn_queue);
     script_execute(turn[0], turn[1], turn[2], turn[3]);
 }
 
-state = STATE_MAIN;
+#define scr_round_end
+//scr_round_end
+//Cleans up any dead enemies etc. and resets enemySelect if needed
+var i, i2, tempEnemies, tempHP;
+i2 = 0; //we start i2 at the start
+tempEnemies[0] = -1;
+tempHP[0] = -1;
+//Recreate arrays, if needed
+for(i = 0; i < array_length_1d(enemies); i++){
+    if(enemies[i] != -1){
+        tempEnemies[i2] = enemies[i];
+        tempHP[i2] = enemyHP[i];
+        i2++;
+    }
+}
+
+if(tempEnemies[0] != -1){
+    enemies = tempEnemies;
+    enemyHP = tempHP;
+    enemySelect = 0;
+}
+
+playerSelect = 0;
+
+//Check if all enemies are dead.
