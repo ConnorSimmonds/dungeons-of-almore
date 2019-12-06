@@ -114,6 +114,8 @@ skillString = "TEST#TEST2";
 //Enemy Selection
 enemies[2] = 0; //Enemy ID - determines stats etc.
 enemySelect = 0; //we have at least one enemy at all times
+enemyHP[0] = 10;
+enemyHP[1] = 10;
 enemyHP[2] = 10; //enemy hp - we get this based off of the enemy id, and store it here for later.
 
 //Turn Vars
@@ -257,7 +259,9 @@ if(playerSelect != -1){ //Combat isn't playing out
           <argument>
             <kind>1</kind>
             <string>for(var i = 0; i &lt; array_length_1d(enemies); i++){
-    draw_sprite(spr_enemy,enemies[i],enemy_x + (i * 160),enemy_y);
+    if(enemies[i] != -1){
+        draw_sprite(spr_enemy,enemies[i],enemy_x + (i * 160),enemy_y);
+    }
 }
 </string>
           </argument>
