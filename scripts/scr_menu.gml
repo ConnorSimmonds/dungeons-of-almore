@@ -27,19 +27,19 @@ if(keyboard_check_pressed(vk_up)){
 } else if(keyboard_check_pressed(vk_space)){
     scr_combat_select_main();
 } else if(keyboard_check_pressed(vk_shift)){
-    
+    scr_turn_back();
 }
 
 //Android/Mouse controls
 if(device_mouse_check_button(0,mb_left)){
     if(device_mouse_x_to_gui(0) < selectWidth){
-        if(device_mouse_y_to_gui(0) >= 48*guiScale && device_mouse_y_to_gui(0) <= (sprite_get_height(spr_menuBar))*guiScale){
-            menu = floor((device_mouse_y_to_gui(0) - (48*guiScale))/(18*guiScale))
+        if(device_mouse_y_to_gui(0) >= 48*global.guiScale && device_mouse_y_to_gui(0) <= (sprite_get_height(spr_menuBar))*global.guiScale){
+            menu = floor((device_mouse_y_to_gui(0) - (48*global.guiScale))/(18*global.guiScale))
         }
     }
 } else if(device_mouse_check_button_released(0,mb_left)){
     if(device_mouse_x_to_gui(0) < selectWidth){
-        if(device_mouse_y_to_gui(0) >= 48*guiScale && device_mouse_y_to_gui(0) < sprite_get_height(spr_menuBar)*guiScale){
+        if(device_mouse_y_to_gui(0) >= 48*global.guiScale && device_mouse_y_to_gui(0) < sprite_get_height(spr_menuBar)*global.guiScale){
             scr_combat_select_main();
         }
     }
@@ -101,20 +101,19 @@ prevState = state;
 //Ends the turn
 if(playerSelect < 4){
     playerSelect++;
+    prevState = STATE_MAIN;
     state = STATE_MAIN;
 } else {
     state = STATE_EXECUTE;
 }
 
 #define scr_turn_back
-//scr_turn_back
-//Ends the turn
-if(playerSelect != 0){ 
+//scr_combat_go_back()
+//Goes back to the previous person in the party list
+if(playerSelect != 0){
     playerSelect--;
-    state = STATE_MAIN;
+    ds_priority_delete_value(turn_queue,player_turns[playerSelect]);
+    prevState = STATE_MAIN;
 } else {
-    //give some feedback
+    //give some feeedback
 }
-
-#define scr_combat_execute
-//scr_combat_execute

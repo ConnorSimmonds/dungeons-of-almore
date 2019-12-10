@@ -10,6 +10,7 @@ if(prevState != STATE_TARGET){
     turn[2] = enemySelect;
     turn[3] = playerSelect;
     ds_priority_add(turn_queue,turn,obj_party.spd[playerSelect]);
+    player_turns[playerSelect] = turn;
     state = STATE_TURN_END;
 }
 
