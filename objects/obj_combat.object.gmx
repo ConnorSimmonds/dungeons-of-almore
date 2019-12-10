@@ -233,8 +233,11 @@ if(state == STATE_TARGET){
 
 if(playerSelect != -1){ //Combat isn't playing out
     for(i = 0; i &lt; 3; i++){
-        draw_sprite_ext(spr_partyui,0,partyX + (guiScale * (sprite_get_width(spr_partyui)+1)*i),partyY,guiScale,guiScale,0,image_blend,image_alpha);
+        if(playerSelect != i){
+            draw_sprite_ext(spr_partyui,0,partyX + (guiScale * (sprite_get_width(spr_partyui)+1)*i),partyY,guiScale,guiScale,0,image_blend,image_alpha);
+        }
     }
+    draw_sprite_ext(spr_partyui,0,partyX + (guiScale * (sprite_get_width(spr_partyui)+1)*playerSelect),partyY-(8*guiScale),guiScale,guiScale,0,image_blend,image_alpha);
 }
 </string>
           </argument>
