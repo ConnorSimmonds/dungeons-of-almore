@@ -24,6 +24,7 @@
         <sprite>sprites\spr_partyui</sprite>
         <sprite>sprites\spr_partybars</sprite>
         <sprite>sprites\spr_faceplate</sprite>
+        <sprite>sprites\spr_combat_message</sprite>
       </sprites>
       <sprite>sprites\spr_enemy</sprite>
     </sprites>
@@ -60,8 +61,8 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
-    <room>rooms\rm_dungeon</room>
     <room>rooms\rm_combat</room>
+    <room>rooms\rm_dungeon</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
