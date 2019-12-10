@@ -124,6 +124,8 @@ target[4] = 0;
 action[4] = 0;
 turn_queue = ds_priority_create();
 player_turns[4] = 0;
+
+battleMessage = "Enemies approach!";
 </string>
           </argument>
         </arguments>
@@ -204,6 +206,8 @@ draw_sprite_ext(spr_bar,0,72*global.guiScale,11*global.guiScale,global.guiScale,
 draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*(obj_party.hp[playerSelect]/obj_party.max_hp[playerSelect]),sprite_get_height(spr_bar),49*global.guiScale,2*global.guiScale,global.guiScale,global.guiScale,image_blend,image_alpha)
 draw_sprite_part_ext(spr_bar,2,0,0,sprite_get_width(spr_bar)*(obj_party.mp[playerSelect]/obj_party.max_mp[playerSelect]),sprite_get_height(spr_bar),49*global.guiScale,9*global.guiScale,global.guiScale,global.guiScale,image_blend,image_alpha)
 
+
+//Menu stuff
 if(state != STATE_TARGET || state != STATE_EXECUTE){
     draw_sprite_ext(spr_menuBar,0,0,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
     
@@ -228,12 +232,14 @@ if(state != STATE_TARGET || state != STATE_EXECUTE){
     }
 }
 
+//Targetting shtick
 if(state == STATE_TARGET){
     draw_sprite_ext(spr_bar,0,(enemy_x-90 + (enemySelect * 80))*2,90*2,global.guiScale,global.guiScale,0,image_blend,image_alpha);
     draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*enemyHP[enemySelect]/10,sprite_get_height(spr_bar),(enemy_x-113 + (enemySelect * 80))*2,88*2,global.guiScale,global.guiScale,image_blend,image_alpha)
     draw_sprite_ext(spr_backButton,0,backButtonX,backButtonY,global.guiScale,global.guiScale,0,image_blend,image_alpha);
 }
 
+//Player Faceplates
 if(playerSelect != -1){ //Combat isn't playing out
     for(i = 0; i &lt; 5; i++){
         if(i div 3 == 0){
@@ -245,6 +251,10 @@ if(playerSelect != -1){ //Combat isn't playing out
         }
     }
 }
+
+//Message box
+draw_sprite_ext(spr_combat_message,0,(sprite_get_width(spr_menuBar)-1)*global.guiScale,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
+draw_text_ext_transformed((sprite_get_width(spr_menuBar)+5)*global.guiScale,5*global.guiScale,"This is a test message. I'm attempting to see how long this will go on for please help me dear god save me",-1,(sprite_get_width(spr_combat_message)-10)*global.guiScale,global.guiScale/2,global.guiScale/2,0);
 </string>
           </argument>
         </arguments>

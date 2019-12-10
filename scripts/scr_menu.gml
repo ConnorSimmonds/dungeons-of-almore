@@ -104,6 +104,7 @@ if(playerSelect < 4){
     prevState = STATE_MAIN;
     state = STATE_MAIN;
 } else {
+    scr_player_turn_add();
     state = STATE_EXECUTE;
 }
 
