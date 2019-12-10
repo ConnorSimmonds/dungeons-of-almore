@@ -34,12 +34,19 @@ mp[4] = 1;
 max_mp[4] = 1;
 skills[4] = ""; //Skill list of party members
 formation[2,2] = -1; //Formation of party - uses their ID (0 - 4) for their position.
+exp_pts[4] = 0;
 
 //skills etc. of party members
 attack[4] = 0;
 defense[4] = 0;
 spd[4] = 0;
 magic[4] = 0;
+
+//Draw variables
+row1X = 80 * global.guiScale;
+row1Y = view_hview[0] - ((sprite_get_height(spr_partyui) * 2) * global.guiScale);
+row2X = 90 * global.guiScale;
+row2Y = row1Y = view_hview[0] - ((sprite_get_height(spr_partyui)) * guiScale);
 </string>
           </argument>
         </arguments>
