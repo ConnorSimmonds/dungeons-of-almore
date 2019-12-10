@@ -9,7 +9,6 @@ if(prevState != STATE_TARGET){
     turn[1] = 0;
     turn[2] = enemySelect;
     turn[3] = playerSelect;
-    ds_priority_add(turn_queue,turn,obj_party.spd[playerSelect]);
     player_turns[playerSelect] = turn;
     state = STATE_TURN_END;
 }
@@ -96,6 +95,7 @@ if(source < 5){
 //scr_turn_execute
 //We go through our priority queue, and do our turn
 var turn;
+
 while(!ds_priority_empty(turn_queue)){
     turn = ds_priority_delete_max(turn_queue);
     script_execute(turn[0], turn[1], turn[2], turn[3]);
