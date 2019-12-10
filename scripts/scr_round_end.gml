@@ -34,3 +34,16 @@ for(i = 0; i < array_length_1d(enemies); i++){
     }
 }
 return true;
+#define scr_player_turn_add
+//scr_player_turn_add
+//Adds the player turns into the priority queue
+var i, temp_turn;
+
+for(i = 0; i < 5; i++){
+    temp_turn = player_turns[i];
+    if(temp_turn[3] != i){
+        //oh shoot we gotta use the PREVIOUS speed -3 oh no
+    } else {
+        ds_priority_add(turn_queue,temp_turn,obj_party.spd[temp_turn[3]]);
+    }
+}
