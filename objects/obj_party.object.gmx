@@ -26,6 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>//manages the party
+names[0] = "";
+names[1] = "";
+names[2] = "";
+names[3] = "";
 names[4] = ""; //Names of party members
 class[4] = 0;
 hp[4] = 1; //HP of party members

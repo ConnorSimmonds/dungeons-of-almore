@@ -47,6 +47,7 @@ STATE_FLEE = 6; //Flee menu
 STATE_TARGET = 7; //Targeting menu
 STATE_TURN_END = 8; //Turn end
 STATE_EXECUTE = 9; //Executing turn menu
+STATE_MESSAGE = 10;
 </string>
           </argument>
         </arguments>
@@ -104,7 +105,7 @@ if(skillSelectHeight % 2 == 0){
 
 //Logical Vars
 menu = ATTACK_OPTION;
-state = STATE_MAIN;
+state = STATE_MESSAGE;
 prevState = state;
 
 //Skill Vars
@@ -125,7 +126,12 @@ action[4] = 0;
 turn_queue = ds_priority_create();
 player_turns[4] = 0;
 
+
 battleMessage = "Enemies approach!";
+battleMessageDisplay = "";
+battleMessageTimer = 0;
+battleMessageMax = 2;
+battleMessageQueue = ds_queue_create();
 </string>
           </argument>
         </arguments>
@@ -254,7 +260,7 @@ if(playerSelect != -1){ //Combat isn't playing out
 
 //Message box
 draw_sprite_ext(spr_combat_message,0,(sprite_get_width(spr_menuBar)-1)*global.guiScale,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
-draw_text_ext_transformed((sprite_get_width(spr_menuBar)+5)*global.guiScale,5*global.guiScale,"This is a test message. I'm attempting to see how long this will go on for please help me dear god save me",-1,(sprite_get_width(spr_combat_message)-10)*global.guiScale,global.guiScale/2,global.guiScale/2,0);
+draw_text_ext_transformed((sprite_get_width(spr_menuBar)+5)*global.guiScale,5*global.guiScale,battleMessageDisplay,-1,(sprite_get_width(spr_combat_message)-10)*global.guiScale,global.guiScale/2,global.guiScale/2,0);
 </string>
           </argument>
         </arguments>

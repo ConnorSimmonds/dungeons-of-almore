@@ -50,6 +50,7 @@ if(device_mouse_check_button(0,mb_left)){
 //Manages the state of combat, which dictates what the menus can/can't do
 switch(state){
     case(STATE_MAIN):{
+        scr_set_battle_message("Choose an action.");
         scr_menu_combat();
         break;
     }
@@ -58,6 +59,7 @@ switch(state){
         break;
     }
     case(STATE_SKILL):{
+        scr_set_battle_message("Select a skill.");
         scr_skill_script();
         break;
     }
@@ -65,6 +67,7 @@ switch(state){
         break;
     }
     case(STATE_ITEM):{
+        scr_set_battle_message("Select an item.");
         break;
     }
     case(STATE_DOUBLE_ATTACK):{
@@ -74,6 +77,7 @@ switch(state){
         break;
     }
     case(STATE_TARGET):{
+        scr_set_battle_message("Select a target.");
         scr_target_script();
         break;
     } case(STATE_TURN_END):{
@@ -81,8 +85,11 @@ switch(state){
         break;
     } case(STATE_EXECUTE):{
         scr_turn_execute(); //Based off of that information, we execute the turn order
-        scr_round_end();
-        state = STATE_MAIN;
+        scr_set_battle_message(ds_queue_dequeue(battleMessageQueue));
+        state = STATE_MESSAGE;
+    } case(STATE_MESSAGE):{
+        scr_battle_message();
+        break;
     }
 }
 
@@ -96,7 +103,6 @@ prevState = state;
         case(DOUBLE_OPTION): state = STATE_DOUBLE_ATTACK; break;
         case(FLEE_OPTION): state = STATE_FLEE; break;
     }
-    
 
 #define scr_turn_end
 //scr_turn_end
@@ -119,4 +125,15 @@ if(playerSelect != 0){
     prevState = STATE_MAIN;
 } else {
     //give some feeedback
+}
+#define scr_battle_message
+//scr_battle_message
+//Displays the battle message until you press accept, then displays the next. Also handles things such as battle animations etc.
+if(keyboard_check_pressed(vk_space) && (string_length(battleMessage)/2 <= string_length(battleMessageDisplay))){
+    if(ds_queue_empty(battleMessageQueue)){
+        scr_round_end();
+        state = STATE_MAIN;
+    } else {
+        scr_set_battle_message(ds_queue_dequeue(battleMessageQueue));
+    }
 }
