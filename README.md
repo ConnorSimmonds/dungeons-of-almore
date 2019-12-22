@@ -1,4 +1,4 @@
-# DungeonsOfAlmore
+# Dungeons Of Almore
 Dungeon Crawler Made with GMS1
 
 A 5-unit party based dungeon crawler, made from (relative) scratch in Game Maker Studio 1.
