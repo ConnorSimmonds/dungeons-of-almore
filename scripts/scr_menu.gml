@@ -96,6 +96,8 @@ prevState = state;
         case(DOUBLE_OPTION): state = STATE_DOUBLE_ATTACK; break;
         case(FLEE_OPTION): state = STATE_FLEE; break;
     }
+    
+
 #define scr_turn_end
 //scr_turn_end
 //Ends the turn
