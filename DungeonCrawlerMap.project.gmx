@@ -37,6 +37,7 @@
     <scripts name="Dungeon Stuff">
       <script>scripts\scr_dungeon_create.gml</script>
       <script>scripts\scr_dungeon_state.gml</script>
+      <script>scripts\scr_dungeon_save.gml</script>
     </scripts>
     <script>scripts\scr_attack_script.gml</script>
     <script>scripts\scr_round_end.gml</script>
@@ -61,8 +62,8 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
-    <room>rooms\rm_combat</room>
     <room>rooms\rm_dungeon</room>
+    <room>rooms\rm_combat</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
