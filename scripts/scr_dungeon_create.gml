@@ -1,40 +1,27 @@
 #define scr_dungeon_create
 //scr_dungeon_create
 //This will load from a file in the future, but for now, it just returns a basic dungeon
-var tempX, tempY;
+var tempX, tempY, maxX, maxY, file, temp_string, temp_map;
 
-for(tempX = 0; tempX < room_width/32; tempX++){
-    for(tempY = 0; tempY < room_height/32; tempY++){
-        temp_map[tempX,tempY] = -1;
+file = file_text_open_read("dungeon.dng");
+temp_string = file_text_readln(file);
+
+//Get the max x/y
+maxX = real(string_copy(temp_string,0,string_pos(",",temp_string)-1));
+maxY = real(string_copy(temp_string,string_pos(",",temp_string)+1,string_length(temp_string)-string_pos(",",temp_string)));
+temp_map[maxX,maxY] = -1;
+
+for(tempY = 0; tempY < maxY; tempY++){
+    temp_string = file_text_readln(file);
+    for(tempX = 0; tempX < maxX; tempX++){
+        temp_map[tempX,tempY] = real(string_char_at(temp_string,tempX+1))-1;
     }
 }
 
-temp_map[0,0] = 0;
-temp_map[0,1] = 0;
-temp_map[0,2] = 0;
-temp_map[0,3] = 0;
-temp_map[0,4] = 0;
-temp_map[1,4] = 0;
-temp_map[2,4] = 0;
-temp_map[3,4] = 0;
-temp_map[4,4] = 0;
-temp_map[0,5] = 0;
-temp_map[0,6] = 0;
-temp_map[1,6] = 0;
-temp_map[2,6] = 0;
-temp_map[3,6] = 0;
-temp_map[1,7] = 0;
-temp_map[2,7] = 0;
-temp_map[3,7] = 0;
-temp_map[1,8] = 0;
-temp_map[2,8] = 0;
-temp_map[3,8] = 0;
-
 return temp_map;
 
-
 #define scr_calculate_fore_mid
- //scr_calculate_fore_mid
+//scr_calculate_fore_mid
  //calculates fore and midground values based off of the player's current view
 foreground = 0; //base values
 midground = 0;
@@ -316,13 +303,13 @@ switch(dir){
             if(foreground != 0 && playerX != 0){
                 empty = 0;
                 if(dungeon_map[playerX-1,playerY] == 0){
-                    if(playerX != 0){
+                    if(playerY != 0){
                         if(dungeon_map[playerX-1,playerY-1] == 0){
                             empty += 2;
                         }
                     }
             
-                    if(playerX != array_height_2d(dungeon_map)){
+                    if(playerY != array_length_2d(dungeon_map,0) ){
                         if(dungeon_map[playerX-1,playerY+1] == 0){
                             empty += 1;
                         }
@@ -331,7 +318,7 @@ switch(dir){
                     if(empty == foreground || empty == 3){
                         foreground += 4;   
                     } else if(foreground == 3){
-                        if((playerX != array_height_2d(dungeon_map) && playerX != 0)){
+                        if((playerY != array_length_2d(dungeon_map,0) && playerY != 0)){
                             if((dungeon_map[playerX-1,playerY+1] == 0 && dungeon_map[playerX-1,playerY-1] == -1)){
                                 foreground = 9;
                             } else if((dungeon_map[playerX-1,playerY+1] == -1 && dungeon_map[playerX-1,playerY+1] == 0)){
@@ -380,16 +367,16 @@ switch(dir){
                 }
                 
                 //We've calculated the midground - now we have to calculate if it's in an open area or not.
-            if(midground != 0 && playerX != playerY != array_height_2d(dungeon_map)-1){
+            if(midground != 0 && playerX != array_height_2d(dungeon_map)-1){
                 //Since midground isn't a corridor, we calculate whether or not there's an open space around it. But first, we must make sure we can actually see into that area
                 if(dungeon_map[playerX+2,playerY] == 0){
-                    if(playerY != 0){
+                    if(playerY != array_length_2d(dungeon_map,0)){
                         if(dungeon_map[playerX+2,playerY+1] == 0){
                             empty += 2;
                         }
                     }
             
-                    if(playerX != array_height_2d(dungeon_map)){
+                    if(playerY != 0){
                         if(dungeon_map[playerX+2,playerY-1] == 0){
                            empty += 1;
                         }
@@ -405,14 +392,14 @@ switch(dir){
                 }
             }
             }
-             //Repeat from before except now it's on the X axis
+             //Repeat from before except now it's on the Y axis
             if(playerY != 0){   
                 if(dungeon_map[playerX,playerY-1] == 0){
                     foreground += 1;
                 }
             }
             
-            if(playerY != array_height_2d(dungeon_map)){
+            if(playerY != array_length_2d(dungeon_map,0)){
                 if(dungeon_map[playerX,playerY+1] == 0){
                     foreground += 2;
                 }
@@ -421,13 +408,13 @@ switch(dir){
             if(foreground != 0 && playerX != array_height_2d(dungeon_map)){
                 empty = 0;
                 if(dungeon_map[playerX+1,playerY] == 0){
-                    if(playerX != 0){
+                    if(playerY != 0){
                         if(dungeon_map[playerX+1,playerY-1] == 0){
                             empty += 1;
                         }
                     }
             
-                    if(playerX != array_height_2d(dungeon_map)){
+                    if(playerY != array_length_2d(dungeon_map,0)){
                         if(dungeon_map[playerX+1,playerY+1] == 0){
                             empty += 2;
                         }
@@ -436,7 +423,7 @@ switch(dir){
                     if(empty == foreground || empty == 3){
                         foreground += 4;   
                     } else if(foreground == 3){
-                        if((playerX != array_height_2d(dungeon_map) && playerX != 0)){
+                        if((playerY != array_length_2d(dungeon_map,0)  && playerY != 0)){
                             if((dungeon_map[playerX+1,playerY+1] == 0 && dungeon_map[playerX+1,playerY-1] == -1)){
                                 foreground = 8;
                             } else if((dungeon_map[playerX+1,playerY+1] == -1 && dungeon_map[playerX+1,playerY+1] == 0)){
