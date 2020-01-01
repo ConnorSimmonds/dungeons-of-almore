@@ -19,7 +19,7 @@ if(tempEnemies[0] != -1){
     enemyHP = tempHP;
     enemySelect = 0;
 } else if(scr_check_enemies()){
-    
+    instance_destroy();
 }
 
 playerSelect = 0;

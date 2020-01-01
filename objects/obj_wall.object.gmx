@@ -49,7 +49,8 @@ wall_tex = sprite_get_texture(sprite_index,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>d3d_draw_block(x,y,0,x+sprite_get_width(sprite_index),y+sprite_get_height(sprite_index),sprite_get_height(sprite_index)*3,wall_tex,1,1);
+            <string>draw_set_colour(c_white);
+d3d_draw_block(x,y,0,x+sprite_get_width(sprite_index),y+sprite_get_height(sprite_index),sprite_get_height(sprite_index)*3,wall_tex,1,1);
 </string>
           </argument>
         </arguments>

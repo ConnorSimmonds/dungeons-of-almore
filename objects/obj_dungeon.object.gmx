@@ -33,17 +33,7 @@ DOWN = 2;
 RIGHT = 3;
 
 //State Values
-PLAYER_IDLE = 0;
-PLAYER_MOVE = 1;
-STATE_INTERACT = 2;
 STATE_MENU = 3;
-
-//Movement Actions
-PLAYER_NULL = 0;
-PLAYER_FORWARD = 1;
-PLAYER_BACK = 2;
-PLAYER_TURN_LEFT = 3;
-PLAYER_TURN_RIGHT = 4;
 
 //Menu Actions
 PARTY_OPTION = 0;
@@ -92,55 +82,6 @@ for(mapX = 0; mapX &lt;= room_width/32; mapX++){
 
 menu = PARTY_OPTION;
 menu_top = PARTY_OPTION; //Previous menu value - it's the top layer one.
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/*(if(!instance_exists(obj_map)){
-draw_sprite_ext(spr_background,background,0,0,1,1,0,image_blend,image_alpha);
-draw_sprite_ext(spr_midground,midground,0,0,1,1,0,image_blend,image_alpha);
-draw_sprite_ext(spr_foreground,foreground,0,0,1,1,0,image_blend,image_alpha);
-}
 </string>
           </argument>
         </arguments>
