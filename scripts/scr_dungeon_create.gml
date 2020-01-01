@@ -1,24 +1,36 @@
 #define scr_dungeon_create
 //scr_dungeon_create
 //This will load from a file in the future, but for now, it just returns a basic dungeon
-var tempX, tempY, maxX, maxY, file, temp_string, temp_map;
+var tempX, tempY, maxX, maxY, file, temp_string, temp_map, playerX, playerY;
 
 file = file_text_open_read("dungeon.dng");
 temp_string = file_text_readln(file);
 
-//Get the max x/y
+//Get the max x/y and set up the room
 maxX = real(string_copy(temp_string,0,string_pos(",",temp_string)-1));
 maxY = real(string_copy(temp_string,string_pos(",",temp_string)+1,string_length(temp_string)-string_pos(",",temp_string)));
-temp_map[maxX,maxY] = -1;
+room_set_width(rm_dungeon,32*maxX);
+room_set_height(rm_dungeon,(32*maxY));
+
+//Init player X/Y
+temp_string = file_text_readln(file);
+playerX = real(string_copy(temp_string,0,string_pos(",",temp_string)-1));
+playerY = real(string_copy(temp_string,string_pos(",",temp_string)+1,string_length(temp_string)-string_pos(",",temp_string)));
+room_instance_add(rm_dungeon,(32*playerX)+16, (32*playerY)+16, obj_player);
+room_instance_add(rm_dungeon,0,0,obj_floor);
 
 for(tempY = 0; tempY < maxY; tempY++){
     temp_string = file_text_readln(file);
     for(tempX = 0; tempX < maxX; tempX++){
-        temp_map[tempX,tempY] = real(string_char_at(temp_string,tempX+1))-1;
+        switch(real(string_char_at(temp_string,tempX+1))){
+            case(0): temp_obj = obj_wall; break;
+            default: temp_obj = -1; break;
+        }
+        if(temp_obj != -1){        
+            room_instance_add(rm_dungeon,tempX*32,tempY*32,temp_obj);
+        }
     }
 }
-
-return temp_map;
 
 #define scr_calculate_fore_mid
 //scr_calculate_fore_mid

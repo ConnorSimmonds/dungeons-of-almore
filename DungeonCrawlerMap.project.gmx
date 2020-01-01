@@ -33,6 +33,11 @@
         <sprite>sprites\spr_tiles</sprite>
         <sprite>sprites\spr_icons</sprite>
       </sprites>
+      <sprites name="Textures">
+        <sprite>sprites\spr_floor</sprite>
+        <sprite>sprites\spr_wall</sprite>
+        <sprite>sprites\spr_player</sprite>
+      </sprites>
     </sprites>
     <sprites name="Combat">
       <sprites name="UI">
@@ -70,6 +75,11 @@
       <object>objects\obj_combat</object>
       <object>objects\obj_dungeon</object>
       <object>objects\obj_map</object>
+      <objects name="3D Rendering">
+        <object>objects\obj_player</object>
+        <object>objects\obj_wall</object>
+        <object>objects\obj_floor</object>
+      </objects>
     </objects>
     <objects name="Manager">
       <object>objects\obj_party</object>
@@ -82,6 +92,7 @@
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
     <room>rooms\rm_dungeon</room>
+    <room>rooms\rm_test</room>
     <room>rooms\rm_combat</room>
   </rooms>
   <help>
