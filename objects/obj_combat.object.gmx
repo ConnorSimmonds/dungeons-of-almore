@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>-1000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -185,7 +185,7 @@ scr_combat_party_graphic();
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="8" enumb="75">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -283,11 +283,12 @@ draw_text_ext_transformed((sprite_get_width(spr_menuBar)+5)*global.guiScale,5*gl
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(var i = 0; i &lt; array_length_1d(enemies); i++){
+            <string>/*for(var i = 0; i &lt; array_length_1d(enemies); i++){
     if(enemies[i] != -1){
         draw_sprite(spr_enemy,enemies[i],enemy_x + (i * 160),enemy_y);
     }
 }
+
 </string>
           </argument>
         </arguments>
