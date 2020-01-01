@@ -2,108 +2,62 @@
 //scr_dungeon_state
 //Manages the states for the dungeon controller
 switch(state){
-    case(PLAYER_IDLE): scr_player_idle(); break;
-    case(PLAYER_MOVE): scr_player_move(); break;
-    case(STATE_INTERACT): scr_player_interact(); break
     case(STATE_MENU): scr_menu();
     default: break;
 }
 
-#define scr_player_idle
-//Map stuff
-if(keyboard_check_pressed(ord('A')) && !instance_exists(obj_map)){
-    instance_create(0,0,obj_map);
-}
-
-//Movement
-if(keyboard_check_pressed(vk_up)){
-    state = PLAYER_MOVE;
-    move_action = PLAYER_FORWARD;
-} else if(keyboard_check_pressed(vk_down)){
-    state = PLAYER_MOVE;
-    move_action = PLAYER_BACK;
-} else if(keyboard_check_pressed(vk_right)){
-    state = PLAYER_MOVE;
-    move_action =PLAYER_TURN_LEFT;
-} else if(keyboard_check_pressed(vk_left)){
-    state = PLAYER_MOVE;
-    move_action = PLAYER_TURN_RIGHT;
-}
-
-if(keyboard_check_pressed(vk_space)){
-    state = STATE_INTERACT;
-}
-
-if(keyboard_check_pressed(vk_shift)){
-    state = STATE_MENU;
-}
-
-#define scr_player_move
-//scr_player_move
-switch(move_action){
-    case(PLAYER_FORWARD): scr_player_forward(); break;
-    case(PLAYER_BACK): scr_player_back(); break;
-    case(PLAYER_TURN_LEFT): scr_player_turn_left(); break
-    case(PLAYER_TURN_RIGHT): scr_player_turn_right(); break;
-}
-
-scr_calculate_fore_mid();
-
-//We calculate if we get a battle or not here
-if(scr_battle()){
-
-} else {
-    state = PLAYER_IDLE;
-    move_action = PLAYER_NULL
-}
-
-#define scr_player_forward
-//scr_player_forward
-switch(dir){
-    case(UP): playerY--; break;
-    case(DOWN): playerY++; break;
-    case(LEFT): playerX--; break;
-    case(RIGHT): playerX++; break;
-}
-
-if(scr_check_oob()){
-    scr_player_back();
-} else if(dungeon_map[playerX,playerY] == -1){
-    scr_player_back();
-}
-
-#define scr_player_interact
-
-
-#define scr_player_back
-//scr_player_back
-switch(dir){
-    case(UP): playerY++; break;
-    case(DOWN): playerY--; break;
-    case(LEFT): playerX++; break;
-    case(RIGHT): playerX--; break;
-}
-
-if(scr_check_oob()){
-    scr_player_forward();
-} else if(dungeon_map[playerX,playerY] == -1){
-    scr_player_forward();
-}
-
-#define scr_player_turn_left
-//scr_player_turn_left
-dir--;
-
-if(dir < UP){
-    dir = RIGHT;
-}
-
-#define scr_player_turn_right
-//scr_player_turn_right
-dir++;
-if(dir > RIGHT){
-    dir = UP;
-}
 #define scr_battle
 //Calculate chances of a battle occuring
-return false;
+return random(2) < 0.25
+
+#define scr_player_state
+//scr_player_state
+//State machinerino
+switch(state){
+    case(STATE_NORMAL): scr_player_move(); break;
+    case(STATE_INIT_BATTLE): scr_player_init_battle(); break;
+    case(STATE_BATTLE): scr_player_battle();
+}
+
+x = lerp(x,target_x,0.2);
+y = lerp(y,target_y,0.2);
+dir = lerp(dir,target_dir,0.1);
+
+#define scr_player_move
+//Movement - this should go into a script I guess
+vect_x = lengthdir_x(32,target_dir);
+vect_y = lengthdir_y(32,target_dir);
+
+if(keyboard_check_pressed(vk_up)){
+    if(!scr_check_oob() && !place_meeting(target_x+vect_x,target_y+vect_y,obj_wall)){
+        target_x += vect_x;
+        target_y += vect_y;
+        
+        if(scr_battle()){
+            state = STATE_INIT_BATTLE;
+        }
+    }
+} else if(keyboard_check_pressed(vk_down)){
+    if(!scr_check_oob_behind() && !place_meeting(target_x-vect_x,target_y-vect_y,obj_wall) ){
+        target_x -= vect_x;
+        target_y -= vect_y;
+        
+        if(scr_battle()){
+            state = STATE_BATTLE;
+        }
+    }
+} else if(keyboard_check_pressed(vk_right)){
+    target_dir -= 90;
+} else if(keyboard_check_pressed(vk_left)){
+    target_dir += 90;
+}
+
+#define scr_player_battle
+//scr_player_battle
+//nada
+
+#define scr_player_init_battle
+//scr_player_init_battle
+//Inits the battle shtick
+instance_create(0,0,obj_combat);
+state = STATE_BATTLE;

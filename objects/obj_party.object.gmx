@@ -47,9 +47,9 @@ spd[4] = 0;
 magic[4] = 0;
 
 //Draw variables
-row1X = 72 * global.guiScale;
+row1X = (view_wview[0]/(3));
 row1Y = view_hview[0] - (((sprite_get_height(spr_partyui)+11) * 2) * global.guiScale);
-row2X = 104 * global.guiScale;
+row2X = (view_wview[0]*(4/10));
 row2Y = view_hview[0] - ((sprite_get_height(spr_partyui)+12) * global.guiScale);
 </string>
           </argument>

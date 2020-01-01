@@ -83,8 +83,8 @@ for(i = 4; i &gt;= 0; i--){
     partyHeight[i] = 0;
 }
 
-enemy_x = 180;
-enemy_y = 260;
+enemy_x = (view_wview[0]/7)*2;
+enemy_y = (view_hview[0]/2);
 
 //Quick checks on selectWidth and Height etc.
 if(selectWidth % 2 == 0){
@@ -155,6 +155,10 @@ battleMessageQueue = ds_queue_create();
           <argument>
             <kind>1</kind>
             <string>ds_queue_destroy(turn_queue); //we need to clear this out
+
+if(instance_exists(obj_player)){
+    obj_player.state = obj_player.STATE_NORMAL;
+}
 </string>
           </argument>
         </arguments>
@@ -185,7 +189,7 @@ scr_combat_party_graphic();
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="75">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -205,6 +209,13 @@ scr_combat_party_graphic();
             <string>var i;
 draw_sprite_ext(spr_headIcons,0,0,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
 draw_sprite_ext(spr_menuBar,1,0,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
+
+//Enemies
+for(var i = 0; i &lt; array_length_1d(enemies); i++){
+    if(enemies[i] != -1){
+        draw_sprite(spr_enemy,enemies[i],enemy_x + (i * 160),enemy_y);
+    }
+}
 
 //Draw the HP bars
 draw_sprite_ext(spr_bar,0,72*global.guiScale,4*global.guiScale,global.guiScale,global.guiScale,0,image_blend,image_alpha);
@@ -261,34 +272,6 @@ if(playerSelect != -1){ //Combat isn't playing out
 //Message box
 draw_sprite_ext(spr_combat_message,0,(sprite_get_width(spr_menuBar)-1)*global.guiScale,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
 draw_text_ext_transformed((sprite_get_width(spr_menuBar)+5)*global.guiScale,5*global.guiScale,battleMessageDisplay,-1,(sprite_get_width(spr_combat_message)-10)*global.guiScale,global.guiScale/2,global.guiScale/2,0);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/*for(var i = 0; i &lt; array_length_1d(enemies); i++){
-    if(enemies[i] != -1){
-        draw_sprite(spr_enemy,enemies[i],enemy_x + (i * 160),enemy_y);
-    }
-}
-
 </string>
           </argument>
         </arguments>
