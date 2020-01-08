@@ -77,14 +77,14 @@ skillSelectHeightBase = 25;
 skillSelectHeight = floor((skillSelectHeightBase+7.5)*global.guiScale)
 
 backButtonX = (sprite_get_width(spr_backButton)/2) * global.guiScale;
-backButtonY = view_hview[0] - ((sprite_get_height(spr_backButton)/2) * global.guiScale);
+backButtonY = view_hport[0] - ((sprite_get_height(spr_backButton)/2) * global.guiScale);
 
 for(i = 4; i &gt;= 0; i--){
     partyHeight[i] = 0;
 }
 
-enemy_x = (view_wview[0]/7)*2;
-enemy_y = (view_hview[0]/2);
+enemy_x = (view_wport[0]/7)*2;
+enemy_y = (view_hport[0]/2);
 
 //Quick checks on selectWidth and Height etc.
 if(selectWidth % 2 == 0){

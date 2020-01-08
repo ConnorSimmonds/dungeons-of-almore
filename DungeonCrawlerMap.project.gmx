@@ -26,9 +26,6 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="Dungeon">
-      <sprite>sprites\spr_background</sprite>
-      <sprite>sprites\spr_midground</sprite>
-      <sprite>sprites\spr_foreground</sprite>
       <sprites name="Map Stuff">
         <sprite>sprites\spr_tiles</sprite>
         <sprite>sprites\spr_icons</sprite>
