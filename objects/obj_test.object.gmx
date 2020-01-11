@@ -27,10 +27,45 @@
             <kind>1</kind>
             <string>ip = "127.0.0.1"
 port = 8080
+message = "";
+received = "";
+buffer = buffer_create(1024,buffer_fixed,1);
 client = network_create_socket(network_socket_tcp);
 isConnected = network_connect_raw(client,ip,port);
-
-message = "";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(keyboard_check_pressed(vk_enter)){
+    buffer_seek(buffer,buffer_seek_start,0);
+    buffer_write(buffer,buffer_string,message);
+    show_debug_message(buffer_read(buffer,buffer_string));
+    message = "";
+    network_send_raw(client,buffer,buffer_get_size(buffer));
+    buffer_delete(buffer);
+} else if(keyboard_check_pressed(vk_backspace)){
+    string_delete(message,string_length(message)-1,1);
+} else if(keyboard_check_pressed(vk_anykey)){
+    message += keyboard_lastchar;
+}
 </string>
           </argument>
         </arguments>
@@ -53,22 +88,37 @@ message = "";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check_pressed(vk_enter)){
-    buffer = buffer_create(string_length(message),buffer_fixed,1);
-    buffer_write(buffer,buffer_string,message);
-    network_send_raw(client,buffer,buffer_get_size(buffer));
-} else if(keyboard_check_pressed(vk_anykey)){
-    message += keyboard_lastchar;
+            <string>var type_event = ds_map_find_value( async_load , "type" );
+switch( type_event ) {
+case network_type_data:
+var buffer = ds_map_find_value( async_load , "buffer" );
+buffer_seek( buffer , buffer_seek_start , 0 );
+   received = ReceivedPacket( buffer );
+break;
 }
-
-var type_event = ds_map_find_value( async_load , "type" );
-	switch( type_event ) {
-		case network_type_data:
-			var buffer = ds_map_find_value( async_load , "buffer" );
-			buffer_seek( buffer , buffer_seek_start , 0 );
-    			ReceivedPacket( buffer );
-		break;
-	}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>network_destroy( client);
 </string>
           </argument>
         </arguments>
@@ -92,6 +142,8 @@ var type_event = ds_map_find_value( async_load , "type" );
           <argument>
             <kind>1</kind>
             <string>draw_text( 5 , 5 , "Client Connected: " + string( isConnected ) );
+draw_text( 5, 15, message);
+draw_text( 5, 25, received);
 </string>
           </argument>
         </arguments>

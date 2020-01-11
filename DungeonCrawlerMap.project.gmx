@@ -63,6 +63,9 @@
     <script>scripts\scr_attack_script.gml</script>
     <script>scripts\scr_round_end.gml</script>
     <script>scripts\scr_combat_party_graphic.gml</script>
+    <scripts name="Networking">
+      <script>scripts\ReceivedPacket.gml</script>
+    </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\sh_selectionShader.shader</shader>
@@ -85,8 +88,10 @@
       <object>objects\obj_town</object>
       <object>objects\obj_menu</object>
     </objects>
+    <object>objects\obj_test</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room4</room>
     <room>rooms\rm_setup</room>
     <room>rooms\rm_dungeon</room>
     <room>rooms\rm_test</room>
