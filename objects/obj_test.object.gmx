@@ -113,10 +113,12 @@ switch( type_event ) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var t_buffer = buffer_create(256, buffer_grow, 1);
-buffer_seek(t_buffer, buffer_seek_start, 0);
-buffer_write(t_buffer , buffer_string,"quit");
-network_send_raw(client,t_buffer,buffer_get_size(t_buffer));
+            <string>if(isConnected){
+    var t_buffer = buffer_create(256, buffer_grow, 1);
+    buffer_seek(t_buffer, buffer_seek_start, 0);
+    buffer_write(t_buffer , buffer_u8,2);
+    network_send_raw(client,t_buffer,buffer_get_size(t_buffer));
+}
 network_destroy(client);
 </string>
           </argument>
