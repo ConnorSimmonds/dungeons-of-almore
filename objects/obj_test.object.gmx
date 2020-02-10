@@ -54,17 +54,12 @@ isConnected = network_connect_raw(client,ip,port);
           <argument>
             <kind>1</kind>
             <string>if(keyboard_check_pressed(vk_enter)){
-    message = string_insert("_",message,string_length(message)+1);
-    message = string_set_byte_at(message,string_length(message),10);
     var t_buffer = buffer_create(256, buffer_grow, 1);
     buffer_seek(t_buffer, buffer_seek_start, 0);
-    buffer_write(t_buffer , buffer_string,message);
+    buffer_write(t_buffer , buffer_u8,message);
     network_send_raw(client,t_buffer,buffer_get_size(t_buffer));
-    message = "";
-} else if(keyboard_check_pressed(vk_backspace)){
-    string_delete(message,string_length(message)-1,1);
 } else if(keyboard_check_pressed(vk_anykey)){
-    message += keyboard_lastchar;
+    scr_handle_message();
 }
 </string>
           </argument>
@@ -90,11 +85,11 @@ isConnected = network_connect_raw(client,ip,port);
             <kind>1</kind>
             <string>var type_event = ds_map_find_value( async_load , "type" );
 switch( type_event ) {
-case network_type_data:
-var buffer = ds_map_find_value( async_load , "buffer" );
-buffer_seek( buffer , buffer_seek_start , 0 );
-   received = ReceivedPacket( buffer );
-break;
+    case network_type_data:
+        var buffer = ds_map_find_value( async_load , "buffer" );
+        buffer_seek( buffer , buffer_seek_start , 0 );
+        received = scr_receive_packet(ReceivedPacket( buffer ));
+        break;
 }
 </string>
           </argument>
