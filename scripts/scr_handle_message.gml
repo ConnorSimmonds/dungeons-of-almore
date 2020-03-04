@@ -17,11 +17,20 @@ switch(keyboard_lastchar){
     case('2'): opcode = 2;
         buffer_write(message, buffer_u8,opcode); break;
     case('3'): opcode = 10; 
-        buffer_write(message, buffer_u8,opcode); break;
+        buffer_write(message, buffer_u8,opcode);
+        buffer_write(message, buffer_u8,0);
+        buffer_write(message, buffer_u8,0);
+        buffer_write(message, buffer_u8,1);
+        break;
+    case('4'): opcode = 13; 
+        buffer_write(message, buffer_u8,opcode);
+        buffer_write(message, buffer_u16,1);
+        buffer_write(message, buffer_u16,1);
+        break;
     default: //nada
 }
 
-
+//TODO: need to find a better way to add in all of the arguments - right now, it's super messy.
 
 #define scr_receive_packet
 //scr_recieve_packet
