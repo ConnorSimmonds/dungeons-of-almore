@@ -1,13 +1,26 @@
 #define scr_handle_message
 //scr_handle_message()
 //Basically just allows us to send some dummy packets
+buffer_seek(message, buffer_seek_start, 0);
+var opcode;
 switch(keyboard_lastchar){
-    case('0'): message = 0; break;
-    case('1'): message = 1; break;
-    case('2'): message = 2; break;
-    case('3'): message = 10; break;
+    case('0'): ini_open("/settings.ini");
+        opcode = 0;
+        var user = ini_read_real('UserDetails','userid',-1);
+        buffer_write(message, buffer_u8,opcode);
+        buffer_write(message , buffer_u32,user);
+        break;
+    case('1'): opcode = 1; 
+        buffer_write(message, buffer_u8,opcode);
+        break;
+    case('2'): opcode = 2;
+        buffer_write(message, buffer_u8,opcode); break;
+    case('3'): opcode = 10; 
+        buffer_write(message, buffer_u8,opcode); break;
     default: //nada
 }
+
+
 
 #define scr_receive_packet
 //scr_recieve_packet

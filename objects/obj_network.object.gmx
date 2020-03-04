@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>ip = "127.0.0.1"
 port = 8080
-message = "";
+message = buffer_create(256, buffer_grow, 1);
 received = "";
 client = network_create_socket(network_socket_tcp);
 isConnected = network_connect_raw(client,ip,port);
@@ -54,11 +54,8 @@ isConnected = network_connect_raw(client,ip,port);
           <argument>
             <kind>1</kind>
             <string>if(keyboard_check_pressed(vk_enter)){
-    var t_buffer = buffer_create(256, buffer_grow, 1);
-    buffer_seek(t_buffer, buffer_seek_start, 0);
-    buffer_write(t_buffer , buffer_u8,message);
-    network_send_raw(client,t_buffer,buffer_get_size(t_buffer));
-} else if(keyboard_check_pressed(vk_anykey)){
+    network_send_raw(client,message,buffer_get_size(message));
+} else {
     scr_handle_message();
 }
 </string>
@@ -119,6 +116,7 @@ switch( type_event ) {
     buffer_write(t_buffer , buffer_u8,2);
     network_send_raw(client,t_buffer,buffer_get_size(t_buffer));
 }
+buffer_delete(message);
 network_destroy(client);
 </string>
           </argument>
