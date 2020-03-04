@@ -4,11 +4,12 @@
 buffer_seek(message, buffer_seek_start, 0);
 var opcode;
 switch(keyboard_lastchar){
-    case('0'): ini_open("/settings.ini");
+    case('0'): ini_open("settings.ini");
         opcode = 0;
         var user = ini_read_real('UserDetails','userid',-1);
         buffer_write(message, buffer_u8,opcode);
         buffer_write(message , buffer_u32,user);
+        ini_close();
         break;
     case('1'): opcode = 1; 
         buffer_write(message, buffer_u8,opcode);
