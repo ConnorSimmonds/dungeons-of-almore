@@ -55,8 +55,8 @@ isConnected = network_connect_raw(client,ip,port);
             <kind>1</kind>
             <string>if(keyboard_check_pressed(vk_enter)){
     network_send_raw(client,message,buffer_get_size(message));
-} else {
-    scr_handle_message();
+} else if(keyboard_check_pressed(vk_anykey)){
+    scr_handle_messages();
 }
 </string>
           </argument>
@@ -85,7 +85,7 @@ switch( type_event ) {
     case network_type_data:
         var buffer = ds_map_find_value( async_load , "buffer" );
         buffer_seek( buffer , buffer_seek_start , 0 );
-        received = scr_receive_packet(ReceivedPacket( buffer ));
+        received = scr_recieve_packet(ReceivedPacket( buffer ));
         break;
 }
 </string>
