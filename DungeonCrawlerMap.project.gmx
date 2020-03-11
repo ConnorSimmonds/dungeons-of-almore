@@ -109,11 +109,11 @@
     <object>objects\obj_network</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room4</room>
     <room>rooms\rm_setup</room>
     <room>rooms\rm_dungeon</room>
     <room>rooms\rm_test</room>
     <room>rooms\rm_combat</room>
+    <room>rooms\room4</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
