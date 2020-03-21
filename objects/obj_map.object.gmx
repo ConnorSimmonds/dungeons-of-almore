@@ -71,6 +71,10 @@ if(keyboard_check_pressed(ord('D'))){
     debug = !debug;
     show_debug_message("Debug is " + string(debug));
 }
+
+if(keyboard_check_pressed(vk_numpad1)){
+    
+}
 </string>
           </argument>
         </arguments>
@@ -94,6 +98,8 @@ if(keyboard_check_pressed(ord('D'))){
           <argument>
             <kind>1</kind>
             <string>var mapX, mapY;
+scr_draw_sprite_tiled_restrain(spr_map_background, 0, 0, 0, 128, 176, 1, c_white, 0.25)
+
 for(mapX = 0; mapX &lt; array_height_2d(map); mapX++){
     for(mapY = 0; mapY &lt; array_length_2d(map,mapX); mapY++){
         draw_sprite(spr_tiles,map[mapX,mapY],mapX*32,mapY*32);
