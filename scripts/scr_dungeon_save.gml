@@ -1,3 +1,4 @@
+#define scr_dungeon_save
 //scr_dungeon_save
 //A debug function for easy fungeon creation. Saves the layout to a txt file. It automatically determines the width and height.
 
@@ -44,3 +45,17 @@ if(filename != ""){
     file_text_close(file);
 }
 //Exit the scrip
+
+#define scr_map_close
+//scr_map_close
+//Closes the map oobject
+if(instance_exists(obj_map)){
+    with(obj_map){
+        obj_dungeon.map = map;
+        if(debug){
+            scr_dungeon_save();
+        }
+        instance_destroy();
+    }
+}
+

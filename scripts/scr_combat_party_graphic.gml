@@ -25,3 +25,7 @@ if(battleMessage != argument0){
     battleMessage = argument0;
     battleMessageDisplay = "";
 }
+#define scr_get_playerDir
+//scr_get_playerDir
+//calculates the playerDir value
+return 4 - ((obj_player.target_dir/90) mod 4);

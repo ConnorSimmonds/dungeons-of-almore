@@ -45,6 +45,7 @@
     <sprites name="Dungeon">
       <sprites name="Map Stuff">
         <sprite>sprites\spr_tiles</sprite>
+        <sprite>sprites\spr_playerIcon</sprite>
         <sprite>sprites\spr_icons</sprite>
       </sprites>
       <sprites name="Textures">

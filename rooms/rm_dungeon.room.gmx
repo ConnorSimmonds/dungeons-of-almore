@@ -26,7 +26,7 @@
     <showViews>0</showViews>
     <deleteUnderlyingObj>0</deleteUnderlyingObj>
     <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
-    <page>4</page>
+    <page>1</page>
     <xoffset>4</xoffset>
     <yoffset>2</yoffset>
   </makerSettings>
@@ -52,6 +52,7 @@
   </views>
   <instances>
     <instance objName="obj_party" x="128" y="224" name="inst_BD32D6F3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_dungeon" x="32" y="192" name="inst_2F34502B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

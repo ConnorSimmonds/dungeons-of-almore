@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>//Player init
 //This is all taken from https://www.youtube.com/watch?v=0uo2_ytDgFI
-z = 16;
+z = 12;
 dir = 0;
 
 //Target variables
@@ -47,6 +47,7 @@ d3d_set_fog(true,fog_colour,76,128);
 STATE_NORMAL = 0
 STATE_BATTLE = 1;
 STATE_INIT_BATTLE = 2;
+STATE_MENU = 3;
 
 state = STATE_NORMAL;
 </string>
@@ -100,7 +101,7 @@ vect_x = lengthdir_x(32,dir);
 vect_y = lengthdir_y(32,dir);
 
 
-d3d_set_projection(x,y,z,x+vect_x,y+vect_y,z-2,0,0,1);
+d3d_set_projection(x,y,z,x+vect_x,y+vect_y,z-4,0,0,1);
 </string>
           </argument>
         </arguments>

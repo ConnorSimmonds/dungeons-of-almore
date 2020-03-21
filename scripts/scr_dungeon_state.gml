@@ -16,7 +16,8 @@ return random(2) < 0.25
 switch(state){
     case(STATE_NORMAL): scr_player_move(); break;
     case(STATE_INIT_BATTLE): scr_player_init_battle(); break;
-    case(STATE_BATTLE): scr_player_battle();
+    case(STATE_BATTLE): scr_player_battle(); break;
+    case(STATE_MENU): scr_player_menu(); break;
 }
 
 x = lerp(x,target_x,0.2);
@@ -48,8 +49,20 @@ if(keyboard_check_pressed(vk_up)){
     }
 } else if(keyboard_check_pressed(vk_right)){
     target_dir -= 90;
+    if(instance_exists(obj_map)){
+        obj_map.playerDir = scr_get_playerDir();
+    }
 } else if(keyboard_check_pressed(vk_left)){
     target_dir += 90;
+    if(instance_exists(obj_map)){
+        obj_map.playerDir = scr_get_playerDir();
+    }
+}
+
+if(keyboard_check_pressed(ord('A'))){
+    if(!instance_exists(obj_map)){
+        instance_create(0,0,obj_map);
+    }
 }
 
 #define scr_player_battle
@@ -59,5 +72,11 @@ if(keyboard_check_pressed(vk_up)){
 #define scr_player_init_battle
 //scr_player_init_battle
 //Inits the battle shtick
+scr_map_close();
 instance_create(0,0,obj_combat);
 state = STATE_BATTLE;
+
+#define scr_player_menu
+//scr_player_menu
+//This is for any 2D-only menus (maybe?)
+d3d_end();
