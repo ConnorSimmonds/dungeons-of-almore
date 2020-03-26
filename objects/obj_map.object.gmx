@@ -141,7 +141,21 @@ if(state == STATE_DRAW){
     draw_sprite(spr_playerIcon,playerDir,obj_player.x-16,obj_player.y-16);
 } else if(state == STATE_MINIMAP){
     draw_sprite_ext(spr_map_background,0,miniX,miniY,1,1,0,c_white,0.1);
-    draw_sprite_ext(spr_playerIcon,playerDir,floor(miniX + floor(((obj_player.target_x/32) mod 4))* 32),floor(miniY+floor(((obj_player.target_y/32) mod 4))*32),1,1,0,c_white,0.25);
+    
+    for(mapX = 0; mapX &lt; 4; mapX++){
+        for(mapY = 0; mapY &lt; 4; mapY++){
+            if(mapX &gt;= array_height_2d(map) || mapY &gt;= array_length_2d(map,mapX)){
+                //we draw nothing you bozos
+            } else {
+                var chunkX, chunkY;
+                //gets the chunk we're in, for the displacement
+                chunkX = floor((obj_player.target_x/32)/4);
+                chunkY = floor((obj_player.target_y/32)/4); 
+                draw_sprite_ext(spr_tiles,map[(chunkX*4)+mapX,(chunkY*4)+mapY],miniX+ (32 * mapX),miniY+ (32 * mapY),1,1,0,c_white,0.25);
+            }
+        }
+        draw_sprite_ext(spr_playerIcon,playerDir,floor(miniX + floor(((obj_player.target_x/32) mod 4))* 32),floor(miniY+floor(((obj_player.target_y/32) mod 4))*32),1,1,0,c_white,0.25);
+    }
 }
 </string>
           </argument>
