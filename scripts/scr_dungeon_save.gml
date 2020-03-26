@@ -51,11 +51,20 @@ if(filename != ""){
 //Closes the map oobject
 if(instance_exists(obj_map)){
     with(obj_map){
-        obj_dungeon.map = map;
+        state = STATE_MINIMAP;
         if(debug){
             scr_dungeon_save();
         }
-        instance_destroy();
+        
     }
 }
 
+#define scr_map_open
+//scr_map_open
+if(instance_exists(obj_map)){
+    with(obj_map){
+        state = STATE_DRAW;
+    }
+} else { //we... somehow lost the map
+    instance_create(0,0,obj_map);
+}
