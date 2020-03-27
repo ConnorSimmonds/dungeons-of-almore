@@ -129,7 +129,12 @@ if(playerSelect != 0){
 #define scr_battle_message
 //scr_battle_message
 //Displays the battle message until you press accept, then displays the next. Also handles things such as battle animations etc.
-if(keyboard_check_pressed(vk_space) && (string_length(battleMessage)/2 <= string_length(battleMessageDisplay))){
+if(keyboard_check_pressed(vk_space)){
+    battleMessageGetNext = true;
+}
+
+if(battleMessageGetNext && (string_length(battleMessage)/2 <= string_length(battleMessageDisplay))){
+    battleMessageGetNext = false;
     if(ds_queue_empty(battleMessageQueue)){
         scr_round_end();
         state = STATE_MAIN;
@@ -141,6 +146,7 @@ if(keyboard_check_pressed(vk_space) && (string_length(battleMessage)/2 <= string
             scr_set_battle_message(message);
         } else { //It's very likely the custom message script
             script_execute(message,ds_queue_dequeue(battleMessageQueue));
+            battleMessageGetNext = true;
         }
     }
 }

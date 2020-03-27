@@ -90,9 +90,10 @@ if(source < 5){
     }
     
     if(enemyHP[targ] <= 0 && initHP != enemyHP[targ]){
-        array[0] = targ;
+        array = targ;
         ds_queue_enqueue(battleMessageQueue,scr_enemy_defeat);
         ds_queue_enqueue(battleMessageQueue,array);
+        ds_queue_enqueue(battleMessageQueue,"Enemy down!");
     }
 } else {
     

@@ -60,4 +60,4 @@ draw_primitive_end();
 #define scr_enemy_defeat
 //scr_enemy_defeat(enemy)
 //Defeats the enemy. In the future, it'll have a fancy shmancy fade out.
-enemies[argument0[0]] = -1;
+enemies[argument0] = -1;

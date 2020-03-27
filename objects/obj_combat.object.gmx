@@ -134,6 +134,7 @@ battleMessageDisplay = "";
 battleMessageTimer = 0;
 battleMessageMax = 2;
 battleMessageQueue = ds_queue_create();
+battleMessageGetNext = false;
 </string>
           </argument>
         </arguments>
