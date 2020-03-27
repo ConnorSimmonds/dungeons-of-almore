@@ -27,6 +27,11 @@
             <kind>1</kind>
             <string>STATE_MINIMAP = 0;
 STATE_DRAW = 1;
+STATE_DISABLE = 2;
+
+//Map Drawing Constants
+MAP_DRAW = 1;
+MAP_REMOVE = 0;
 </string>
           </argument>
         </arguments>
@@ -55,6 +60,7 @@ for(mapX = 0; mapX &lt;= room_width/32; mapX++){
 state = STATE_MINIMAP;
 playerDir = scr_get_playerDir();
 debug = false;
+draw_tool = MAP_DRAW;
 
 miniX = view_wview[0]-(global.guiScale*(sprite_get_width(spr_map_background)*(11/10)))
 miniY = (global.guiScale*(sprite_get_height(spr_map_background)*(1/4)));
@@ -82,22 +88,25 @@ miniY = (global.guiScale*(sprite_get_height(spr_map_background)*(1/4)));
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(mouse_check_button_pressed(mb_left)){
-    var mapX, mapY;
-    mapX = floor(window_mouse_get_x()/32)
-    mapY = floor(window_mouse_get_y()/32)
-    map[mapX,mapY] = 1
-    //Now we SEND this to our server
-    //First off, create a buffer to write to.
-   /* network_buffer = buffer_create(3,buffer_fixed,1);
-    buffer_write(network_buffer,buffer_u8,mapX);
-    buffer_write(network_buffer,buffer_u8,mapY);
-    buffer_write(network_buffer,buffer_bool,map[mapX,mapY]);*/
-}
-if(keyboard_check_pressed(ord('A'))){
+            <string>if(keyboard_check_pressed(ord('A'))){
     scr_map_open();
 } else if(keyboard_check_pressed(ord('S'))){
-    scr_map_close();
+    scr_map_minimize();
+}
+
+if(state == STATE_DRAW){
+    if(mouse_check_button_pressed(mb_left)){
+        var mapX, mapY;
+        mapX = floor(window_mouse_get_x()/32)
+        mapY = floor(window_mouse_get_y()/32)
+        map[mapX,mapY] = draw_tool;
+        //Now we SEND this to our server
+        //First off, create a buffer to write to.
+       /* network_buffer = buffer_create(3,buffer_fixed,1);
+        buffer_write(network_buffer,buffer_u8,mapX);
+        buffer_write(network_buffer,buffer_u8,mapY);
+        buffer_write(network_buffer,buffer_bool,map[mapX,mapY]);*/
+    }
 }
 
 if(keyboard_check_pressed(ord('D'))){
@@ -106,7 +115,10 @@ if(keyboard_check_pressed(ord('D'))){
 }
 
 if(keyboard_check_pressed(vk_numpad1)){
-    
+    draw_tool = MAP_DRAW;
+}
+if(keyboard_check_pressed(vk_numpad2)){
+    draw_tool = MAP_REMOVE;
 }
 </string>
           </argument>
@@ -156,6 +168,8 @@ if(state == STATE_DRAW){
         }
         draw_sprite_ext(spr_playerIcon,playerDir,floor(miniX + floor(((obj_player.target_x/32) mod 4))* 32),floor(miniY+floor(((obj_player.target_y/32) mod 4))*32),global.guiScale,global.guiScale,0,c_white,0.25);
     }
+} else {
+
 }
 </string>
           </argument>
