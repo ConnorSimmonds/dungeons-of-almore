@@ -134,6 +134,13 @@ if(keyboard_check_pressed(vk_space) && (string_length(battleMessage)/2 <= string
         scr_round_end();
         state = STATE_MAIN;
     } else {
-        scr_set_battle_message(ds_queue_dequeue(battleMessageQueue));
+        //Let's check if we have a string or not
+        var message;
+        message = ds_queue_dequeue(battleMessageQueue);
+        if(is_string(message)){
+            scr_set_battle_message(message);
+        } else { //It's very likely the custom message script
+            script_execute(message,ds_queue_dequeue(battleMessageQueue));
+        }
     }
 }

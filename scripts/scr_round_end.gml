@@ -18,9 +18,13 @@ if(tempEnemies[0] != -1){
     enemies = tempEnemies;
     enemyHP = tempHP;
     enemySelect = 0;
-} else if(scr_check_enemies()){
+}else if(scr_check_enemies()){ //At the end of the round, check to see if either all players or enemies are dead
     scr_victory_script();
+} else if(scr_check_players()){
+    scr_defeat_script();
 }
+
+
 
 playerSelect = 0;
 

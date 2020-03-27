@@ -57,3 +57,7 @@ draw_primitive_begin_texture(pr_trianglestrip, tex);
     draw_vertex_texture_colour(x_pos+width, y_pos+height, width*tex_w*uv_scale, height*tex_h*uv_scale,colour, alpha);;
     draw_vertex_texture_colour(x_pos+width, y_pos, width*tex_w*uv_scale, 0,colour, alpha);;
 draw_primitive_end();
+#define scr_enemy_defeat
+//scr_enemy_defeat(enemy)
+//Defeats the enemy. In the future, it'll have a fancy shmancy fade out.
+enemies[argument0[0]] = -1;
