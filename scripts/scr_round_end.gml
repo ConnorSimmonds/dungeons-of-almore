@@ -34,6 +34,19 @@ for(i = 0; i < array_length_1d(enemies); i++){
     }
 }
 return true;
+#define scr_check_players
+//scr_check_players
+//Checks if all of the player's party members are dead
+var i;
+with(obj_party){
+    for(i = 0; i < array_length_1d(hp); i++){
+        if(hp[i] != -1){
+            return false;
+        }
+    }
+}
+return true;
+
 #define scr_player_turn_add
 //scr_player_turn_add
 //Adds the player turns into the priority queue
