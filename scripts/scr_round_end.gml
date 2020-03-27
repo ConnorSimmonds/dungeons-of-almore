@@ -19,7 +19,7 @@ if(tempEnemies[0] != -1){
     enemyHP = tempHP;
     enemySelect = 0;
 } else if(scr_check_enemies()){
-    instance_destroy();
+    scr_victory_script();
 }
 
 playerSelect = 0;
@@ -47,3 +47,18 @@ for(i = 0; i < 5; i++){
         ds_priority_add(turn_queue,temp_turn,obj_party.spd[temp_turn[3]]);
     }
 }
+#define scr_victory_script
+//scr_victory_script
+//Displays gold, items, and exp gained. Destroys obj_combat at the end of it.
+state = STATE_VICTORY;
+
+//Calculate the items needed
+
+
+instance_destroy();
+
+#define scr_defeat_script
+//scr_defeat_script
+//Cleans up any state stuff, and boots the player back to town.
+state = STATE_DEFEAT;
+instance_destroy();

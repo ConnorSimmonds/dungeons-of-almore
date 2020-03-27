@@ -48,6 +48,8 @@ STATE_TARGET = 7; //Targeting menu
 STATE_TURN_END = 8; //Turn end
 STATE_EXECUTE = 9; //Executing turn menu
 STATE_MESSAGE = 10;
+STATE_VICTORY = 11;
+STATE_DEFEAT = 12;
 </string>
           </argument>
         </arguments>

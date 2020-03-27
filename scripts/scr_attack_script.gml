@@ -73,25 +73,33 @@ var action, targ;
 action = argument0;
 targ = argument1;
 source = argument2;
-
 //First off, check we're still alive. This can also allow us to split players and enemies up easily
 if(source < 5){
-    
     switch(action){
         case(0): { //generic attack
-            ds_queue_enqueue(battleMessageQueue,obj_party.names[source] + "attempts to attack.");
-            enemyHP[targ] -= 5;
-            ds_queue_enqueue(battleMessageQueue,"Enemy takes 5 damage!");
+            ds_queue_enqueue(battleMessageQueue,obj_party.names[source] + "attempts to attack!");
+            if(enemyHP[targ] <= 0){
+                ds_queue_enqueue(battleMessageQueue,"But their target had been defeated...");
+            } else {
+                enemyHP[targ] -= 5;
+                ds_queue_enqueue(battleMessageQueue,string("Enemy takes " + 5 + " damage!"));
+            }
             break;
         }
     }
     if(enemyHP[targ] <= 0){
         ds_queue_enqueue(battleMessageQueue,"Enemy is defeated.");
         enemies[targ] = -1; //we baleet the enemy
-        
     }
 } else {
     
+}
+
+//At the end of the turn, check to see if either all players or enemies are dead
+if(scr_check_enemies()){
+    scr_victory_script();
+} else if(scr_check_players()){
+    scr_defeat_script();
 }
 
 

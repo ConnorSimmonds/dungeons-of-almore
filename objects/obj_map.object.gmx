@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>STATE_MINIMAP = 0;
 STATE_DRAW = 1;
-STATE_DISABLE = 2;
+STATE_CLOSE = 2;
 
 //Map Drawing Constants
 MAP_DRAW = 1;
@@ -107,18 +107,18 @@ if(state == STATE_DRAW){
         buffer_write(network_buffer,buffer_u8,mapY);
         buffer_write(network_buffer,buffer_bool,map[mapX,mapY]);*/
     }
+    
+    if(keyboard_check_pressed(vk_numpad1)){
+    draw_tool = MAP_DRAW;
+    }
+    if(keyboard_check_pressed(vk_numpad2)){
+        draw_tool = MAP_REMOVE;
+    }
 }
 
 if(keyboard_check_pressed(ord('D'))){
     debug = !debug;
     show_debug_message("Debug is " + string(debug));
-}
-
-if(keyboard_check_pressed(vk_numpad1)){
-    draw_tool = MAP_DRAW;
-}
-if(keyboard_check_pressed(vk_numpad2)){
-    draw_tool = MAP_REMOVE;
 }
 </string>
           </argument>
