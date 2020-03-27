@@ -157,7 +157,8 @@ battleMessageGetNext = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_queue_destroy(turn_queue); //we need to clear this out
+            <string>ds_priority_destroy(turn_queue); //we need to clear this out
+ds_queue_destroy(battleMessageQueue);
 
 if(instance_exists(obj_player)){
     obj_player.state = obj_player.STATE_NORMAL;
