@@ -73,9 +73,11 @@ var action, targ;
 action = argument0;
 targ = argument1;
 source = argument2;
-//First off, check we're still alive. This can also allow us to split players and enemies up easily
+//First off, check who's the source of the attack. This allows us to handle enemies and players differently.
 if(source < 5){
     var initHP = enemyHP[targ];
+    ds_queue_enqueue(battleMessageQueue,scr_player_select);
+    ds_queue_enqueue(battleMessageQueue,source);
     switch(action){
         case(0): { //generic attack
             ds_queue_enqueue(battleMessageQueue,obj_party.names[source] + "attempts to attack!");

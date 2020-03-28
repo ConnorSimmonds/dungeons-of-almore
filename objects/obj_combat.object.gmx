@@ -81,6 +81,9 @@ skillSelectHeight = floor((skillSelectHeightBase+7.5)*global.guiScale)
 backButtonX = (sprite_get_width(spr_backButton)/2) * global.guiScale;
 backButtonY = view_hport[0] - ((sprite_get_height(spr_backButton)/2) * global.guiScale);
 
+doubleTeamX = view_wview[0] - (sprite_get_width(spr_menuBar) * global.guiScale)
+doubleTeamY = 50;
+
 for(i = 4; i &gt;= 0; i--){
     partyHeight[i] = 0;
 }
@@ -249,17 +252,19 @@ if(state != STATE_TARGET || state != STATE_EXECUTE){
         //Draw more text
         draw_set_colour(c_black);
         draw_text_ext_transformed(86*global.guiScale,25*global.guiScale,skillString,18,-1,global.guiScale/2,global.guiScale/2,0)
+    } else if(state == STATE_DOUBLE_ATTACK){
+    draw_sprite_ext(spr_menuBar,3,doubleTeamX,doubleTeamY,global.guiScale,global.guiScale,0,c_white,1);
+    shader_set(sh_selectionShader);
+    draw_rectangle_colour(doubleTeamX+(1*global.guiScale),(doubleTeamY + ((9*global.guiScale)*skillSelect))+(1*global.guiScale),doubleTeamX+(62*global.guiScale),(doubleTeamY + ((9*global.guiScale)*skillSelect))+(9*global.guiScale),c_yellow,c_yellow,c_yellow,c_yellow,0);
+    shader_reset();
     }
 } else if(state == STATE_TARGET){
     draw_sprite_ext(spr_bar,0,(enemy_x-90 + (enemySelect * 80))*2,90*2,global.guiScale,global.guiScale,0,image_blend,image_alpha);
     draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*enemyHP[enemySelect]/10,sprite_get_height(spr_bar),(enemy_x-113 + (enemySelect * 80))*2,88*2,global.guiScale,global.guiScale,image_blend,image_alpha)
     draw_sprite_ext(spr_backButton,0,backButtonX,backButtonY,global.guiScale,global.guiScale,0,image_blend,image_alpha);
-} else if(state == STATE_DOUBLE_ATTACK){
-    draw_sprite_ext(spr_menuBar,3,view_hview[0],0,global.guiScale,global.guiScale,0,c_white,1);
 }
-
 //Player Faceplates
-if(playerSelect != -1){ //Combat isn't playing out
+if(playerSelect != -1){ //If it's the player's turn...
     for(i = 0; i &lt; 5; i++){
         if(i div 3 == 0){
             draw_sprite_ext(spr_partyui,0,obj_party.row1X + (global.guiScale * (sprite_get_width(spr_partyui)+1)*i),obj_party.row1Y,global.guiScale,global.guiScale,0,image_blend,image_alpha);

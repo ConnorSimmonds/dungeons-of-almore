@@ -24,8 +24,6 @@ if(tempEnemies[0] != -1){
     scr_defeat_script();
 }
 
-
-
 playerSelect = 0;
 
 #define scr_check_enemies

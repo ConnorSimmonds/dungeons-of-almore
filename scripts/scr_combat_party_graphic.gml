@@ -61,3 +61,7 @@ draw_primitive_end();
 //scr_enemy_defeat(enemy)
 //Defeats the enemy. In the future, it'll have a fancy shmancy fade out.
 enemies[argument0] = -1;
+#define scr_player_select
+//scr_player_select
+//A script to set the playerSelect variable to the argument
+playerSelect = argument0;

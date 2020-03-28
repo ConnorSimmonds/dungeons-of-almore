@@ -87,7 +87,7 @@ switch(state){
         break;
     } case(STATE_EXECUTE):{
         scr_turn_execute(); //Based off of that information, we execute the turn order
-        scr_set_battle_message(ds_queue_dequeue(battleMessageQueue));
+        battleMessageGetNext = true;
         state = STATE_MESSAGE;
     } case(STATE_MESSAGE):{
         scr_battle_message();
@@ -152,6 +152,17 @@ if(battleMessageGetNext && (string_length(battleMessage)/2 <= string_length(batt
         }
     }
 }
+
 #define scr_turn_edit
 //scr_turn_edit
 //Script for editing turns
+if(keyboard_check_pressed(vk_shift)){
+    skillSelect = 0;
+    state = STATE_MAIN;
+}
+
+if(keyboard_check_pressed(vk_up)){
+    skillSelect--;
+} else if(keyboard_check_pressed(vk_down)){
+    skillSelect++;
+}
