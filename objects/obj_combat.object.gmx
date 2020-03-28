@@ -186,7 +186,6 @@ if(instance_exists(obj_player)){
           <argument>
             <kind>1</kind>
             <string>scr_combat_state(state);
-
 scr_combat_party_graphic();
 </string>
           </argument>
@@ -233,9 +232,9 @@ if(state != STATE_TARGET || state != STATE_EXECUTE){
     draw_sprite_ext(spr_menuBar,0,0,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
     
     //Draw the selection square
-    //shader_set(sh_selectionShader);
+    shader_set(sh_selectionShader);
     draw_rectangle_colour(0,(((48*global.guiScale)+(17*global.guiScale)*menu)),(selectWidth),(selectHeight+((17*global.guiScale)*menu)),c_yellow,c_yellow,c_yellow,c_yellow,0);
-    //shader_reset();
+    shader_reset();
     
     //Draw the text
     draw_set_colour(c_black);
@@ -251,13 +250,12 @@ if(state != STATE_TARGET || state != STATE_EXECUTE){
         draw_set_colour(c_black);
         draw_text_ext_transformed(86*global.guiScale,25*global.guiScale,skillString,18,-1,global.guiScale/2,global.guiScale/2,0)
     }
-}
-
-//Targetting shtick
-if(state == STATE_TARGET){
+} else if(state == STATE_TARGET){
     draw_sprite_ext(spr_bar,0,(enemy_x-90 + (enemySelect * 80))*2,90*2,global.guiScale,global.guiScale,0,image_blend,image_alpha);
     draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*enemyHP[enemySelect]/10,sprite_get_height(spr_bar),(enemy_x-113 + (enemySelect * 80))*2,88*2,global.guiScale,global.guiScale,image_blend,image_alpha)
     draw_sprite_ext(spr_backButton,0,backButtonX,backButtonY,global.guiScale,global.guiScale,0,image_blend,image_alpha);
+} else if(state == STATE_DOUBLE_ATTACK){
+    draw_sprite_ext(spr_menuBar,3,view_hview[0],0,global.guiScale,global.guiScale,0,c_white,1);
 }
 
 //Player Faceplates

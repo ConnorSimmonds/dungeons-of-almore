@@ -71,9 +71,11 @@ switch(state){
         break;
     }
     case(STATE_DOUBLE_ATTACK):{
+        scr_turn_edit();
         break;
     }
     case(STATE_FLEE):{
+        
         break;
     }
     case(STATE_TARGET):{
@@ -150,3 +152,6 @@ if(battleMessageGetNext && (string_length(battleMessage)/2 <= string_length(batt
         }
     }
 }
+#define scr_turn_edit
+//scr_turn_edit
+//Script for editing turns
