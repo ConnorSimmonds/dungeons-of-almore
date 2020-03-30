@@ -24,6 +24,7 @@ if(tempEnemies[0] != -1){
     scr_defeat_script();
 }
 
+temp_turn = scr_player_intended_turn(); //reset the turn order
 playerSelect = 0;
 
 #define scr_check_enemies
@@ -96,7 +97,9 @@ player_turns[4] = 4;
 
 for(i = 0; i < 5; i++){
     for(i2 = i; i2 < 5; i2++){
-        if(obj_party.spd[player_turns[i]] > obj_party.spd[player_turns[i2]]){ //if the one we found is bigger 
+        var first = player_turns[i];
+        var second = player_turns[i2];
+        if(obj_party.spd[first] < obj_party.spd[second]){ //if the one we found is bigger 
             var temp = player_turns[i];
             player_turns[i] = player_turns[i2];
             player_turns[i2] = temp;

@@ -112,8 +112,8 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
-    <room>rooms\rm_dungeon</room>
     <room>rooms\rm_combat</room>
+    <room>rooms\rm_dungeon</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

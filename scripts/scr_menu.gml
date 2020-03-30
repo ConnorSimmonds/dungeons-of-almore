@@ -157,12 +157,32 @@ if(battleMessageGetNext && (string_length(battleMessage)/2 <= string_length(batt
 //scr_turn_edit
 //Script for editing turns
 if(keyboard_check_pressed(vk_shift)){
-    skillSelect = 0;
-    state = STATE_MAIN;
+    if(turnSelect == -1){
+        skillSelect = 0;
+        state = STATE_MAIN;
+    } else {
+        turnSelect = -1;
+    }
 }
 
 if(keyboard_check_pressed(vk_up)){
     skillSelect--;
 } else if(keyboard_check_pressed(vk_down)){
     skillSelect++;
+} else if(keyboard_check_pressed(vk_space)){
+    if(turnSelect == -1){
+        turnSelect = skillSelect;
+    } else { //swap the turns around
+        var temp;
+        temp = temp_turn[skillSelect];
+        temp_turn[skillSelect] = temp_turn[turnSelect];
+        temp_turn[turnSelect] = temp;
+        turnSelect = -1;
+    }
+}
+
+if(skillSelect >= 5){
+    skillSelect = 0;
+} else if(skillSelect < 0){
+    skillSelect = 4;
 }

@@ -131,7 +131,8 @@ action[4] = 0;
 turn_queue = ds_priority_create();
 player_turns[4] = 0;
 intended_turn_order = scr_player_intended_turn();
-temp_turn[4] = 0;
+temp_turn = scr_player_intended_turn();
+turnSelect = -1;
 
 
 battleMessage = "Enemies approach!";
@@ -257,8 +258,13 @@ if(state != STATE_TARGET || state != STATE_EXECUTE){
     } else if(state == STATE_DOUBLE_ATTACK){
     draw_sprite_ext(spr_menuBar,3,doubleTeamX,doubleTeamY,global.guiScale,global.guiScale,0,c_white,1);
     shader_set(sh_selectionShader);
-    draw_rectangle_colour(doubleTeamX+(1*global.guiScale),(doubleTeamY + ((9*global.guiScale)*skillSelect))+(1*global.guiScale),doubleTeamX+(62*global.guiScale),(doubleTeamY + ((9*global.guiScale)*skillSelect))+(9*global.guiScale),c_yellow,c_yellow,c_yellow,c_yellow,0);
+    draw_rectangle_colour(doubleTeamX+(1*global.guiScale),(doubleTeamY + ((11*global.guiScale)*skillSelect))+(1*global.guiScale),doubleTeamX+(62*global.guiScale),(doubleTeamY + ((9*global.guiScale)*skillSelect))+(9*global.guiScale),c_yellow,c_yellow,c_yellow,c_yellow,0);
     shader_reset();
+    
+    for(i = 0; i &lt; 5; i++){
+        draw_sprite_ext(spr_faceplate,temp_turn[i],doubleTeamX,(doubleTeamY + ((11*global.guiScale)*i)),global.guiScale,global.guiScale,0,image_blend,image_alpha);
+    }
+    
     }
 } else if(state == STATE_TARGET){
     draw_sprite_ext(spr_bar,0,(enemy_x-90 + (enemySelect * 80))*2,90*2,global.guiScale,global.guiScale,0,image_blend,image_alpha);

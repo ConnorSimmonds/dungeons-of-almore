@@ -43,6 +43,10 @@ exp_pts[4] = 0;
 //skills etc. of party members
 attack[4] = 0;
 defense[4] = 0;
+spd[0] = 5
+spd[1] = 4
+spd[2] = 3
+spd[3] = 4
 spd[4] = 0;
 magic[4] = 0;
 
