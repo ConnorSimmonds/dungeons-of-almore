@@ -52,16 +52,23 @@ return true;
 #define scr_player_turn_add
 //scr_player_turn_add
 //Adds the player turns into the priority queue
-var i, temp_turn;
+var i, lowest_speed, lowest_index;
+lowest_index = -1;
+lowest_speed = -1;
 
 for(i = 0; i < 5; i++){
-    temp_turn = player_turns[i];
-    if(temp_turn[3] != i){
+    if(temp_turn[i] != intended_turn_order[i]){
         //oh shoot we gotta use the PREVIOUS speed oh no
+        if(obj_party.spd[temp_turn[i]] < lowest_speed){
+            lowest_speed = obj_party.spd[temp_turn[i]];
+            lowest_index = i;
+        }
+        ds_priority_add(turn_queue,player_turns[temp_turn[i]],lowest_speed - (lowest_index - i));
     } else {
-        ds_priority_add(turn_queue,temp_turn,obj_party.spd[temp_turn[3]]);
+        ds_priority_add(turn_queue,player_turns[temp_turn[i]],obj_party.spd[temp_turn[i]]);
     }
 }
+
 #define scr_victory_script
 //scr_victory_script
 //Displays gold, items, and exp gained. Destroys obj_combat at the end of it.
@@ -77,3 +84,23 @@ instance_destroy();
 //Cleans up any state stuff, and boots the player back to town.
 state = STATE_DEFEAT;
 instance_destroy();
+#define scr_player_intended_turn
+//scr_player_intended_turn
+//Creates an array of what the intended player turns are supposed to be
+var i, i2, player_turns;
+player_turns[0] = 0;
+player_turns[1] = 1;
+player_turns[2] = 2;
+player_turns[3] = 3;
+player_turns[4] = 4;
+
+for(i = 0; i < 5; i++){
+    for(i2 = i; i2 < 5; i2++){
+        if(obj_party.spd[player_turns[i]] > obj_party.spd[player_turns[i2]]){ //if the one we found is bigger 
+            var temp = player_turns[i];
+            player_turns[i] = player_turns[i2];
+            player_turns[i2] = temp;
+        }
+    }
+}
+return player_turns;

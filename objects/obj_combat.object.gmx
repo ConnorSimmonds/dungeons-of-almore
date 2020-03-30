@@ -130,6 +130,8 @@ target[4] = 0;
 action[4] = 0;
 turn_queue = ds_priority_create();
 player_turns[4] = 0;
+intended_turn_order = scr_player_intended_turn();
+temp_turn[4] = 0;
 
 
 battleMessage = "Enemies approach!";
