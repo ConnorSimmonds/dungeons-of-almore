@@ -173,10 +173,13 @@ if(keyboard_check_pressed(vk_up)){
     if(turnSelect == -1){
         turnSelect = skillSelect;
     } else { //swap the turns around
-        var temp;
-        temp = temp_turn[skillSelect];
-        temp_turn[skillSelect] = temp_turn[turnSelect];
-        temp_turn[turnSelect] = temp;
+        var temp, i, add;
+        add = abs(turnSelect - skillSelect)/(turnSelect-skillSelect);
+        for(i = turnSelect; i != skillSelect; i -= add){
+            temp = temp_turn[i];
+            temp_turn[i] = temp_turn[i - add];
+            temp_turn[i- add] = temp;
+        }
         turnSelect = -1;
     }
 }

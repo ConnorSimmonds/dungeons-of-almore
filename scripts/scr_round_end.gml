@@ -54,8 +54,8 @@ return true;
 //scr_player_turn_add
 //Adds the player turns into the priority queue
 var i, lowest_speed, lowest_index;
-lowest_index = -1;
-lowest_speed = -1;
+lowest_index = 0;
+lowest_speed = 255;
 
 for(i = 0; i < 5; i++){
     if(temp_turn[i] != intended_turn_order[i]){
@@ -64,7 +64,7 @@ for(i = 0; i < 5; i++){
             lowest_speed = obj_party.spd[temp_turn[i]];
             lowest_index = i;
         }
-        ds_priority_add(turn_queue,player_turns[temp_turn[i]],lowest_speed - (lowest_index - i));
+        ds_priority_add(turn_queue,player_turns[temp_turn[i]],lowest_speed - (i - lowest_index));
     } else {
         ds_priority_add(turn_queue,player_turns[temp_turn[i]],obj_party.spd[temp_turn[i]]);
     }

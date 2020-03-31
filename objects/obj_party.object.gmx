@@ -26,11 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>//manages the party
-names[0] = "";
-names[1] = "";
-names[2] = "";
-names[3] = "";
-names[4] = ""; //Names of party members
+names[0] = "Bob";
+names[1] = "Joe";
+names[2] = "Asoug";
+names[3] = "Midnight";
+names[4] = "Tempest"; //Names of party members
 class[4] = 0;
 hp[4] = 1; //HP of party members
 max_hp[4] = 1;
