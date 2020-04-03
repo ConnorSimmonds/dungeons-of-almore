@@ -141,8 +141,8 @@ network_destroy(client);
           <argument>
             <kind>1</kind>
             <string>draw_text( 5 , 5 , "Client Connected: " + string( isConnected ) );
-draw_text( 5, 15, message);
-draw_text( 5, 25, received);
+draw_text( 5, 25, "Sending: " + string(message));
+draw_text( 5, 45, "Server Sent: " + string(received));
 </string>
           </argument>
         </arguments>

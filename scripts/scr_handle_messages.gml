@@ -18,14 +18,17 @@ switch(keyboard_lastchar){
         buffer_write(message, buffer_u8,opcode); break;
     case('3'): opcode = 10; 
         buffer_write(message, buffer_u8,opcode);
-        buffer_write(message, buffer_u8,0);
-        buffer_write(message, buffer_u8,0);
+        buffer_write(message, buffer_u8,3);
+        buffer_write(message, buffer_u8,2);
         buffer_write(message, buffer_u8,1);
         break;
     case('4'): opcode = 13; 
         buffer_write(message, buffer_u8,opcode);
         buffer_write(message, buffer_u16,1);
         buffer_write(message, buffer_u16,1);
+        break;
+    case('5'): opcode = 14;
+        buffer_write(message, buffer_u8,opcode);
         break;
     default: //nada
 }
@@ -44,6 +47,7 @@ switch(argument0){
     return "Connection closed!";
     case(10): return "Map Value updating";
     case(11): return "Map File";
+    case(12): return "Create Map";
 }
 
 //asdf
