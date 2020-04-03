@@ -3,7 +3,7 @@
 //Basically just allows us to send some dummy packets
 buffer_seek(message, buffer_seek_start, 0);
 var opcode;
-switch(keyboard_lastchar){
+switch(argument0){
     case('0'): ini_open("settings.ini");
         opcode = 0;
         var user = ini_read_real('UserDetails','userid',-1);
@@ -47,7 +47,8 @@ switch(argument0){
     return "Connection closed!";
     case(10): return "Map Value updating";
     case(11): return "Map File";
-    case(12): return "Create Map";
+    case(12): scr_handle_messages('5')
+    return "Create Map";
 }
 
 //asdf
