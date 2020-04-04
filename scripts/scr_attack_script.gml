@@ -76,7 +76,7 @@ source = argument2;
 //First off, check who's the source of the attack. This allows us to handle enemies and players differently.
 if(source < 5){
     var initHP = enemyHP[targ];
-    var character = obj_party.character[0];
+    var character = obj_party.character[source];
     ds_queue_enqueue(battleMessageQueue,scr_player_select);
     ds_queue_enqueue(battleMessageQueue,source);
     switch(action){

@@ -2,7 +2,7 @@
 //returns an array of the character attributes.
 var num, character;
 
-if(argument_count < 9){ //it's a new character
+if(argument_count < 11){ //it's a new character
     character[HP] = argument[2]; //current hp
     character[MP] = argument[3]; //current mp
     character[EXP_PTS] = 0; //our current exp

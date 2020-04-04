@@ -35,20 +35,20 @@ MAX_MP = 3;
 SKILLS = 4;
 ATTACK = 5;
 DEFENSE = 6;
-SPEED = 7;
-MAGIC = 8;
+MAGIC = 7;
+SPEED = 8;
 IMAGE = 9
 HP = 10;
 MP = 11;
 EXP_PTS = 12;
 
 //note, for scr_create_character, these are the arguments:
-//name, class, max_hp, max_hp, skills, attack, defense, speed
-character[0] = scr_create_character("Bob",0,10,10,"",1,1,1,5);
-character[1] = scr_create_character("Joe",0,10,10,"",1,1,1,4);
-character[2] = scr_create_character("Asougi",0,10,10,"",1,1,1,3);
-character[3] = scr_create_character("Midnight",0,10,10,"",1,1,1,2);
-character[4] = scr_create_character("Tempest",0,10,10,"",1,1,1,1);
+//name, class, max_hp, max_hp, skills, attack, defense, magic, speed, image
+character[0] = scr_create_character("Bob",0,10,10,"",1,1,1,5,0);
+character[1] = scr_create_character("Joe",0,10,10,"",1,1,1,4,2);
+character[2] = scr_create_character("Asougi",0,10,10,"",1,1,1,3,1);
+character[3] = scr_create_character("Midnight",0,10,10,"",1,1,1,2,3);
+character[4] = scr_create_character("Tempest",0,10,10,"",1,1,1,1,4);
 
 formation[2,2] = -1; //Formation of party - uses their ID (0 - 4) for their position.
 
