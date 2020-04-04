@@ -226,11 +226,13 @@ for(var i = 0; i &lt; array_length_1d(enemies); i++){
     }
 }
 
+var c_char = obj_party.character[playerSelect];
+
 //Draw the HP bars
 draw_sprite_ext(spr_bar,0,72*global.guiScale,4*global.guiScale,global.guiScale,global.guiScale,0,image_blend,image_alpha);
 draw_sprite_ext(spr_bar,0,72*global.guiScale,11*global.guiScale,global.guiScale,global.guiScale,0,image_blend,image_alpha);
-draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*(obj_party.hp[playerSelect]/obj_party.max_hp[playerSelect]),sprite_get_height(spr_bar),49*global.guiScale,2*global.guiScale,global.guiScale,global.guiScale,image_blend,image_alpha)
-draw_sprite_part_ext(spr_bar,2,0,0,sprite_get_width(spr_bar)*(obj_party.mp[playerSelect]/obj_party.max_mp[playerSelect]),sprite_get_height(spr_bar),49*global.guiScale,9*global.guiScale,global.guiScale,global.guiScale,image_blend,image_alpha)
+draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*(c_char[obj_party.HP]/c_char[obj_party.MAX_HP]),sprite_get_height(spr_bar),49*global.guiScale,2*global.guiScale,global.guiScale,global.guiScale,image_blend,image_alpha)
+draw_sprite_part_ext(spr_bar,2,0,0,sprite_get_width(spr_bar)*(c_char[obj_party.MP]/c_char[obj_party.MAX_MP]),sprite_get_height(spr_bar),49*global.guiScale,9*global.guiScale,global.guiScale,global.guiScale,image_blend,image_alpha)
 
 
 //Menu stuff

@@ -8,11 +8,6 @@ if(keyboard_check_pressed(vk_space)){
 if(menuOptions != MAIN_OPTIONS) menuOptions = MAIN_OPTIONS;
 if(menuMax != MAIN_MAX) menuMax = MAIN_MAX;
 
-#define scr_town_dungeon
-//scr_town_dungeon
-//Takes us to the dungeon
-room_goto(rm_dungeon);
-
 #define scr_town_party
 //scr_town_party
 if(keyboard_check_pressed(vk_space)){
@@ -33,3 +28,8 @@ if(keyboard_check_pressed(vk_shift)){
 
 if(menuOptions != PARTY_OPTIONS) menuOptions = PARTY_OPTIONS;
 if(menuMax != PARTY_MAX) menuMax = PARTY_MAX;
+
+#define scr_town_dungeon
+//scr_town_dungeon
+//Takes us to the dungeon
+room_goto(rm_dungeon);

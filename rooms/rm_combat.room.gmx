@@ -27,9 +27,9 @@ instance_create(0,0,obj_combat);</code>
     <showViews>0</showViews>
     <deleteUnderlyingObj>0</deleteUnderlyingObj>
     <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
-    <page>0</page>
-    <xoffset>-273</xoffset>
-    <yoffset>-81</yoffset>
+    <page>1</page>
+    <xoffset>-133</xoffset>
+    <yoffset>-100</yoffset>
   </makerSettings>
   <backgrounds>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>

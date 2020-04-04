@@ -76,11 +76,12 @@ source = argument2;
 //First off, check who's the source of the attack. This allows us to handle enemies and players differently.
 if(source < 5){
     var initHP = enemyHP[targ];
+    var character = obj_party.character[0];
     ds_queue_enqueue(battleMessageQueue,scr_player_select);
     ds_queue_enqueue(battleMessageQueue,source);
     switch(action){
         case(0): { //generic attack
-            ds_queue_enqueue(battleMessageQueue,obj_party.names[source] + "attempts to attack!");
+            ds_queue_enqueue(battleMessageQueue,character[obj_party.NAMES] + "attempts to attack!");
             if(enemyHP[targ] <= 0){
                 ds_queue_enqueue(battleMessageQueue,"But their target had been defeated...");
             } else {
