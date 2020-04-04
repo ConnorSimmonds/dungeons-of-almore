@@ -18,5 +18,12 @@ if(menuSelect > menuMax){
 //Calls the corresponding script to the current state
 switch(argument0){
     case(STATE_MAIN): scr_town_main(); break;
+    case(STATE_PARTY): scr_town_party(); break;
     case(STATE_DUNGEON): scr_town_dungeon(); break;
+    
+    case(STATE_PARTY_ADD): scr_party_add(); break;
+    case(STATE_PARTY_REMOVE): scr_party_remove(); break;
+    case(STATE_PARTY_CREATE): scr_party_create(); break;
+    case(STATE_PARTY_DELETE): scr_party_delete(); break;
+    case(STATE_PARTY_MANAGE): scr_party_manage(); break;
 }

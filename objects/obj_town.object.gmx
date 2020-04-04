@@ -35,9 +35,19 @@ STATE_SUMMON = 4;
 STATE_SHOP = 5;
 STATE_DUNGEON = 6;
 
+//Party Menu
+STATE_PARTY_ADD = 10;
+STATE_PARTY_REMOVE = 11;
+STATE_PARTY_MANAGE = 12;
+STATE_PARTY_CREATE = 13;
+STATE_PARTY_DELETE = 14;
+
+
 MAIN_OPTIONS = "Guild#Cathedral#Tavern#Summon#Shop#Dungeon"
 MAIN_MAX = 5;
 
+PARTY_OPTIONS = "Add#Remove#Manage#Create#Delete#Back";
+PARTY_MAX = 5;
 </string>
           </argument>
         </arguments>
