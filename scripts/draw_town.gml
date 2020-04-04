@@ -10,5 +10,5 @@ if(state == STATE_PARTY_MANAGE){
         draw_text(100,35 + (15 * i),t_char[obj_party.NAMES]);
     }
     
-    draw_sprite(spr_town_arrow,0,85,43 + (menuSelect * 15))
+    draw_sprite(spr_town_arrow,0,90,43 + (menuSelect * 15))
 }

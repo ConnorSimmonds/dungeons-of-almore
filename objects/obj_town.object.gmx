@@ -43,7 +43,7 @@ STATE_PARTY_CREATE = 13;
 STATE_PARTY_DELETE = 14;
 
 
-MAIN_OPTIONS = "Guild#Cathedral#Tavern#Summon#Shop#Dungeon"
+MAIN_OPTIONS = "Guild#Cathedral#Tavern#Special Area, I dunno#Shop#Dungeon"
 MAIN_MAX = 5;
 
 PARTY_OPTIONS = "Add#Remove#Manage#Create#Delete#Back";
