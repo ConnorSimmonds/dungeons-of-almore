@@ -11,4 +11,5 @@
 //scr_party_delete
 
 #define scr_party_manage
-
+//scr_party_manage
+//Allows you to select a party member, and move them around if needed
