@@ -37,9 +37,10 @@ ATTACK = 5;
 DEFENSE = 6;
 SPEED = 7;
 MAGIC = 8;
-HP = 9;
-MP = 10;
-EXP_PTS = 11;
+IMAGE = 9
+HP = 10;
+MP = 11;
+EXP_PTS = 12;
 
 //note, for scr_create_character, these are the arguments:
 //name, class, max_hp, max_hp, skills, attack, defense, speed

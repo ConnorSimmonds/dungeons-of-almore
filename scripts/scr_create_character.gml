@@ -2,10 +2,10 @@
 //returns an array of the character attributes.
 var num, character;
 
-if(argument_count < 8){ //it's a new character
-    character[9] = argument[2]; //current hp
-    character[10] = argument[3]; //current mp
-    character[11] = 0; //our current exp
+if(argument_count < 9){ //it's a new character
+    character[HP] = argument[2]; //current hp
+    character[MP] = argument[3]; //current mp
+    character[EXP_PTS] = 0; //our current exp
 }
 
 for(i = 0; i < argument_count; i++){ //Just run through all of our arguments
