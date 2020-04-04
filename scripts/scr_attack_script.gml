@@ -81,7 +81,7 @@ if(source < 5){
     ds_queue_enqueue(battleMessageQueue,source);
     switch(action){
         case(0): { //generic attack
-            ds_queue_enqueue(battleMessageQueue,character[obj_party.NAMES] + "attempts to attack!");
+            ds_queue_enqueue(battleMessageQueue,character[obj_party.NAMES] + " attempts to attack!");
             if(enemyHP[targ] <= 0){
                 ds_queue_enqueue(battleMessageQueue,"But their target had been defeated...");
             } else {

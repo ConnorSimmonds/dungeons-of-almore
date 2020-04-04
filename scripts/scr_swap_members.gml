@@ -5,6 +5,6 @@ mem1 = argument0;
 mem2 = argument1;
 
 //do the swaparoo
-temp = characters[mem1];
-characters[mem1] = characters[mem2];
-characters[mem2] = temp;
+temp = character[mem1];
+character[mem1] = character[mem2];
+character[mem2] = temp;

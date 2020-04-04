@@ -14,10 +14,14 @@ if(keyboard_check_pressed(vk_space)){
     switch(menuSelect){
         case(0): state = STATE_PARTY_ADD; break;
         case(1): state = STATE_PARTY_REMOVE; break;
-        case(2): state = STATE_PARTY_MANAGE; break;
+        case(2): state = STATE_PARTY_MANAGE;
+        t_var = -1; 
+        menuSelect = 0;
+        break;
         case(3): state = STATE_PARTY_CREATE; break;
         case(4): state = STATE_PARTY_REMOVE; break;
-        case(5): state = STATE_MAIN; menuSelect = STATE_PARTY-1; break;
+        case(5): state = STATE_MAIN; 
+            menuSelect = STATE_PARTY-1; break;
     }
 }
 

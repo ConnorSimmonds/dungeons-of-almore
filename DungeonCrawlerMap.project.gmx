@@ -89,6 +89,7 @@
       <script>scripts\scr_town.gml</script>
       <script>scripts\scr_town_main.gml</script>
       <script>scripts\scr_party_add.gml</script>
+      <script>scripts\draw_town.gml</script>
     </scripts>
     <scripts name="Combat">
       <script>scripts\scr_attack_script.gml</script>
@@ -125,9 +126,9 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
-    <room>rooms\rm_combat</room>
     <room>rooms\rm_town</room>
     <room>rooms\rm_dungeon</room>
+    <room>rooms\rm_combat</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

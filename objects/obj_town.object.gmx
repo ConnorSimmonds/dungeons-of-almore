@@ -72,6 +72,8 @@ PARTY_MAX = 5;
 state = 0;
 menuMax = MAIN_MAX;
 menuOptions = MAIN_OPTIONS;
+
+t_var = -1; //temporary variable that can be used in various places. MAKE SURE TO RESET IT
 </string>
           </argument>
         </arguments>
@@ -121,6 +123,8 @@ scr_town_state(state);
             <string>draw_set_color(c_black);
 draw_sprite(spr_town_arrow,0,5,18 + (menuSelect * 15))
 draw_text(10,10,menuOptions)
+
+draw_town(state);
 </string>
           </argument>
         </arguments>
