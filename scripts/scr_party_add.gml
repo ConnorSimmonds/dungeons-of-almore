@@ -15,6 +15,16 @@
 //Allows you to select a party member, and move them around if needed
 if(keyboard_check_pressed(vk_shift)){
     menuSelect = state - 10;
+    //save the new order to settings.ini, really quickly
+    ini_open("settings.ini");
+    var i, name;
+    for(i = 0; i < 5; i++){
+        with(obj_party) {
+            name = ds_map_find_value(character[i],NAMES)
+            ini_write_string('Party',i,name);
+        }
+    }
+    ini_close();
     state = STATE_PARTY;
 }
 
