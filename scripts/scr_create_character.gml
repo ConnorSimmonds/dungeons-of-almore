@@ -31,7 +31,6 @@ if(is_create){
         json_start = '"' + argument0[? NAMES] + '" : ';
     }
     file_text_write_string(global.party_json,json_start + json_string);
-    global.party_hash = md5_file("party.json");
 }
 
 #define scr_load_party
@@ -55,6 +54,7 @@ file_text_write_string(global.party_json,"{"); //initial json value
 //scr_close_json
 file_text_write_string(global.party_json,"}");
 file_text_close(global.party_json);
+global.party_hash = md5_file("party.json");
 
 #define scr_character_check
 //scr_character_check

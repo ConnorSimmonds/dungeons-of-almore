@@ -11,7 +11,7 @@
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
   <code>global.guiScale = 1;
-global.party_hash = md5_file("party.json");
+global.party_hash = sha1_file("party.json"); //this isn't the most secure (thanks google), but it's the best gms has
 scr_dungeon_create();
 room_goto_next();</code>
   <enableViews>-1</enableViews>
