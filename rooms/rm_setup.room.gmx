@@ -11,6 +11,7 @@
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
   <code>global.guiScale = 1;
+global.json_hash = md5_file(working_directory + "\party.json");
 scr_dungeon_create();
 room_goto_next();</code>
   <enableViews>-1</enableViews>

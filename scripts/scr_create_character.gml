@@ -1,3 +1,4 @@
+#define scr_create_character
 //scr_create_character(name, class, max_hp, max_hp, skills, attack, defense, speed [optional: current hp, current mp, current exp])
 //returns an array of the character attributes.
 var num, character;
@@ -11,5 +12,10 @@ if(argument_count < 11){ //it's a new character
 for(i = 0; i < argument_count; i++){ //Just run through all of our arguments
     character[? i] = argument[i]; //Each section correlates to the constants in obj_party
 }
-
+scr_character_json(character);
 return character;
+
+#define scr_character_json
+//scr_character_json
+//adds the character map given to the party.json file
+json_string = json_encode(argument0);
