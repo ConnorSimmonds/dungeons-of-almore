@@ -7,7 +7,7 @@ if(state == STATE_PARTY_MANAGE){
     for(i = 0; i <= obj_party.partySize; i++){
         var t_char;
         t_char = obj_party.character[i];
-        draw_text(100,35 + (15 * i),t_char[obj_party.NAMES]);
+        draw_text(100,35 + (15 * i),t_char[? obj_party.NAMES]);
     }
     
     draw_sprite(spr_town_arrow,0,90,43 + (menuSelect * 15))

@@ -18,4 +18,10 @@ return character;
 #define scr_character_json
 //scr_character_json
 //adds the character map given to the party.json file
+var file, json_string;
 json_string = json_encode(argument0);
+file = file_text_open_write("party.json");
+file_text_write_string(file,json_string);
+file_text_close(file);
+global.json_hash = md5_file("party.json");
+
