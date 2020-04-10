@@ -11,7 +11,7 @@
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
   <code>global.guiScale = 1;
-global.json_hash = md5_file("party.json");
+global.party_hash = md5_file("party.json");
 scr_dungeon_create();
 room_goto_next();</code>
   <enableViews>-1</enableViews>
@@ -19,7 +19,7 @@ room_goto_next();</code>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
   <makerSettings>
     <isSet>-1</isSet>
-    <w>1008</w>
+    <w>1000</w>
     <h>600</h>
     <showGrid>-1</showGrid>
     <showObjects>-1</showObjects>
