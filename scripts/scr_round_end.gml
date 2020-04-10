@@ -61,13 +61,13 @@ for(i = 0; i < 5; i++){
     var t_char = obj_party.character[temp_turn[i]];
     if(temp_turn[i] != intended_turn_order[i]){
         //oh shoot we gotta use the PREVIOUS speed oh no
-        if(t_char[obj_party.SPEED] < lowest_speed){
-            lowest_speed = t_char[obj_party.SPEED];
+        if(t_char[? obj_party.SPEED] < lowest_speed){
+            lowest_speed = t_char[? obj_party.SPEED];
             lowest_index = i;
         }
         ds_priority_add(turn_queue,player_turns[temp_turn[i]],lowest_speed - (i - lowest_index));
     } else {
-        ds_priority_add(turn_queue,player_turns[temp_turn[i]],t_char[obj_party.SPEED]);
+        ds_priority_add(turn_queue,player_turns[temp_turn[i]],t_char[? obj_party.SPEED]);
     }
 }
 
@@ -98,7 +98,7 @@ for(i = 0; i < 5; i++){
     for(i2 = i; i2 < 5; i2++){
         var first = obj_party.character[i];
         var second = obj_party.character[i2];
-        if(first[obj_party.SPEED] < second[obj_party.SPEED]){ //if the one we found is bigger 
+        if(first[? obj_party.SPEED] < second[? obj_party.SPEED]){ //if the one we found is bigger 
             var temp = player_turns[i];
             player_turns[i] = player_turns[i2];
             player_turns[i2] = temp;
