@@ -32,9 +32,13 @@ if(keyboard_check_pressed(vk_space)){
     if(t_var == -1){
         t_var = menuSelect;
     } else {
-        with(obj_party){
-        scr_swap_members(obj_town.t_var,obj_town.menuSelect);
-        }
+        if(t_var != menuSelect){
+            with(obj_party){
+                scr_swap_members(obj_town.t_var,obj_town.menuSelect); 
+            }
+        } else {
+            
+        } 
         t_var = -1;
     }
 }
