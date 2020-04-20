@@ -16,4 +16,11 @@ if(state == STATE_PARTY_MANAGE){
     draw_text(100,50,t_name);
     draw_text(100,65,t_class);
     draw_text(100,80,t_portrait);
+} else if(state == STATE_PARTY_DELETE){
+    if(t_var != -1){
+        var i;
+        for(i = 0; i < array_length_1d(t_var); i++){
+            draw_text(100,35 + (15 * i), t_var[i]);
+        }
+    }
 }

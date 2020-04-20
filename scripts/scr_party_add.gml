@@ -46,7 +46,6 @@ switch(t_var){
         t_var = -1;
         menuSelect = state - 10;
         state = STATE_PARTY;
-        
     default: //this is when we first enter the menu
         t_var = 0;
         t_name = "";
@@ -57,23 +56,41 @@ switch(t_var){
 
 #define scr_party_delete
 //scr_party_delete
+//deletes a party member. This should be surprisingly easy
+if(t_var == -1){
+    t_var[0] = ds_map_find_first(obj_party.entireParty);
+    var i;
+    menuMax = ds_map_size(obj_party.entireParty)
+    for(i = 1; i < menuMax; i++){
+        t_var[i] = ds_map_find_next(obj_party.entireParty,t_var[i-1]);
+    }
+}
+
+if(keyboard_check_pressed(vk_space)){
+    ds_map_delete(obj_party.entireParty,t_var[menuSelect]);
+}
 
 #define scr_party_manage
 //scr_party_manage
 //Allows you to select a party member, and move them around if needed
 if(keyboard_check_pressed(vk_shift)){
-    menuSelect = state - 10;
-    //save the new order to settings.ini, really quickly
-    ini_open("settings.ini");
-    var i, name;
-    for(i = 0; i < 5; i++){
-        with(obj_party) {
-            name = ds_map_find_value(character[i],NAMES)
-            ini_write_string('Party',i,name);
+    if(t_var == -1){
+        menuSelect = state - 10;
+        //save the new order to settings.ini, really quickly
+        ini_open("settings.ini");
+        var i, name;
+        for(i = 0; i < 5; i++){
+            with(obj_party) {
+                name = ds_map_find_value(character[i],NAMES)
+                ini_write_string('Party',i,name);
+            }
         }
+        ini_close();
+        state = STATE_PARTY;
+    } else {
+        menuSelect = t_var;
+        t_var = -1;
     }
-    ini_close();
-    state = STATE_PARTY;
 }
 
 if(keyboard_check_pressed(vk_space)){
@@ -85,13 +102,14 @@ if(keyboard_check_pressed(vk_space)){
                 scr_swap_members(obj_town.t_var,obj_town.menuSelect); 
             }
         } else {
-            
+            //open up a new menu and let the player swap this character with another
         } 
         t_var = -1;
     }
 }
 
 if(menuMax != obj_party.partySize) menuMax = obj_party.partySize;
+
 #define scr_party_check_dupe
 //scr_party_check_dupe
 //Checks to see if there's a duplicate name or not.
