@@ -74,6 +74,9 @@ menuMax = MAIN_MAX;
 menuOptions = MAIN_OPTIONS;
 
 t_var = -1; //temporary variable that can be used in various places. MAKE SURE TO RESET IT
+t_name = "";
+t_class = 0
+t_portrait = 0
 </string>
           </argument>
         </arguments>
@@ -124,11 +127,13 @@ scr_town_state(state);
     var i = ds_map_find_value(async_load,"id");
     if(i == t_name){
         if(ds_map_find_value(async_load,"status")){
-            if(!scr_party_check_dupe(ds_map_find_value(async_load,"result"))) {
-                var t_str;
-               t_name = ds_map_find_value(async_load, "result");
+            var str;
+            str = ds_map_find_value(async_load,"result");
+            if(!scr_party_check_dupe(str)) {
+               t_name = str;
             } else { //nothing was entered (or we had a dupe), so reprompt
-                //to do this, we literally do nothing
+                t_var--;
+                t_name = str;
             }
         } else { //well, they pressed cancel.
             t_var = 6;

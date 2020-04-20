@@ -40,7 +40,7 @@ switch(t_var){
         with(obj_party){
             scr_create_character(obj_town.t_name,obj_town.t_class,10,10,"",10,10,10,1, obj_town.t_portrait);
         }
-        t_var = 5;
+        t_var = 6;
         break;
     case(6): //exit
         t_var = -1;
@@ -100,6 +100,5 @@ if(argument0 == ""){
 }
 
 with(obj_party){
-    return is_undefined(ds_map_find_value(entireParty,argument0))
+    return !is_undefined(ds_map_find_value(entireParty,argument0))
 }
-

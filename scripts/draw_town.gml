@@ -11,4 +11,9 @@ if(state == STATE_PARTY_MANAGE){
     }
     
     draw_sprite(spr_town_arrow,0,90,43 + (menuSelect * 15))
+} else if(state == STATE_PARTY_CREATE){
+    draw_text(100,35,menuSelect);
+    draw_text(100,50,t_name);
+    draw_text(100,65,t_class);
+    draw_text(100,80,t_portrait);
 }
