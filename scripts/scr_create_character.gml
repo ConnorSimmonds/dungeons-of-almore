@@ -23,7 +23,6 @@ json_string = argument0[? NAMES];
 is_create = argument1;
 if(is_create){
     ds_map_add_map(entireParty,json_string,argument0);
-    
 }
 
 #define scr_load_party
@@ -66,6 +65,7 @@ global.party_hash = md5_file("party.json");
 var i, name, size;
 ini_open("settings.ini");
 global.party_json = file_text_open_read("party.json")
+ds_map_destroy(entireParty); //quickly destroy this so we don't get mem leaks
 entireParty = json_decode(file_text_readln(global.party_json));
 
 size = -1;
