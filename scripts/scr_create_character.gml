@@ -1,5 +1,5 @@
 #define scr_create_character
-//scr_create_character(name, class, max_hp, max_hp, skills, attack, defense, speed [optional: current hp, current mp, current exp])
+//scr_create_character(name, class, max_hp, max_hp, skills, attack, defense, speed, portrait [optional: current hp, current mp, current exp])
 //returns an array of the character attributes.
 var num, character;
 character = ds_map_create();
@@ -78,3 +78,11 @@ for(i = 0; i < 5; i++){
 }
 ini_close();
 return size;
+
+#define scr_json_update
+//scr_json_update
+//That's right, we're going to update our json. This is going to be trash
+scr_open_json();
+scr_close_json();
+
+//That's it

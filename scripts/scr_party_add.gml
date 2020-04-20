@@ -38,7 +38,7 @@ switch(t_var){
         break;
     case(5): //we actually create the party member here
         with(obj_party){
-            scr_create_character(t_name,t_class,10,10,"",10,10,1);
+            scr_create_character(obj_town.t_name,obj_town.t_class,10,10,"",10,10,10,1, obj_town.t_portrait);
         }
         t_var = 5;
         break;
@@ -100,6 +100,6 @@ if(argument0 == ""){
 }
 
 with(obj_party){
-return is_undefined(ds_map_find_value(entireParty,argument0))
+    return is_undefined(ds_map_find_value(entireParty,argument0))
 }
 
