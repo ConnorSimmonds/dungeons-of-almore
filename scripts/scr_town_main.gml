@@ -1,8 +1,8 @@
 #define scr_town_main
 //scr_town_main
 if(keyboard_check_pressed(vk_space)){
-    state = menuSelect + 1;
-    menuSelect = 0;
+    state = menuSelect[0] + 1;
+    menuSelect[0] = 0;
 }
 
 if(menuOptions != MAIN_OPTIONS) menuOptions = MAIN_OPTIONS;
@@ -11,12 +11,12 @@ if(menuMax != MAIN_MAX) menuMax = MAIN_MAX;
 #define scr_town_party
 //scr_town_party
 if(keyboard_check_pressed(vk_space)){
-    switch(menuSelect){
+    switch(menuSelect[0]){
         case(0): state = STATE_PARTY_ADD; break;
         case(1): state = STATE_PARTY_REMOVE; break;
         case(2): state = STATE_PARTY_MANAGE;
         t_var = -1; 
-        menuSelect = 0;
+        menuSelect[1] = 0;
         break;
         case(3): state = STATE_PARTY_CREATE; break;
         case(4): state = STATE_PARTY_REMOVE; break;
@@ -27,7 +27,7 @@ if(keyboard_check_pressed(vk_space)){
 
 if(keyboard_check_pressed(vk_shift)){
     state = STATE_MAIN;
-    menuSelect = STATE_PARTY-1;
+    menuSelect[0] = STATE_PARTY-1;
 }
 
 if(menuOptions != PARTY_OPTIONS) menuOptions = PARTY_OPTIONS;

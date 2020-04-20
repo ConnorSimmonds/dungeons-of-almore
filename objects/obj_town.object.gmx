@@ -68,7 +68,7 @@ PARTY_MAX = 5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>menuSelect = 0;
+            <string>menuSelect[5] = 0;
 state = 0;
 menuMax = MAIN_MAX;
 menuOptions = MAIN_OPTIONS;
@@ -163,7 +163,7 @@ scr_town_state(state);
           <argument>
             <kind>1</kind>
             <string>draw_set_color(c_black);
-draw_sprite(spr_town_arrow,0,5,18 + (menuSelect * 15))
+draw_sprite(spr_town_arrow,0,5,18 + (menuSelect[0] * 15))
 draw_text(10,10,menuOptions)
 
 draw_town(state);

@@ -10,9 +10,12 @@ if(state == STATE_PARTY_MANAGE){
         draw_text(100,35 + (15 * i),t_char[? obj_party.NAMES]);
     }
     
-    draw_sprite(spr_town_arrow,0,90,43 + (menuSelect * 15))
+    draw_sprite(spr_town_arrow,0,90,43 + (menuSelect[1] * 15))
+    if(t_var != -1){
+        draw_sprite(spr_town_arrow,0,90,43 + (t_var * 15))
+    }
 } else if(state == STATE_PARTY_CREATE){
-    draw_text(100,35,menuSelect);
+    draw_text(100,35,menuSelect[1]);
     draw_text(100,50,t_name);
     draw_text(100,65,t_class);
     draw_text(100,80,t_portrait);

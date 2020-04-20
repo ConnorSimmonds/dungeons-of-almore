@@ -1,16 +1,19 @@
 #define scr_town
 //scr_town
 //Handles all of the menu selection logic
+var level;
+level = floor(state/10);
 if(keyboard_check_pressed(vk_up)){
-    menuSelect--;
+    menuSelect[level]--;
 } else if(keyboard_check_pressed(vk_down)){
-    menuSelect++;
+    menuSelect[level]++;
 }
+show_debug_message(state/10);
 
-if(menuSelect > menuMax){
-    menuSelect = 0;
-} else if(menuSelect < 0){
-    menuSelect = menuMax;
+if(menuSelect[level] > menuMax){
+    menuSelect[level] = 0;
+} else if(menuSelect[level] < 0){
+    menuSelect[level] = menuMax;
 }
 
 #define scr_town_state

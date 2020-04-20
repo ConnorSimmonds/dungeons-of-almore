@@ -28,10 +28,10 @@ switch(t_var){
     
         break;
     case(2): //class: get the class
-        t_class = menuSelect;
+        t_class = menuSelect[1];
         break;
     case(3): //portrait: get the portrait
-        t_portrait = menuSelect;
+        t_portrait = menuSelect[1];
         break;
     case(4): //confirm: if the details are gucci, we create the party member
 
@@ -44,7 +44,7 @@ switch(t_var){
         break;
     case(6): //exit
         t_var = -1;
-        menuSelect = state - 10;
+        menuSelect[1] = state - 10;
         state = STATE_PARTY;
     default: //this is when we first enter the menu
         t_var = 0;
@@ -67,7 +67,7 @@ if(t_var == -1){
 }
 
 if(keyboard_check_pressed(vk_space)){
-    ds_map_delete(obj_party.entireParty,t_var[menuSelect]);
+    ds_map_delete(obj_party.entireParty,t_var[menuSelect[1]]);
 }
 
 #define scr_party_manage
@@ -75,7 +75,7 @@ if(keyboard_check_pressed(vk_space)){
 //Allows you to select a party member, and move them around if needed
 if(keyboard_check_pressed(vk_shift)){
     if(t_var == -1){
-        menuSelect = state - 10;
+        menuSelect[1] = state - 10;
         //save the new order to settings.ini, really quickly
         ini_open("settings.ini");
         var i, name;
@@ -88,7 +88,7 @@ if(keyboard_check_pressed(vk_shift)){
         ini_close();
         state = STATE_PARTY;
     } else {
-        menuSelect = t_var;
+        menuSelect[1] = t_var;
         t_var = -1;
     }
 }
