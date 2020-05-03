@@ -99,6 +99,7 @@
     <scripts name="Party Helper Scripts">
       <script>scripts\scr_swap_members.gml</script>
       <script>scripts\scr_create_character.gml</script>
+      <script>scripts\scr_party_update_row.gml</script>
     </scripts>
   </scripts>
   <shaders name="shaders">

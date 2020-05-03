@@ -86,6 +86,7 @@ if(keyboard_check_pressed(vk_shift)){
             }
         }
         ini_close();
+        //update party formation and row x/y
         state = STATE_PARTY;
     } else {
         menuSelect[1] = t_var;

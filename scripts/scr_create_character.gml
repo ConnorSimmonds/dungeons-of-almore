@@ -69,11 +69,12 @@ ds_map_destroy(entireParty); //quickly destroy this so we don't get mem leaks
 entireParty = json_decode(file_text_readln(global.party_json));
 
 size = -1;
-for(i = 0; i < 5; i++){
+for(i = 0; i < 6; i++){
     name = ini_read_string('Party',i,"");
     if(name != ""){
         character[i] = entireParty[? name]
         size++;
+        formation[i/2,i mod 2] = i;
     }
 }
 ini_close();

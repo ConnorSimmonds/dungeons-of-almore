@@ -277,7 +277,9 @@ if(state != STATE_TARGET &amp;&amp; state != STATE_EXECUTE){
 //Player Faceplates
 if(playerSelect != -1){ //If it's the player's turn...
     for(i = 0; i &lt; 5; i++){
-        c_char = obj_party.character[i];
+        if(formation[i/2,i%2] != -1){
+            c_char = obj_party.character[i];
+        }
         if(i div 3 == 0){
             draw_sprite_ext(spr_partyui,0,obj_party.row1X + (global.guiScale * (sprite_get_width(spr_partyui)+1)*i),obj_party.row1Y,global.guiScale,global.guiScale,0,image_blend,image_alpha);
             draw_sprite_part_ext(spr_faceplate,c_char[? obj_party.IMAGE],0,0,sprite_get_width(spr_partyui),partyHeight[i],obj_party.row1X + (global.guiScale * (sprite_get_width(spr_partyui)+1)*i),obj_party.row1Y +(sprite_get_height(spr_partyui)*global.guiScale),global.guiScale,global.guiScale,image_blend,image_alpha);

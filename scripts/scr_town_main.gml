@@ -27,7 +27,6 @@ if(keyboard_check_pressed(vk_space)){
             }
             menuSelect[0] = STATE_PARTY-1; break;
     }
-    
 }
 
 if(keyboard_check_pressed(vk_shift)){

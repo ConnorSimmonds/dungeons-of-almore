@@ -44,6 +44,7 @@ EXP_PTS = "12";
 character[4] = 0;
 partySize = -1;
 entireParty = ds_map_create();
+formation[2,1] = -1; //Formation of party - uses their ID (0 - 4) for their position.
 
 //note, for scr_create_character, these are the arguments:
 //name, class, max_hp, max_hp, skills, attack, defense, magic, speed, image
@@ -61,12 +62,9 @@ if(!scr_character_check()){
     partySize = scr_character_load();
 }
 
-formation[2,2] = -1; //Formation of party - uses their ID (0 - 4) for their position.
-
 //Draw variables
-row1X = (view_wport[0]*(3/9));
+scr_party_update_row();
 row1Y = view_hport[0] - (((sprite_get_height(spr_partyui)+11) * 2) * global.guiScale);
-row2X = (view_wport[0]*(4/10));
 row2Y = view_hport[0] - ((sprite_get_height(spr_partyui)+12) * global.guiScale);
 </string>
           </argument>
