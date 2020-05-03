@@ -101,6 +101,7 @@ t_portrait = 0
             <kind>1</kind>
             <string>scr_town();
 scr_town_state(state);
+
 </string>
           </argument>
         </arguments>
