@@ -44,7 +44,13 @@ EXP_PTS = "12";
 character[4] = 0;
 partySize = -1;
 entireParty = ds_map_create();
-formation[2,1] = -1; //Formation of party - uses their ID (0 - 4) for their position.
+for(var i = 0; i &lt; 2; i++){
+    for(var i2 = 0; i2 &lt; 3; i2++){
+        formation[i,i2] = -1; //Formation of party - uses their ID (0 - 4) for their position.
+    }
+}
+row1X = -1;
+row2X = -1;
 
 //note, for scr_create_character, these are the arguments:
 //name, class, max_hp, max_hp, skills, attack, defense, magic, speed, image

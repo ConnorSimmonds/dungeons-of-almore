@@ -8,7 +8,7 @@ if(keyboard_check_pressed(vk_up)){
 } else if(keyboard_check_pressed(vk_down)){
     menuSelect[level]++;
 }
-show_debug_message(level);
+
 if(menuSelect[level] > menuMax){
     menuSelect[level] = 0;
 } else if(menuSelect[level] < 0){

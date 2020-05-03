@@ -74,7 +74,10 @@ for(i = 0; i < 6; i++){
     if(name != ""){
         character[i] = entireParty[? name]
         size++;
-        formation[i/2,i mod 2] = i;
+        formation[i/3,i mod 3] = i;
+    } else {
+        character[i] = -1;
+       formation[i/3,i mod 3] = -1;
     }
 }
 ini_close();
