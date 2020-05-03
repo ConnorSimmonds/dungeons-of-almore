@@ -94,8 +94,8 @@ for(i = 0; i < 5; i++){
     player_turns[i] = i;
 }
 
-for(i = 0; i < 5; i++){
-    for(i2 = i; i2 < 5; i2++){
+for(i = 0; i < obj_party.partySize; i++){
+    for(i2 = i; i2 < obj_party.partySize; i2++){
         var first = obj_party.character[i];
         var second = obj_party.character[i2];
         if(first[? obj_party.SPEED] < second[? obj_party.SPEED]){ //if the one we found is bigger 
