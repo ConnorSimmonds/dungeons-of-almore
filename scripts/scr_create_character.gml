@@ -73,8 +73,8 @@ for(i = 0; i < 6; i++){
     name = ini_read_string('Party',i,"");
     if(name != ""){
         size++;
-        character[size] = entireParty[? name]
-        formation[i/3,i mod 3] = size;
+        character[i] = entireParty[? name]
+        formation[i/3,i mod 3] = i;
     } else {
         character[i] = undefined;
         formation[i/3,i mod 3] = -1;
