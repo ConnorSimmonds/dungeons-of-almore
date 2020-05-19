@@ -37,6 +37,6 @@ var party_names;
 party_names = argument0;
 party_names[0] = ds_map_find_first(obj_party.entireParty);
 for(var i = 1; i < ds_map_size(obj_party.entireParty); i++){
-    party_names[i] = ds_map_find_next(party_names[i-1],obj_menu.entireParty);
+    party_names[i] = ds_map_find_next(obj_party.entireParty,party_names[i-1]);
 }
 return party_names;
