@@ -12,14 +12,14 @@ if(menuMax != MAIN_MAX) menuMax = MAIN_MAX;
 //scr_town_party
 if(keyboard_check_pressed(vk_space)){
     switch(menuSelect[0]){
-        case(0): partyNames = scr_update_party_names(partyNames);
+        case(0): partyNames = scr_update_party_names();
         state = STATE_PARTY_ADD;
         menuSelect[1] = 0;
         t_var = -1;  break;
         case(1): state = STATE_PARTY_REMOVE;
         menuSelect[1] = 0;
         t_var = -1;  break;
-        case(2): partyNames = scr_update_party_names(partyNames);
+        case(2): partyNames = scr_update_party_names();
         state = STATE_PARTY_MANAGE;
         menuSelect[1] = 0;
         t_var = -1; 

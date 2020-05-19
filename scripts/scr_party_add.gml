@@ -3,14 +3,23 @@
 //Adds a party member to the party
 if(keyboard_check_pressed(vk_space)){
     if(t_var == -1){
-        t_var = menuSelect[1];
-        menuSelect[1] = 0;
+        //First off, check that we don't have more than 5 party members
+        if(obj_party.partySize >= 4){
+            //display an error message re:party size limits
+        } else if(scr_party_check_dupe_selected(partyNames[menuSelect[1]])){
+            //display an error message re:duplicate
+        } else {
+            t_var = menuSelect[1];
+            menuSelect[1] = 0;
+        }
     } else {
         //swap the two cahracters around
         with(obj_party){
             scr_add_member(obj_town.partyNames[obj_town.menuSelect[1]],obj_town.t_var); 
         }
-        t_var = -1;    
+        menuSelect[1] = t_var;
+        t_var = -1;   
+         
     }
 }
 if(keyboard_check_pressed(vk_shift)) {
@@ -36,6 +45,30 @@ if(keyboard_check_pressed(vk_shift)) {
 
 #define scr_party_remove
 //scr_party_remove
+if(keyboard_check_pressed(vk_space)){
+    with(obj_party){
+        if(partySize <= 0) {
+            scr_remove_member(obj_town.menuSelect[1]); 
+        } 
+    }
+}
+if(keyboard_check_pressed(vk_shift)) {
+    if(t_var == -1){
+        menuSelect[1] = state - 10;
+        //save the new order to settings.ini, really quickly
+        ini_open("settings.ini");
+        var i, name;
+        for(i = 0; i < 5; i++){
+            with(obj_party) {
+                name = ds_map_find_value(character[i],NAMES)
+                ini_write_string('Party',i,name);
+            }
+        }
+        ini_close();
+        //update party formation and row x/y
+        state = STATE_PARTY;
+    }
+}
 
 #define scr_party_create
 //scr_party_create
@@ -153,3 +186,14 @@ if(argument0 == ""){
 with(obj_party){
     return !is_undefined(ds_map_find_value(entireParty,argument0))
 }
+#define scr_party_check_dupe_selected
+//scr_party_check_dupe_selected(selected member)
+//Checks the current party to make sure that the member we selected ISN'T in the party already
+var mem;
+mem = argument0;
+for(var i = 0; i < 6; i++){
+    with(obj_party){
+        if(character[i].NAME == mem) return false;
+    }
+}
+return false;

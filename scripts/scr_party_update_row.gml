@@ -34,7 +34,6 @@ switch(argument0){
 //scr_update_party_names(Array party_names)
 //Updates the party names to the given array
 var party_names;
-party_names = argument0;
 party_names[0] = ds_map_find_first(obj_party.entireParty);
 for(var i = 1; i < ds_map_size(obj_party.entireParty); i++){
     party_names[i] = ds_map_find_next(obj_party.entireParty,party_names[i-1]);

@@ -19,3 +19,12 @@ pos = argument1;
 //do the swaparoo
 memVal = ds_map_find_value(entireParty,mem);
 character[pos] = memVal;
+partySize++;
+
+#define scr_remove_member
+//scr_remove_member(member to remove)
+//This is easy - just the array index
+var mem;
+mem = argument0;
+character[mem] = -1;
+partySize--;
