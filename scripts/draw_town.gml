@@ -1,17 +1,11 @@
+#define draw_town
 //draw_town(state)
 //Allows us to draw different stuff based off of the current state. This is mostly used for things such as the scr_party_manage script, where we will need to display the party names.
 var state;
 state = argument0;
 
 if(state == STATE_PARTY_MANAGE){
-    for(i = 0; i <= obj_party.partySize; i++){
-        var t_char;
-        t_char = obj_party.character[i];
-        if(t_char != undefined){
-            draw_text(100,35 + (15 * i),t_char[? obj_party.NAMES]);
-        }
-    }
-    
+    draw_town_party_names();
     draw_sprite(spr_town_arrow,0,90,43 + (menuSelect[1] * 15))
     if(t_var != -1){
         draw_sprite(spr_town_arrow,0,90,43 + (t_var * 15))
@@ -34,20 +28,27 @@ if(state == STATE_PARTY_MANAGE){
     } else {
         draw_sprite(spr_town_arrow,0,190,23 + (menuSelect[1] * 15))
     }
-    for(var i = 0; i <= obj_party.partySize; i++){
-        if(obj_party.character[i] != undefined){
-            draw_text(100, 30 + (15 * i), ds_map_find_value(obj_party.character[i],obj_party.NAMES));
-        }
-    }
+    draw_town_party_names();
 
     for(var i = 0; i < array_length_1d(partyNames); i++){
         draw_text(200, 15 + (15 * i), partyNames[i]);
     }
 } else if(state == STATE_PARTY_REMOVE) {
      draw_sprite(spr_town_arrow,0,90,38 + (menuSelect[1] * 15))
-    for(var i = 0; i <= obj_party.partySize; i++){
-        if(obj_party.character[i] != undefined){
-            draw_text(100, 30 + (15 * i), ds_map_find_value(obj_party.character[i],obj_party.NAMES));
+     var i2 = 0;
+    draw_town_party_names();
+}
+
+#define draw_town_party_names
+//draw_town_party_names
+//Draws the party names
+var i = 0;
+var i2 = 0;
+for(i = 0; i <= obj_party.partySize; i2++;){
+        var t_char;
+        t_char = obj_party.character[i2];
+        if(t_char != undefined){
+            draw_text(100,35 + (15 * i2),t_char[? obj_party.NAMES]);
+            i++;
         }
-    }
 }
