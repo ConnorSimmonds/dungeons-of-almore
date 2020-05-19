@@ -30,3 +30,13 @@ switch(argument0){
     case(2): return (view_wport[0]*(7/20));
     default: return (view_wport[0]*(5/10));
 }
+#define scr_update_party_names
+//scr_update_party_names(Array party_names)
+//Updates the party names to the given array
+var party_names;
+party_names = argument0;
+party_names[0] = ds_map_find_first(obj_party.entireParty);
+for(var i = 1; i < ds_map_size(obj_party.entireParty); i++){
+    party_names[i] = ds_map_find_next(party_names[i-1],obj_menu.entireParty);
+}
+return party_names;

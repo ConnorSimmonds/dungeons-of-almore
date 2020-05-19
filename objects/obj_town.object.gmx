@@ -72,6 +72,7 @@ PARTY_MAX = 5;
 state = 0;
 menuMax = MAIN_MAX;
 menuOptions = MAIN_OPTIONS;
+partyNames[0] = "";
 
 t_var = -1; //temporary variable that can be used in various places. MAKE SURE TO RESET IT
 t_name = "";

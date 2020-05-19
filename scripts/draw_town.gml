@@ -26,4 +26,8 @@ if(state == STATE_PARTY_MANAGE){
             draw_text(100,35 + (15 * i), t_var[i]);
         }
     }
+} else if(state == STATE_PARTY_ADD) {
+    for(var i = 0; i < array_length_1d(party_name); i++){
+        draw_text(100, 35 + (15 * i), party_name[i]);
+    }
 }
