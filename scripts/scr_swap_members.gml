@@ -26,5 +26,5 @@ partySize++;
 //This is easy - just the array index
 var mem;
 mem = argument0;
-character[mem] = -1;
+character[mem] = undefined;
 partySize--;

@@ -50,4 +50,8 @@ if(menuMax != PARTY_MAX) menuMax = PARTY_MAX;
 #define scr_town_dungeon
 //scr_town_dungeon
 //Takes us to the dungeon
+if(obj_party.partySize <= 0){
+    //display a message and refuse to let us in
+    state = STATE_MAIN;
+}
 room_goto(rm_dungeon);

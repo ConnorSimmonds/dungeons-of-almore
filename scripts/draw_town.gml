@@ -7,7 +7,9 @@ if(state == STATE_PARTY_MANAGE){
     for(i = 0; i <= obj_party.partySize; i++){
         var t_char;
         t_char = obj_party.character[i];
-        draw_text(100,35 + (15 * i),t_char[? obj_party.NAMES]);
+        if(t_char != undefined){
+            draw_text(100,35 + (15 * i),t_char[? obj_party.NAMES]);
+        }
     }
     
     draw_sprite(spr_town_arrow,0,90,43 + (menuSelect[1] * 15))
@@ -32,11 +34,20 @@ if(state == STATE_PARTY_MANAGE){
     } else {
         draw_sprite(spr_town_arrow,0,190,23 + (menuSelect[1] * 15))
     }
-    for(var i = 0; i < array_length_1d(obj_party.character); i++){
-        draw_text(100, 30 + (15 * i), ds_map_find_value(obj_party.character[i],obj_party.NAMES));
+    for(var i = 0; i <= obj_party.partySize; i++){
+        if(obj_party.character[i] != undefined){
+            draw_text(100, 30 + (15 * i), ds_map_find_value(obj_party.character[i],obj_party.NAMES));
+        }
     }
 
     for(var i = 0; i < array_length_1d(partyNames); i++){
         draw_text(200, 15 + (15 * i), partyNames[i]);
+    }
+} else if(state == STATE_PARTY_REMOVE) {
+     draw_sprite(spr_town_arrow,0,90,38 + (menuSelect[1] * 15))
+    for(var i = 0; i <= obj_party.partySize; i++){
+        if(obj_party.character[i] != undefined){
+            draw_text(100, 30 + (15 * i), ds_map_find_value(obj_party.character[i],obj_party.NAMES));
+        }
     }
 }

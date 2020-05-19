@@ -25,16 +25,7 @@ if(keyboard_check_pressed(vk_space)){
 if(keyboard_check_pressed(vk_shift)) {
     if(t_var == -1){
         menuSelect[1] = state - 10;
-        //save the new order to settings.ini, really quickly
-        ini_open("settings.ini");
-        var i, name;
-        for(i = 0; i < 5; i++){
-            with(obj_party) {
-                name = ds_map_find_value(character[i],NAMES)
-                ini_write_string('Party',i,name);
-            }
-        }
-        ini_close();
+        scr_update_ini();
         //update party formation and row x/y
         state = STATE_PARTY;
     } else {
@@ -47,24 +38,17 @@ if(keyboard_check_pressed(vk_shift)) {
 //scr_party_remove
 if(keyboard_check_pressed(vk_space)){
     with(obj_party){
-        if(partySize <= 0) {
+        if(partySize >= 0) {
             scr_remove_member(obj_town.menuSelect[1]); 
-        } 
+        } else {
+            //display an error message about not being able to remove no party members
+        }
     }
 }
 if(keyboard_check_pressed(vk_shift)) {
     if(t_var == -1){
         menuSelect[1] = state - 10;
-        //save the new order to settings.ini, really quickly
-        ini_open("settings.ini");
-        var i, name;
-        for(i = 0; i < 5; i++){
-            with(obj_party) {
-                name = ds_map_find_value(character[i],NAMES)
-                ini_write_string('Party',i,name);
-            }
-        }
-        ini_close();
+        scr_update_ini();
         //update party formation and row x/y
         state = STATE_PARTY;
     }
@@ -141,16 +125,7 @@ if(keyboard_check_pressed(vk_space)){
 if(keyboard_check_pressed(vk_shift)){
     if(t_var == -1){
         menuSelect[1] = state - 10;
-        //save the new order to settings.ini, really quickly
-        ini_open("settings.ini");
-        var i, name;
-        for(i = 0; i < 5; i++){
-            with(obj_party) {
-                name = ds_map_find_value(character[i],NAMES)
-                ini_write_string('Party',i,name);
-            }
-        }
-        ini_close();
+        scr_update_ini();
         //update party formation and row x/y
         state = STATE_PARTY;
     } else {
@@ -189,11 +164,32 @@ with(obj_party){
 #define scr_party_check_dupe_selected
 //scr_party_check_dupe_selected(selected member)
 //Checks the current party to make sure that the member we selected ISN'T in the party already
-var mem;
+var mem, t_char;
 mem = argument0;
 for(var i = 0; i < 6; i++){
     with(obj_party){
-        if(character[i].NAME == mem) return false;
+        t_char = character[i];
+        if(t_char != undefined){
+            if(t_char[? NAMES] == mem) return false;
+        }
     }
 }
 return false;
+
+#define scr_update_ini
+//scr_update_ini
+//save the new order to settings.ini, really quickly
+        ini_open("settings.ini");
+        var i, name;
+        for(i = 0; i < 5; i++){
+            with(obj_party) {
+                if(character[i] != undefined){
+                    name = ds_map_find_value(character[i],NAMES)
+                    ini_write_string('Party',i,name);
+                } else {
+                    //we have a blank spot - make this spot nothing
+                    ini_write_string('Party',i,"");
+                }
+            }
+        }
+        ini_close();

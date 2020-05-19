@@ -76,8 +76,8 @@ for(i = 0; i < 6; i++){
         character[size] = entireParty[? name]
         formation[i/3,i mod 3] = size;
     } else {
-        character[i] = -1;
-       formation[i/3,i mod 3] = -1;
+        character[i] = undefined;
+        formation[i/3,i mod 3] = -1;
     }
 }
 ini_close();
