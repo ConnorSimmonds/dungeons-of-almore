@@ -136,7 +136,7 @@ if(keyboard_check_pressed(vk_shift)){
 
 if(keyboard_check_pressed(vk_space)){
     if(t_var == -1){
-        t_var = menuSelect;
+        t_var = menuSelect[1];
     } else {
         if(t_var != menuSelect){
             with(obj_party){
@@ -170,7 +170,7 @@ for(var i = 0; i < 6; i++){
     with(obj_party){
         t_char = character[i];
         if(t_char != undefined){
-            if(t_char[? NAMES] == mem) return false;
+            if(t_char[? NAMES] == mem) return true;
         }
     }
 }
@@ -181,7 +181,7 @@ return false;
 //save the new order to settings.ini, really quickly
         ini_open("settings.ini");
         var i, name;
-        for(i = 0; i < 5; i++){
+        for(i = 0; i <= 5; i++){
             with(obj_party) {
                 if(character[i] != undefined){
                     name = ds_map_find_value(character[i],NAMES)
