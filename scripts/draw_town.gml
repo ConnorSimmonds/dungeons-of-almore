@@ -27,7 +27,16 @@ if(state == STATE_PARTY_MANAGE){
         }
     }
 } else if(state == STATE_PARTY_ADD) {
-    for(var i = 0; i < array_length_1d(party_name); i++){
-        draw_text(100, 35 + (15 * i), party_name[i]);
+    if(t_var != -1) {
+        draw_sprite(spr_town_arrow,0,90,38 + (menuSelect[1] * 15))
+    } else {
+        draw_sprite(spr_town_arrow,0,190,23 + (menuSelect[1] * 15))
+    }
+    for(var i = 0; i < array_length_1d(obj_party.character); i++){
+        draw_text(100, 30 + (15 * i), ds_map_find_value(obj_party.character[i],obj_party.NAMES));
+    }
+
+    for(var i = 0; i < array_length_1d(partyNames); i++){
+        draw_text(200, 15 + (15 * i), partyNames[i]);
     }
 }
