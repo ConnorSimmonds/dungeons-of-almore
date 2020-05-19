@@ -15,7 +15,7 @@ if(keyboard_check_pressed(vk_space)){
     } else {
         //swap the two cahracters around
         with(obj_party){
-            scr_add_member(obj_town.partyNames[obj_town.menuSelect[1]],obj_town.t_var); 
+            scr_add_member(obj_town.partyNames[obj_town.t_var],obj_town.menuSelect[1]); 
         }
         menuSelect[1] = t_var;
         t_var = -1;   
