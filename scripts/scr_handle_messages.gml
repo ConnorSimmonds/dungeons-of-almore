@@ -8,7 +8,7 @@ switch(argument[0]){
         opcode = 0;
         buffer_write(message, buffer_u8,opcode);
         if(global.user != -1){
-            buffer_write(message , buffer_u32,user);
+            buffer_write(message , buffer_u32,global.user);
         }
         break;
     case('1'): opcode = 1; //Ping
