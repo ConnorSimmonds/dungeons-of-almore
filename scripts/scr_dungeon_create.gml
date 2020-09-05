@@ -12,11 +12,10 @@ maxY = real(string_copy(temp_string,string_pos(",",temp_string)+1,string_length(
 room_set_width(rm_dungeon,32*maxX);
 room_set_height(rm_dungeon,(32*maxY));
 
+obj_network.maxX = maxX;
+obj_network.maxY = maxY;
 with(obj_network){ //tell the server to open map 1_1
  scr_handle_messages(13,1,1);
- if(received == 12){
-    scr_handle_messages(14,maxX,maxY);
- }   
 }
 
 

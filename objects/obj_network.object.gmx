@@ -31,6 +31,10 @@ message = buffer_create(256, buffer_grow, 1);
 received = "";
 client = network_create_socket(network_socket_tcp);
 isConnected = network_connect_raw(client,ip,port);
+
+//This is just for the map creation stuff - I'm unsure how else to pass around the values
+maxX = 0;
+maxY = 0;
 </string>
           </argument>
         </arguments>

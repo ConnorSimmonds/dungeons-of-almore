@@ -102,7 +102,7 @@ if(state == STATE_DRAW){
         map[mapX,mapY] = draw_tool;
         //We call the script to send our message through to our server
         with(obj_network){
-            scr_handle_messages(10,mapX,mapY,draw_tool);
+            scr_handle_messages(10,obj_map.mapX,obj_map.mapY,obj_map.draw_tool);
         }
     }
     

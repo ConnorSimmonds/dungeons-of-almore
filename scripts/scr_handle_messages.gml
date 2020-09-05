@@ -2,7 +2,7 @@
 //scr_handle_message()
 //Basically just allows us to send some dummy packets
 buffer_seek(message, buffer_seek_start, 0);
-var opcode = argument0;
+var opcode = argument[0];
 switch(opcode){
     case(0)://Initialize user
         buffer_write(message, buffer_u8,opcode);
@@ -10,7 +10,7 @@ switch(opcode){
             buffer_write(message , buffer_u32,global.user);
         }
         break;
-    case(0)://Ping
+    case(1)://Ping
         buffer_write(message, buffer_u8,opcode);
         break;
     case(2): //Quit
@@ -27,6 +27,7 @@ switch(opcode){
         buffer_write(message, buffer_u16,argument[2]);
         break;
     case(14): //Create Map
+        show_debug_message(argument[2]);
         buffer_write(message, buffer_u8,opcode);
         buffer_write(message, buffer_u8,argument[1]);
         buffer_write(message, buffer_u8,argument[2]);
@@ -41,8 +42,14 @@ scr_send_message();
 //Just outputs a message based on the int gotten from the server.
 switch(argument0){
     case(2): //clean up the connection and buffer
-    buffer_delete(message);
-    network_destroy(client);
+        buffer_delete(message);
+        network_destroy(client);
+        return argument0;
+        break;
+    case(12): //we need to pass the server the values it needs: grab them from the current dungeon room and then send it to the server
+    scr_handle_messages(14,maxX,maxY);
+    return argument0;
+    break;
     default: return argument0;
 }
 
