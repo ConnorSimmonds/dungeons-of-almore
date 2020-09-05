@@ -4,13 +4,12 @@
 buffer_seek(message, buffer_seek_start, 0);
 var opcode;
 switch(argument[0]){
-    case('0'): ini_open("settings.ini"); //Initialize user
+    case('0')://Initialize user
         opcode = 0;
         buffer_write(message, buffer_u8,opcode);
         if(global.user != -1){
             buffer_write(message , buffer_u32,user);
         }
-        ini_close();
         break;
     case('1'): opcode = 1; //Ping
         buffer_write(message, buffer_u8,opcode);

@@ -106,6 +106,7 @@
     <shader type="GLSLES">shaders\sh_selectionShader.shader</shader>
   </shaders>
   <objects name="objects">
+    <object>objects\obj_network</object>
     <objects name="Dungeon">
       <object>objects\obj_combat</object>
       <object>objects\obj_dungeon</object>
@@ -124,7 +125,6 @@
       <object>objects\obj_menu</object>
       <object>objects\obj_title</object>
     </objects>
-    <object>objects\obj_network</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>

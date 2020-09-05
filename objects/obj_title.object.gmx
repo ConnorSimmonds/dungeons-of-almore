@@ -50,7 +50,10 @@
             <kind>1</kind>
             <string>if(obj_network.received == 0){
     //we've logged in succesfully - move to rm_town
-    room_goto(rm_town);
+    statusMessage = "Logged in!";
+    if(keyboard_check_pressed(vk_enter)){
+        room_goto(rm_town);
+    }
 }
 </string>
           </argument>
@@ -75,7 +78,7 @@
           <argument>
             <kind>1</kind>
             <string>draw_text(room_width/2,room_height/2,"Dungeons of Almore");
-draw_text(0,room_height - 20, "Logging in...");
+draw_text(0,room_height - 20, statusMessage);
 </string>
           </argument>
         </arguments>
