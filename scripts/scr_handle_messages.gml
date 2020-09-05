@@ -41,16 +41,15 @@ switch(argument[0]){
 //scr_recieve_packet
 //Just outputs a message based on the int gotten from the server.
 switch(argument0){
-    case(0): return "Server returned okay!";
-    case(1): return "pong";
     case(2): //clean up the connection and buffer
     buffer_delete(message);
     network_destroy(client);
-    return "Connection closed!";
-    case(10): return "Map Value updating";
-    case(11): return "Map File";
-    case(12): scr_handle_messages('5');
-    return "Create Map";
+    default: return argument0;
 }
 
-//asdf
+//this needs support for actual input past the opcode
+
+#define scr_send_message
+//scr_send_message
+//This can only be called from obj_network, or an implementation similar to it.
+network_send_raw(client,message,buffer_get_size(message));

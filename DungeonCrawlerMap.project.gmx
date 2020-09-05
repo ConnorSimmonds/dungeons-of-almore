@@ -122,11 +122,13 @@
     <objects name="Menus">
       <object>objects\obj_town</object>
       <object>objects\obj_menu</object>
+      <object>objects\obj_title</object>
     </objects>
     <object>objects\obj_network</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
+    <room>rooms\rm_title</room>
     <room>rooms\rm_town</room>
     <room>rooms\rm_dungeon</room>
     <room>rooms\rm_combat</room>
