@@ -101,6 +101,9 @@ if(state == STATE_DRAW){
         mapY = floor(window_mouse_get_y()/32)
         map[mapX,mapY] = draw_tool;
         //We call the script to send our message through to our server
+        with(obj_network){
+            scr_handle_messages('3',mapX,mapY,draw_tool);
+        }
     }
     
     if(keyboard_check_pressed(vk_numpad1)){

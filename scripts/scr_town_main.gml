@@ -54,4 +54,5 @@ if(obj_party.partySize <= 0){
     //display a message and refuse to let us in
     state = STATE_MAIN;
 }
+scr_dungeon_create(); //create the dungeon
 room_goto(rm_dungeon);

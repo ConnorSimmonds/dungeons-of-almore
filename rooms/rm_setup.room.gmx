@@ -12,17 +12,16 @@
   <showcolour>-1</showcolour>
   <code>global.guiScale = 1;
 global.party_hash = sha1_file("party.json"); //this isn't the most secure (thanks google), but it's the best gms has
- ini_open("settings.ini"); 
+ini_open("settings.ini"); 
 global.user = ini_read_real('UserDetails','userid',-1);
 ini_close();
-scr_dungeon_create();
 room_goto_next();</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
   <makerSettings>
     <isSet>-1</isSet>
-    <w>1008</w>
+    <w>984</w>
     <h>600</h>
     <showGrid>-1</showGrid>
     <showObjects>-1</showObjects>

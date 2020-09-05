@@ -2,39 +2,38 @@
 //scr_handle_message()
 //Basically just allows us to send some dummy packets
 buffer_seek(message, buffer_seek_start, 0);
-var opcode;
-switch(argument[0]){
-    case('0')://Initialize user
-        opcode = 0;
+var opcode = argument0;
+switch(opcode){
+    case(0)://Initialize user
         buffer_write(message, buffer_u8,opcode);
         if(global.user != -1){
             buffer_write(message , buffer_u32,global.user);
         }
         break;
-    case('1'): opcode = 1; //Ping
+    case(0)://Ping
         buffer_write(message, buffer_u8,opcode);
         break;
-    case('2'): opcode = 2; //Quit
+    case(2): //Quit
         buffer_write(message, buffer_u8,opcode); break;
-    case('3'): opcode = 10; //Update map
+    case(10): //Update map
         buffer_write(message, buffer_u8,opcode);
         buffer_write(message, buffer_u8,argument[1]);
         buffer_write(message, buffer_u8,argument[2]);
         buffer_write(message, buffer_u8,argument[3]);
         break;
-    case('4'): opcode = 13; //Open Map
+    case(13)://Open Map
         buffer_write(message, buffer_u8,opcode);
         buffer_write(message, buffer_u16,argument[1]);
         buffer_write(message, buffer_u16,argument[2]);
         break;
-    case('5'): opcode = 14; //Create Map
+    case(14): //Create Map
         buffer_write(message, buffer_u8,opcode);
         buffer_write(message, buffer_u8,argument[1]);
         buffer_write(message, buffer_u8,argument[2]);
         break;
     default: //nada
 }
-
+scr_send_message();
 //TODO: need to find a better way to add in all of the arguments - right now, it's super messy.
 
 #define scr_recieve_packet
