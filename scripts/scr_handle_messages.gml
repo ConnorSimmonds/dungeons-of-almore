@@ -6,9 +6,10 @@ var opcode;
 switch(argument[0]){
     case('0'): ini_open("settings.ini"); //Initialize user
         opcode = 0;
-        var user = ini_read_real('UserDetails','userid',-1);
         buffer_write(message, buffer_u8,opcode);
-        buffer_write(message , buffer_u32,user);
+        if(global.user != -1){
+            buffer_write(message , buffer_u32,user);
+        }
         ini_close();
         break;
     case('1'): opcode = 1; //Ping
