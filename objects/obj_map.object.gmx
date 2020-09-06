@@ -57,6 +57,10 @@ for(mapX = 0; mapX &lt;= room_width/32; mapX++){
     map[mapX,room_height/32] = 0;
 }
 
+with(obj_network){
+    scr_handle_messages(12);
+}
+
 state = STATE_MINIMAP;
 playerDir = scr_get_playerDir();
 debug = false;

@@ -12,7 +12,6 @@
   <showcolour>-1</showcolour>
   <code>with(obj_network){
     scr_handle_messages(0); //this needs to change to an actual non-char value
-    scr_send_message();   
 }</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
