@@ -47,9 +47,15 @@ switch(argument0){
         return argument0;
         break;
     case(12): //we need to pass the server the values it needs: grab them from the current dungeon room and then send it to the server
-    scr_handle_messages(14,maxX,maxY);
-    return argument0;
-    break;
+        scr_handle_messages(14,maxX,maxY);
+        return argument0;
+        break;
+    case(11): //we're being passed the map file
+        show_debug_message(buffer_read(buffer,buffer_u8))
+        break;
+    case(13): //map error
+    
+        break;
     default: return argument0;
 }
 
