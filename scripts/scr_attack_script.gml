@@ -137,7 +137,16 @@ switch(skill){
     case(1): {
         scr_add_chain(0);
         break;
-    }    
+    }
+    case(2):{
+        scr_add_chain(1);
+        break;
+    }
+    case(3):{
+        var burst_damage;
+        burst_damage = scr_activate_chain(10);
+        break;
+    }
     default: {
         show_debug_message("Skill not implemented yet.");
         ds_queue_enqueue(battleMessageQueue,"Skill has not been implemented yet.");
@@ -178,3 +187,18 @@ if(chain_multiplier == 0){
     
     chain_multiplier += 1; //None of the above applies, so it's just +1
 }
+
+#define scr_activate_chain
+//scr_activate_chain(damage)
+//Activates the skill chain (if it's there). This occurs on every spell, and certain abilities.
+var activate_damage, burst_damage;
+activate_damage = argument0;
+
+burst_multiplier++;
+burst_damage = ((combined_attack + activate_damage) * chain_multiplier) * burst_multiplier;
+
+//Clear the variables for a (potential) next burst, outside of the burst multiplier.
+chain_multiplier = 0;
+ds_list_clear(element_chain_list);
+
+return burst_damage;
