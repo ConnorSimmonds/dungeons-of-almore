@@ -134,6 +134,9 @@ intended_turn_order = scr_player_intended_turn();
 temp_turn = scr_player_intended_turn();
 turnSelect = -1;
 
+element_chain_list = ds_list_create(); //Keeps track of elements that have been used for the chains
+chain_multiplier = 0;
+burst_multiplier = 0;
 
 battleMessage = "Enemies approach!";
 battleMessageDisplay = "";
