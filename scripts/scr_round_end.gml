@@ -26,6 +26,9 @@ if(tempEnemies[0] != -1){
 
 temp_turn = scr_player_intended_turn(); //reset the turn order
 playerSelect = 0;
+chain_multiplier = 0;
+burst_multiplier = 0;
+ds_list_clear(element_chain_list);
 
 #define scr_check_enemies
 //scr_check_enemies
