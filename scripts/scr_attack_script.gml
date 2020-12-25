@@ -130,8 +130,10 @@ while(!ds_priority_empty(turn_queue)){
 #define scr_skills
 //scr_skills(action, targ, source);
 //A giant ass script of all of the skills. Done to make turn_execute less unreadable.
-var skill;
+var skill, targ, source;
 skill = argument0;
+targ = argument1;
+source = argument2;
 
 switch(skill){
     case(1): {
