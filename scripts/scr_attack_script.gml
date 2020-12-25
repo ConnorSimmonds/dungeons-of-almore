@@ -20,7 +20,7 @@ if(prevState != STATE_TARGET){
 if(prevState == STATE_TARGET){
     var turn;
     var character = obj_party.character[playerSelect];
-    var skills = character[obj_party.SKILLS];
+    var skills = character[? obj_party.SKILLS];
     
     turn[0] = scr_turn_script;
     turn[1] = skills[skillSelect];
@@ -74,8 +74,9 @@ if(keyboard_check_pressed(vk_shift)){
     }
     
 } else if(keyboard_check_pressed(vk_space)){
-    prevState = state;
-    state = STATE_ATTACK;
+    state = prevState;
+    prevState = state = STATE_TARGET;
+    
 }
 
 #define scr_turn_script
@@ -91,6 +92,7 @@ if(source < 5){
     var character = obj_party.character[source];
     ds_queue_enqueue(battleMessageQueue,scr_player_select); //queue up the playerSelect script
     ds_queue_enqueue(battleMessageQueue,source); //and then the playerSelect variable, so the script is callec with the source as the argument.
+    show_debug_message(string(source) + " " + string(action));
     switch(action){
         case(0): { //generic attack
             ds_queue_enqueue(battleMessageQueue,character[? obj_party.NAMES] + " attempts to attack!");
@@ -137,6 +139,7 @@ source = argument2;
 
 switch(skill){
     case(1): {
+        ds_queue_enqueue(battleMessageQueue,"Skill has not been implemented yet.");
         scr_add_chain(0);
         break;
     }
