@@ -30,6 +30,7 @@ if(keyboard_check_pressed(vk_space)){
             with(obj_party){
                 scr_open_json();
                 scr_close_json();
+                scr_party_update_row();
             }
             menuSelect[0] = STATE_PARTY-1; break;
     }
@@ -40,6 +41,7 @@ if(keyboard_check_pressed(vk_shift)){
     with(obj_party){
         scr_open_json();
         scr_close_json();
+        scr_party_update_row();
     }
     menuSelect[0] = STATE_PARTY-1;
 }

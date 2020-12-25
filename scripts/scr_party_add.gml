@@ -4,7 +4,7 @@
 if(keyboard_check_pressed(vk_space)){
     if(t_var == -1){
         //First off, check that we don't have more than 5 party members
-        if(obj_party.partySize >= 5){
+        if(obj_party.partySize >= 4){
             //display an error message re:party size limits
         } else if(scr_party_check_dupe_selected(partyNames[menuSelect[1]])){
             //display an error message re:duplicate
