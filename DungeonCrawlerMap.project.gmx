@@ -129,8 +129,8 @@
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
     <room>rooms\rm_title</room>
-    <room>rooms\rm_town</room>
     <room>rooms\rm_dungeon</room>
+    <room>rooms\rm_town</room>
     <room>rooms\rm_combat</room>
   </rooms>
   <help>
