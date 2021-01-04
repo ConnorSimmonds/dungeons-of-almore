@@ -108,6 +108,7 @@ prevState = state;
                 ds_queue_enqueue(battleMessageQueue,"You have no skills you can use!");
                 battleMessageGetNext = true;
                 state = STATE_MESSAGE;
+                prevState = STATE_MAIN;
             } else {
                 skillString = "Testing";
                 state = STATE_SKILL;
@@ -150,8 +151,12 @@ if(keyboard_check_pressed(vk_space)){
 if(battleMessageGetNext && (string_length(battleMessage)/2 <= string_length(battleMessageDisplay))){
     battleMessageGetNext = false;
     if(ds_queue_empty(battleMessageQueue)){
-        scr_round_end();
-        state = STATE_MAIN;
+        if(prevState != STATE_MAIN){
+            scr_round_end();
+            state = STATE_MAIN;
+        } else {
+            state = prevState;
+        }
     } else {
         //Let's check if we have a string or not
         var message;

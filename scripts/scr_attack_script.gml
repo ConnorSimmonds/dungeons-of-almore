@@ -2,6 +2,7 @@
 //scr_attack_script
 //The script for handling attacks - such as, selecting the enemy and so on.
 if(prevState != STATE_TARGET){
+    prevState = state;
     state = STATE_TARGET;
 } else { //We've selected a target, so we can create a turn
     var turn;
@@ -27,6 +28,9 @@ if(prevState == STATE_TARGET){
     turn[2] = enemySelect;
     turn[3] = playerSelect;
     player_turns[playerSelect] = turn;
+    show_debug_message(skills[0]);
+    show_debug_message(string(turn[3]) + " will perform skill number " + string(turn[1]));
+    show_debug_message("");
     state = STATE_TURN_END;
 } else {    
     if(keyboard_check_pressed(vk_space)){
@@ -60,7 +64,11 @@ if(prevState == STATE_TARGET){
 //scr_target_script
 //The script for targeting enemies.
 if(keyboard_check_pressed(vk_shift)){
+    
     state = prevState;
+    if(state == STATE_ATTACK){
+        state = STATE_MAIN;
+    }
 } else if(keyboard_check_pressed(vk_left)){
     enemySelect--;
     
@@ -74,9 +82,10 @@ if(keyboard_check_pressed(vk_shift)){
     }
     
 } else if(keyboard_check_pressed(vk_space)){
-    state = prevState;
-    prevState = state = STATE_TARGET;
-    
+    var tState;
+    tState = prevState;
+    prevState = STATE_TARGET;
+    state = tState;
 }
 
 #define scr_turn_script
@@ -92,7 +101,7 @@ if(source < 5){
     var character = obj_party.character[source];
     ds_queue_enqueue(battleMessageQueue,scr_player_select); //queue up the playerSelect script
     ds_queue_enqueue(battleMessageQueue,source); //and then the playerSelect variable, so the script is callec with the source as the argument.
-    show_debug_message(string(source) + " " + string(action));
+    show_debug_message(string(source) + " will do " + string(action));
     switch(action){
         case(0): { //generic attack
             ds_queue_enqueue(battleMessageQueue,character[? obj_party.NAMES] + " attempts to attack!");
@@ -127,8 +136,10 @@ var turn;
 
 while(!ds_priority_empty(turn_queue)){
     turn = ds_priority_delete_max(turn_queue);
+    show_debug_message(string(turn[1]) + " - Action of " + string(turn[2]));
     script_execute(turn[0], turn[1], turn[2], turn[3]);
 }
+
 #define scr_skills
 //scr_skills(action, targ, source);
 //A giant ass script of all of the skills. Done to make turn_execute less unreadable.
@@ -139,17 +150,22 @@ source = argument2;
 
 switch(skill){
     case(1): {
-        ds_queue_enqueue(battleMessageQueue,"Skill has not been implemented yet.");
+        ds_queue_enqueue(battleMessageQueue,"Skill Chain Test 1.");
         scr_add_chain(0);
         break;
     }
     case(2):{
+        ds_queue_enqueue(battleMessageQueue,"Skill Chain Test 2.");
         scr_add_chain(1);
         break;
     }
     case(3):{
         var burst_damage;
+        ds_queue_enqueue(battleMessageQueue,"Chain Burst Test");
         burst_damage = scr_activate_chain(10);
+        if(burst_damage != 0){
+            ds_queue_enqueue(battleMessageQueue,"Enemy takes " + string(burst_damage) + " damage from the burst chain!");
+        }
         break;
     }
     default: {
@@ -196,8 +212,9 @@ if(chain_multiplier == 0){
 #define scr_activate_chain
 //scr_activate_chain(damage)
 //Activates the skill chain (if it's there). This occurs on every spell, and certain abilities.
-var activate_damage, burst_damage;
+var activate_damage, burst_damage, combined_attack;
 activate_damage = argument0;
+combined_attack = 10;
 
 burst_multiplier++;
 burst_damage = ((combined_attack + activate_damage) * chain_multiplier) * burst_multiplier;

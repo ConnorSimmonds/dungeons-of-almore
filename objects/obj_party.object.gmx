@@ -96,11 +96,21 @@ row2Y = view_hport[0] - ((sprite_get_height(spr_partyui)+12) * global.guiScale);
 char = character[0];
 char[? SKILLS] = array_create(2);
 skills = char[? SKILLS];
-skills[0] = 1;
+skills[0] = 3;
+char[? SKILLS] = skills;
+
 char = character[1];
 char[? SKILLS] = array_create(2);
 skills = char[? SKILLS];
 skills[0] = 2;
+char[? SKILLS] = skills;
+
+char = character[2];
+char[? SKILLS] = array_create(2);
+skills = char[? SKILLS];
+skills[0] = 1;
+char[? SKILLS] = skills;
+
 </string>
           </argument>
         </arguments>
