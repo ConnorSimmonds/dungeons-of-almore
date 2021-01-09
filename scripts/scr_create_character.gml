@@ -12,6 +12,7 @@ if(argument_count < 11){ //it's a new character
 for(i = 0; i < argument_count; i++){ //Just run through all of our arguments
     character[? string(i)] = argument[i]; //Each section correlates to the constants in obj_party
 }
+character[? SKILLS] = array_create(1);
 scr_character_json(character,true);
 return character;
 

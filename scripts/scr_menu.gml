@@ -102,9 +102,9 @@ prevState = state;
         case(SKILL_OPTION): 
             var t_char;
             t_char = obj_party.character[playerSelect];
-            skillString = t_char[? obj_party.SKILLS];
+            skillList = t_char[? obj_party.SKILLS];
             
-            if(skillString == ""){
+            if(ds_list_find_value(skillList,0) == 0){
                 ds_queue_enqueue(battleMessageQueue,"You have no skills you can use!");
                 battleMessageGetNext = true;
                 state = STATE_MESSAGE;

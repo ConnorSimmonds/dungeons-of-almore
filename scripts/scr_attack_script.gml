@@ -24,11 +24,10 @@ if(prevState == STATE_TARGET){
     var skills = character[? obj_party.SKILLS];
     
     turn[0] = scr_turn_script;
-    turn[1] = skills[skillSelect];
+    turn[1] = ds_list_find_value(skills,skillSelect);
     turn[2] = enemySelect;
     turn[3] = playerSelect;
     player_turns[playerSelect] = turn;
-    show_debug_message(skills[0]);
     show_debug_message(string(turn[3]) + " will perform skill number " + string(turn[1]));
     show_debug_message("");
     state = STATE_TURN_END;

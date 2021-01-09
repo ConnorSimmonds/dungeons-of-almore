@@ -93,7 +93,7 @@ row2Y = view_hport[0] - ((sprite_get_height(spr_partyui)+12) * global.guiScale);
           <argument>
             <kind>1</kind>
             <string>//quickly set some skillls on existing characters
-char = character[0];
+/*char = character[0];
 char[? SKILLS] = array_create(2);
 skills = char[? SKILLS];
 skills[0] = 3;
