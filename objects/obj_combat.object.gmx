@@ -263,13 +263,17 @@ if(state != STATE_TARGET &amp;&amp; state != STATE_EXECUTE){
     } else if(state == STATE_DOUBLE_ATTACK){
         draw_sprite_ext(spr_menuBar,3,doubleTeamX,doubleTeamY,global.guiScale,global.guiScale,0,c_white,1);
         shader_set(sh_selectionShader);
-        draw_rectangle_colour(doubleTeamX+(1*global.guiScale),(doubleTeamY + ((11*global.guiScale)*skillSelect))+(1*global.guiScale),doubleTeamX+(62*global.guiScale),(doubleTeamY + ((9*global.guiScale)*skillSelect))+(9*global.guiScale),c_yellow,c_yellow,c_yellow,c_yellow,0);
+        draw_rectangle_colour(doubleTeamX+(1*global.guiScale),
+        (doubleTeamY+(1*global.guiScale) + ((12*global.guiScale)*skillSelect)),
+        doubleTeamX+(63*global.guiScale),
+        (doubleTeamY+(10*global.guiScale) + ((12*global.guiScale)*skillSelect))
+        ,c_red,c_red,c_red,c_red,0);
         shader_reset();
     
-    for(i = 0; i &lt; 5; i++){
-        c_char = obj_party.character[i];
-        draw_sprite_ext(spr_faceplate,c_char[? obj_party.IMAGE],doubleTeamX,(doubleTeamY + ((11*global.guiScale)*i)),global.guiScale,global.guiScale,0,image_blend,image_alpha);
-    }
+        for(i = 0; i &lt; 5; i++){
+            c_char = obj_party.character[temp_turn[i]]
+            draw_sprite_ext(spr_faceplate,c_char[? obj_party.IMAGE],doubleTeamX,(doubleTeamY +(6*global.guiScale)+ ((12*global.guiScale)*i)),global.guiScale,global.guiScale,0,image_blend,image_alpha);
+        }
     
     }
 } else if(state == STATE_TARGET){
@@ -277,6 +281,11 @@ if(state != STATE_TARGET &amp;&amp; state != STATE_EXECUTE){
     draw_sprite_part_ext(spr_bar,1,0,0,sprite_get_width(spr_bar)*enemyHP[enemySelect]/10,sprite_get_height(spr_bar),(enemy_x-113 + (enemySelect * 80))*2,88*2,global.guiScale,global.guiScale,image_blend,image_alpha)
     draw_sprite_ext(spr_backButton,0,backButtonX,backButtonY,global.guiScale,global.guiScale,0,image_blend,image_alpha);
 }
+
+//Message box
+draw_sprite_ext(spr_combat_message,0,(sprite_get_width(spr_menuBar)-1)*global.guiScale,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
+draw_text_ext_transformed((sprite_get_width(spr_menuBar)+5)*global.guiScale,5*global.guiScale,battleMessageDisplay,-1,(sprite_get_width(spr_combat_message)-10)*global.guiScale,global.guiScale/2,global.guiScale/2,0);
+
 //Player Faceplates
 if(playerSelect != -1){ //If it's the player's turn...
     var t_index = 0
@@ -313,10 +322,6 @@ if(playerSelect != -1){ //If it's the player's turn...
         }
     }
 }
-
-//Message box
-draw_sprite_ext(spr_combat_message,0,(sprite_get_width(spr_menuBar)-1)*global.guiScale,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
-draw_text_ext_transformed((sprite_get_width(spr_menuBar)+5)*global.guiScale,5*global.guiScale,battleMessageDisplay,-1,(sprite_get_width(spr_combat_message)-10)*global.guiScale,global.guiScale/2,global.guiScale/2,0);
 </string>
           </argument>
         </arguments>
