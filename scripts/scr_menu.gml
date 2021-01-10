@@ -64,6 +64,7 @@ switch(state){
         break;
     }
     case(STATE_DEFEND):{
+        //this hasn't been implemented yet
         break;
     }
     case(STATE_ITEM):{
@@ -110,7 +111,7 @@ prevState = state;
                 state = STATE_MESSAGE;
                 prevState = STATE_MAIN;
             } else {
-                skillString = "Testing";
+                skillString = scr_skill_names(skillList);
                 state = STATE_SKILL;
             } break;
         case(DEFEND_OPTION): state = STATE_DEFEND; break;
