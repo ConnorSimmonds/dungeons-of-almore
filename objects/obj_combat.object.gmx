@@ -115,7 +115,8 @@ prevState = state;
 
 //Skill Vars
 skillSelect = 0;
-skillString = "TEST#TEST2";
+skillString = "";
+skillElemArray = array_create(1);
 
 //Enemy Selection
 enemies[2] = 0; //Enemy ID - determines stats etc.
@@ -259,10 +260,16 @@ if(state != STATE_TARGET &amp;&amp; state != STATE_EXECUTE){
         draw_sprite_ext(spr_menuBar,2,76*global.guiScale,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
         
         //Draw the selection square (skill editon)
-        draw_rectangle_colour(77*global.guiScale,(((skillSelectHeightBase*global.guiScale)+(9*global.guiScale)*skillSelect)),(skillSelectWidth),(skillSelectHeight+((9*global.guiScale)*skillSelect)),c_yellow,c_yellow,c_yellow,c_yellow,0);
+        draw_rectangle_colour(77*global.guiScale,(((skillSelectHeightBase*global.guiScale)+(9*global.guiScale)*skillSelect)),(skillSelectWidth-1),(skillSelectHeight+((9*global.guiScale)*skillSelect)-1),c_yellow,c_yellow,c_yellow,c_yellow,0);
         
         //Draw more text
         draw_text_ext_transformed(86*global.guiScale,25*global.guiScale,skillString,18,-1,global.guiScale/2,global.guiScale/2,0)
+        //Draw the elemental icons
+        for(i = 0; i &lt; 11; i++){
+            if(i &lt; array_length_1d(skillElemArray)){ //only draw the icon if it's within range. This will have to be change when we can have more than 11 skills
+               draw_sprite(spr_ability_elements,skillElemArray[i],skillSelectWidth-(global.guiScale*10),skillSelectHeight+((9*global.guiScale)*i)); 
+            }
+        }
     } else if(state == STATE_DOUBLE_ATTACK){
         draw_sprite_ext(spr_menuBar,3,doubleTeamX,doubleTeamY,global.guiScale,global.guiScale,0,c_white,1);
         shader_set(sh_selectionShader);
