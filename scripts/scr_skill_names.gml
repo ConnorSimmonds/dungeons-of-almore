@@ -22,3 +22,8 @@ return skillString;
 //scr_calculate_defense(defense, vitality)
 //DEF + (VIT/DEF * DEF/2)
 return (argument0 + (argument0/argument1 * argument1/2));
+
+#define scr_calculate_magical_defense
+//scr_calculate_magical_defense(elem def, def)
+//(ELEM_DEF/DEF)*DEF + ELEM_DEF
+return ((argument0/argument1)*argument1 + argument0);
