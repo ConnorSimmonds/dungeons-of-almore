@@ -1,3 +1,4 @@
+#define scr_skill_names
 //scr_skill_names(skillList)
 var skillList, i, skillString;
 skillList = argument0;
@@ -16,3 +17,8 @@ if(ds_exists(skillList,ds_type_list)){ //Make sure our data structure IS an actu
 }
 
 return skillString;
+
+#define scr_calculate_physical_defense
+//scr_calculate_defense(defense, vitality)
+//DEF + (VIT/DEF * DEF/2)
+return (argument0 + (argument0/argument1 * argument1/2));

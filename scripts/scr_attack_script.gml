@@ -100,15 +100,23 @@ if(source < 5){
     var character = obj_party.character[source];
     ds_queue_enqueue(battleMessageQueue,scr_player_select); //queue up the playerSelect script
     ds_queue_enqueue(battleMessageQueue,source); //and then the playerSelect variable, so the script is callec with the source as the argument.
-    show_debug_message(string(source) + " will do " + string(action));
     switch(action){
         case(0): { //generic attack
             ds_queue_enqueue(battleMessageQueue,character[? obj_party.NAMES] + " attempts to attack!");
             if(enemyHP[targ] <= 0){
                 ds_queue_enqueue(battleMessageQueue,"But their target had been defeated...");
             } else {
-                enemyHP[targ] -= 5;
-                ds_queue_enqueue(battleMessageQueue,"Enemy takes " + string(5) + " damage!");
+                //ROUND(DAMAGE * (DAMAGE/DEF)) - this is the damage formula
+                //DEF is defined by whether or not this is elemental damage. Currently, this is not accounted for in normal attacks (as I don't want to code in the other parts that'll require this)
+                //Therefore, all normal attacks will be treated as physcial damage. This is defined by:
+                //DEF + (VIT/DEF * DEF/2)
+                var damage, def;
+                attack = character[? obj_party.ATTACK];
+                def = scr_calculate_physical_defense(5,10);
+                damage = round(attack * (attack/def));
+                
+                enemyHP[targ] -= damage;
+                ds_queue_enqueue(battleMessageQueue,"Enemy takes " + string(damage) + " damage!");
             }
             break;
         }
