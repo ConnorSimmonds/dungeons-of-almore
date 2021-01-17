@@ -57,7 +57,10 @@
     </datafile>
   </datafiles>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\msc_common_encounter</sound>
+    <sound>sound\msc_dungeon_1</sound>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Dungeon">
       <sprite>sprites\spr_map_background</sprite>
@@ -157,6 +160,10 @@
   <help>
     <rtf>help.rtf</rtf>
   </help>
+  <audiogroups name="audiogroups">
+    <audiogroup name="audiogroup_default"/>
+    <audiogroup name="sfx"/>
+  </audiogroups>
   <TutorialState>
     <IsTutorial>0</IsTutorial>
     <TutorialName></TutorialName>

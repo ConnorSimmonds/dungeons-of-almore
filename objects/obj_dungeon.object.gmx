@@ -78,6 +78,7 @@ EQUIP_UNEQUIP_OPTION = 1;
 menu_top = PARTY_OPTION; //Previous menu value - it's the top layer one.
 
 enemyPool = scr_get_enemy_pool();
+music = audio_play_sound(msc_dungeon_1,5,true);
 </string>
           </argument>
         </arguments>

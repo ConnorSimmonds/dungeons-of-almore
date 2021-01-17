@@ -73,6 +73,8 @@ if(keyboard_check_pressed(ord('A'))){
 //scr_player_init_battle
 //Inits the battle shtick
 scr_map_close();
+audio_stop_sound(music);
+music = audio_play_sound(msc_common_encounter,5,true);
 instance_create(0,0,obj_combat);
 state = STATE_BATTLE;
 
@@ -86,13 +88,13 @@ enemy_num = irandom(3) +1;
 
 enemies[enemy_num] = -1;
 for(i = 0; i < enemy_num; i++){
-    enemies[i] = obj_dungeon.enemyPool[irandom(array_length_1d(obj_dungeon.enemyPool))]; //there's only one enemy type currently, this will be changed to select from a random pool which is determined by the dungeon
+    enemies[i] = obj_dungeon.enemyPool[irandom(array_length_1d(obj_dungeon.enemyPool)-1)]; //there's only one enemy type currently, this will be changed to select from a random pool which is determined by the dungeon
 }
 
 switch(battle_type){
     case(1): //ambush encounter (you go first)
     battleMessage = "You catch sight of the ";
-    if(enemyNum == 1){
+    if(enemy_num == 1){
         battleMessage += "enemy!"
     } else {
         battleMessage += "enemies!";
@@ -102,7 +104,7 @@ switch(battle_type){
     battleMessage = "You've been amushed!"
     break;
     default: //normal encounter, assume it's normal for any other number
-    if(enemyNum == 1){
+    if(enemy_num == 1){
         battleMessage = "An enemy"
     } else {
         battleMessage = string(enemy_num)
