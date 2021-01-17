@@ -53,7 +53,7 @@ row1X = -1;
 row2X = -1;
 
 //note, for scr_create_character, these are the arguments:
-//name, class, max_hp, max_hp, skills, attack, defense, magic, speed, image
+//name, class, max_hp, max_hp, skills, attack, defense, magic, speed, image, vitality
 //check if we HAVE characters, first off
 if(!scr_character_check()){
     scr_open_json();

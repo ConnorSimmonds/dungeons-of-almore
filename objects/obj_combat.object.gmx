@@ -50,6 +50,18 @@ STATE_EXECUTE = 9; //Executing turn menu
 STATE_MESSAGE = 10;
 STATE_VICTORY = 11;
 STATE_DEFEAT = 12;
+
+//Enemy Stat Constants
+enum enemy_constants {
+    ENEMY_NAME = "0",
+    ENEMY_HP = "1",
+    ENEMY_LEVEL = "2",
+    ENEMY_VIT = "3",
+    ENEMY_DEF = "4",
+    EMEMY_ATTACK = "5",
+    EMEMY_SPEED = "6",
+    ENEMY_APPEARANCE = "7"
+}
 </string>
           </argument>
         </arguments>
@@ -121,9 +133,7 @@ skillElemArray = array_create(1);
 //Enemy Selection
 enemies[2] = 0; //Enemy ID - determines stats etc.
 enemySelect = 0; //we have at least one enemy at all times
-enemyHP[0] = 10;
-enemyHP[1] = 10;
-enemyHP[2] = 10; //enemy hp - we get this based off of the enemy id, and store it here for later.
+enemyHP = array_create(3); //enemy hp - we get this based off of the enemy id, and store it here for later.
 
 //Turn Vars
 playerSelect = 0;
