@@ -140,6 +140,7 @@
         <object>objects\obj_wall</object>
         <object>objects\obj_floor</object>
       </objects>
+      <object>objects\obj_music</object>
     </objects>
     <objects name="Manager">
       <object>objects\obj_party</object>
