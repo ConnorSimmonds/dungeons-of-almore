@@ -53,14 +53,14 @@ STATE_DEFEAT = 12;
 
 //Enemy Stat Constants
 enum enemy_constants {
-    ENEMY_NAME = "0",
-    ENEMY_HP = "1",
-    ENEMY_LEVEL = "2",
-    ENEMY_VIT = "3",
-    ENEMY_DEF = "4",
-    EMEMY_ATTACK = "5",
-    EMEMY_SPEED = "6",
-    ENEMY_APPEARANCE = "7"
+    ENEMY_NAME = 0,
+    ENEMY_HP = 1,
+    ENEMY_LEVEL = 2,
+    ENEMY_VIT = 3,
+    ENEMY_DEF = 4,
+    EMEMY_ATTACK = 5,
+    EMEMY_SPEED = 6,
+    ENEMY_APPEARANCE = 7
 }
 </string>
           </argument>
