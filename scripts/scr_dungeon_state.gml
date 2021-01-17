@@ -86,7 +86,7 @@ enemy_num = irandom(3) +1;
 
 enemies[enemy_num] = -1;
 for(i = 0; i < enemy_num; i++){
-    enemies[i] = enemyPool[irandom(array_length_1d(enemyPool))]; //there's only one enemy type currently, this will be changed to select from a random pool which is determined by the dungeon
+    enemies[i] = obj_dungeon.enemyPool[irandom(array_length_1d(obj_dungeon.enemyPool))]; //there's only one enemy type currently, this will be changed to select from a random pool which is determined by the dungeon
 }
 
 switch(battle_type){
