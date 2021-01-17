@@ -73,8 +73,10 @@ if(keyboard_check_pressed(ord('A'))){
 //scr_player_init_battle
 //Inits the battle shtick
 scr_map_close();
-audio_stop_sound(music);
-music = audio_play_sound(msc_common_encounter,5,true);
+with(obj_dungeon){
+    audio_stop_sound(music);
+    music = audio_play_sound(msc_common_encounter,5,true);
+}
 instance_create(0,0,obj_combat);
 state = STATE_BATTLE;
 
