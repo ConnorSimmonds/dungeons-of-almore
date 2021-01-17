@@ -73,6 +73,14 @@ if(keyboard_check_pressed(ord('A'))){
 //scr_player_init_battle
 //Inits the battle shtick
 scr_map_close();
+//Set up the enemy encounter
+enemy_num = irandom(3);
+battle_type = irandom(2); //Are we ambushing, are the enemies ambushing, or is it a normal battle?
+enemies[enemy_num] = -1;
+for(i = 0; i < enemy_num; i++){
+    enemies[i] = irandom(0); //there's only one enemy type currently, this will be changed to select from a random pool which is determined by the dungeon
+}
+
 instance_create(0,0,obj_combat);
 state = STATE_BATTLE;
 

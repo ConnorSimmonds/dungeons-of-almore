@@ -76,6 +76,8 @@ EQUIP_UNEQUIP_OPTION = 1;
             <kind>1</kind>
             <string>menu = PARTY_OPTION;
 menu_top = PARTY_OPTION; //Previous menu value - it's the top layer one.
+
+enemies = scr_get_enemy_pool();
 </string>
           </argument>
         </arguments>
