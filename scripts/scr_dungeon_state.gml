@@ -73,14 +73,6 @@ if(keyboard_check_pressed(ord('A'))){
 //scr_player_init_battle
 //Inits the battle shtick
 scr_map_close();
-//Set up the enemy encounter
-enemy_num = irandom(3);
-battle_type = irandom(2); //Are we ambushing, are the enemies ambushing, or is it a normal battle?
-enemies[enemy_num] = -1;
-for(i = 0; i < enemy_num; i++){
-    enemies[i] = irandom(0); //there's only one enemy type currently, this will be changed to select from a random pool which is determined by the dungeon
-}
-
 instance_create(0,0,obj_combat);
 state = STATE_BATTLE;
 
@@ -88,3 +80,35 @@ state = STATE_BATTLE;
 //scr_player_menu
 //This is for any 2D-only menus (maybe?)
 d3d_end();
+#define scr_set_up_combat
+//Set up the enemy encounter
+enemy_num = irandom(3) +1;
+
+enemies[enemy_num] = -1;
+for(i = 0; i < enemy_num; i++){
+    enemies[i] = enemyPool[irandom(array_length_1d(enemyPool))]; //there's only one enemy type currently, this will be changed to select from a random pool which is determined by the dungeon
+}
+
+switch(battle_type){
+    case(1): //ambush encounter (you go first)
+    battleMessage = "You catch sight of the ";
+    if(enemyNum == 1){
+        battleMessage += "enemy!"
+    } else {
+        battleMessage += "enemies!";
+    }
+    break;
+    case(2): //enemy ambush encounter (enemies go first)
+    battleMessage = "You've been amushed!"
+    break;
+    default: //normal encounter, assume it's normal for any other number
+    if(enemyNum == 1){
+        battleMessage = "An enemy"
+    } else {
+        battleMessage = string(enemy_num)
+    }
+    battleMessage += " enemies approaches!";
+    break;
+}
+
+return enemies;

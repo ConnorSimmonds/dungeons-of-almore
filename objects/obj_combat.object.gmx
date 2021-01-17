@@ -82,7 +82,17 @@ enum enemy_constants {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//UI vars
+            <string>//Message vars
+battleMessage = "Enemies approach!";
+battleMessageDisplay = "";
+battleMessageTimer = 0;
+battleMessageMax = 2;
+battleMessageQueue = ds_queue_create();
+battleMessageGetNext = false;
+
+battle_type = irandom(2); //Are we ambushing, are the enemies ambushing, or is it a normal battle?
+
+//UI vars
 selectWidth = floor(75.5*global.guiScale);
 selectHeight = floor((48+15.5)*global.guiScale)
 
@@ -131,9 +141,9 @@ skillString = "";
 skillElemArray = array_create(1);
 
 //Enemy Selection
-enemies[2] = 0; //Enemy ID - determines stats etc.
+enemies = scr_set_up_combat();
 enemySelect = 0; //we have at least one enemy at all times
-enemyHP = array_create(3); //enemy hp - we get this based off of the enemy id, and store it here for later.
+enemyHP = array_create(array_length_1d(enemies)); //enemy hp - we get this based off of the enemy id, and store it here for later.
 
 //Turn Vars
 playerSelect = 0;
@@ -148,13 +158,6 @@ turnSelect = -1;
 element_chain_list = ds_list_create(); //Keeps track of elements that have been used for the chains
 chain_multiplier = 0;
 burst_multiplier = 0;
-
-battleMessage = "Enemies approach!";
-battleMessageDisplay = "";
-battleMessageTimer = 0;
-battleMessageMax = 2;
-battleMessageQueue = ds_queue_create();
-battleMessageGetNext = false;
 </string>
           </argument>
         </arguments>
