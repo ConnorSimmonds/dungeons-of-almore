@@ -1,0 +1,55 @@
+{
+	"0" : {
+		"Name": "Sword",
+		"Description": "A battered sword, given out by the Adventurer's Guild and sold for cheap by merchants.",
+		"Type":0
+		"Main": 5,
+		"Slot":0
+		"StatIncrease": "",
+		"Effects":""
+	},
+	"1" : {
+		"Name": "Cap",
+		"Description": "A basic cap.",
+		"Type":1,
+		"Main":5,
+		"Slot":2
+		"StatIncrease": "",
+		"Effects":""
+	},
+	"2" : {
+		"Name": "Gloves",
+		"Description": "A basic cap.",
+		"Type":1,
+		"Main":5,
+		"Slot":3
+		"StatIncrease": "",
+		"Effects":""
+	},
+	"3" : {
+		"Name": "Boots",
+		"Description": "A basic cap.",
+		"Type":1,
+		"Main":5,
+		"Slot":4
+		"StatIncrease": "",
+		"Effects":""
+	},
+	"4" : {
+		"Name": "Shield",
+		"Description": "A basic cap.",
+		"Type":1,
+		"Main":5,
+		"Slot":1
+		"StatIncrease": "",
+		"Effects":""
+	},
+	"5" : {
+		"Name": "Sword of Magic",
+		"Description": "A sword which harnesses magic.#MP+10, Magic+5#Refresh: 5",
+		"Type":0,
+		"Main":10,
+		"Slot":0
+		"StatIncrease": "1:10,4:5",
+		"Effects":"1:5"
+	},
