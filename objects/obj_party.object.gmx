@@ -69,6 +69,7 @@ if(!scr_character_check()){
     partySize = scr_character_load();
 }
 
+//Create the equipment array
 i = 0;
 repeat(5){ //Create an empty equipment array
     equipment[i,0] = 0; //Weapon
@@ -80,9 +81,12 @@ repeat(5){ //Create an empty equipment array
     i++;
 }
 
+//Create the inventories
+inventory_e = array_create(256);
+inventory_i = array_create(256);
+inventory_i_dungeon = array_create(16);
 
-
-secondaryEffects = array_create(4);
+secondaryEffects = array_create(5);
 scr_calculate_effects(-1); //calculate the secondary effects based off of equipment
 
 //Draw variables
