@@ -13,6 +13,7 @@
   <code>global.guiScale = 1;
 global.party_hash = sha1_file("party.json"); //this isn't the most secure (thanks google), but it's the best gms has
 global.enemyStats = -1;
+global.equipment_stats = json_decode("master_equipment.json");
 ini_open("settings.ini"); 
 global.user = ini_read_real('UserDetails','userid',-1);
 ini_close();
@@ -22,7 +23,7 @@ room_goto_next();</code>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
   <makerSettings>
     <isSet>-1</isSet>
-    <w>1016</w>
+    <w>1008</w>
     <h>600</h>
     <showGrid>-1</showGrid>
     <showObjects>-1</showObjects>
