@@ -13,6 +13,7 @@ for(i = 0; i < argument_count; i++){ //Just run through all of our arguments
     character[? string(i)] = argument[i]; //Each section correlates to the constants in obj_party
 }
 character[? SKILLS] = array_create(1);
+character[? EQUIPMENT] = array_create(5);
 scr_character_json(character,true);
 return character;
 

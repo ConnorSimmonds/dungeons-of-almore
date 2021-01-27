@@ -88,7 +88,7 @@ if(keyboard_check_pressed(vk_shift)){
 }
 
 #define scr_turn_script
-//scr_turn_script(action id, target)
+//scr_turn_script(action id, target, source)
 //Creates a turn, using the parameters given
 var action, targ;
 action = argument0;
@@ -133,7 +133,19 @@ if(source < 5){
         ds_queue_enqueue(battleMessageQueue,"Enemy down!");
     }
 } else {
+    //it's the enemy's turn! Damage is calculated the same way. We're faking this - we're actually just going to do the AI here, during their turn.
+    //We do not have a VIT for players yet, as I'm lazy. However, we can estimate it. It's their base max hp/5, rounded down.
+    //AI is quite simple: choose a random player, then use the percentages in the enemy stats to determine the chances of a move happening (and how many moves, etc.)
+    var attacker, attack, damage, def, target, character;
+    attacker = global.enemyStats[? enemies[source]];
+    attack = attacker[? string(enemy_constants.ENEMY_ATTACK)];
+    //There should be a check here to see if we're provoked/covered/whatever. This will influence where the damage actually goes.
+    target = irandom(obj_party.partySize);
+    character = obj_party.character[target];
+    def = scr_calculate_physical_defense(character[? obj_party.DEFENSE],round(character[? obj_party.MAX_HP]/5));
+    damage = round(attack * (attack/def));
     
+   
 }
 
 #define scr_turn_execute
