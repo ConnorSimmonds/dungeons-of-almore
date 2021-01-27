@@ -74,6 +74,21 @@ for(i = 0; i < 5; i++){
     }
 }
 
+#define scr_enemy_turn_add
+//scr_enemy_turn_add
+//Adds the enemies to our turn queue
+var t_enemy, i, turn;
+i = 0;
+for(i = 0; i < array_length_1d(enemies); i++){
+    t_enemy = global.enemyStats[? string(enemies[i])];
+    turn = array_create(4);
+    turn[0] = scr_turn_script;
+    turn[1] = 0;
+    turn[2] = i;
+    turn[3] = 0;
+    ds_priority_add(turn_queue,player_turns[temp_turn[i]],t_char[? obj_party.SPEED]);
+}
+
 #define scr_victory_script
 //scr_victory_script
 //Displays gold, items, and exp gained. Destroys obj_combat at the end of it.

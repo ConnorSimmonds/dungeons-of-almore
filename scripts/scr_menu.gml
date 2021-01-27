@@ -129,6 +129,7 @@ if(playerSelect < 4){
     state = STATE_MAIN;
 } else {
     scr_player_turn_add();
+    scr_enemy_turn-add();
     state = STATE_EXECUTE;
 }
 

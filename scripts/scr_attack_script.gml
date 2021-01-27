@@ -133,7 +133,7 @@ if(source < 5){
         ds_queue_enqueue(battleMessageQueue,"Enemy down!");
     }
 } else {
-    //it's the enemy's turn! Damage is calculated the same way. We're faking this - we're actually just going to do the AI here, during their turn.
+    //it's the enemy's turn! Damage is calculated the same way. We're faking this - we're actually just going to do the AI here, during the turn_script.
     //We do not have a VIT for players yet, as I'm lazy. However, we can estimate it. It's their base max hp/5, rounded down.
     //AI is quite simple: choose a random player, then use the percentages in the enemy stats to determine the chances of a move happening (and how many moves, etc.)
     var attacker, attack, damage, def, target, character;
