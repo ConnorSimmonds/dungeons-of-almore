@@ -68,6 +68,10 @@ if(!scr_character_check()){
     partySize = scr_character_load();
 }
 
+secondaryEffects = array_create(4);
+
+scr_calculate_effects(-1); //calculate the secondary effects based off of 
+
 //Draw variables
 scr_party_update_row();
 row1Y = view_hport[0] - (((sprite_get_height(spr_partyui)+11) * 2) * global.guiScale);
