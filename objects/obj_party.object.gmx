@@ -41,6 +41,7 @@ IMAGE = "9";
 HP = "10";
 MP = "11";
 EXP_PTS = "12";
+EQUIPMENT = "13";
 character[4] = undefined;
 partySize = -1;
 entireParty = ds_map_create();
@@ -68,9 +69,21 @@ if(!scr_character_check()){
     partySize = scr_character_load();
 }
 
-secondaryEffects = array_create(4);
+i = 0;
+repeat(5){ //Create an empty equipment array
+    equipment[i,0] = 0; //Weapon
+    equipment[i,1] = 0; //Subweapon
+    equipment[i,2] = 0; //Head
+    equipment[i,3] = 0; //Gloves
+    equipment[i,4] = 0; //Body
+    equipment[i,5] = 0; //Boots
+    i++;
+}
 
-scr_calculate_effects(-1); //calculate the secondary effects based off of 
+
+
+secondaryEffects = array_create(4);
+scr_calculate_effects(-1); //calculate the secondary effects based off of equipment
 
 //Draw variables
 scr_party_update_row();
