@@ -47,3 +47,4 @@ if(partyID == -1){
 //scr_get_equipment
 //Loads in the equipment for the party from the map we got from the JSON
 #define scr_calculate_additions
+

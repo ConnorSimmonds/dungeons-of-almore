@@ -38,4 +38,5 @@ partySize++;
 var mem;
 mem = argument0;
 character[mem] = undefined;
+ds_map_destroy(secondaryEffects[mem]);
 partySize--;
