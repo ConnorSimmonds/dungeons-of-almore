@@ -5,10 +5,21 @@ var mem1, mem2, temp;
 mem1 = argument0;
 mem2 = argument1;
 
-//do the swaparoo
+//do the swaparoo for secondary effects and characters
 temp = character[mem1];
 character[mem1] = character[mem2];
 character[mem2] = temp;
+
+temp = secondaryEffects[mem1];
+secondaryEffects[mem1] = secondaryEffects[mem2];
+seondaryEffects[mem2] = temp;
+
+//reload in their gear and recalculate mainstat increases
+scr_get_equipment(mem1);
+scr_get_equipment(mem2);
+
+scr_calculate_additions(mem1);
+scr_calculate_additions(mem2);
 
 #define scr_add_member
 //scr_swap_members((String) new party member, replaced party member spot)
