@@ -12,4 +12,4 @@
 if(ds_exists(global.enemyStats,ds_type_map)) {
     ds_map_destroy(global.enemyStats); //we clear the data structure, to ensure there's no memory leaks
 }
-global.enemyStats = json_decode("enemies.json");
+global.enemyStats = json_decode(scr_load_json("enemies.json"));
