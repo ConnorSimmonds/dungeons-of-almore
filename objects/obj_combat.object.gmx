@@ -58,8 +58,8 @@ enum enemy_constants {
     ENEMY_LEVEL = 2,
     ENEMY_VIT = 3,
     ENEMY_DEF = 4,
-    EMEMY_ATTACK = 5,
-    EMEMY_SPEED = 6,
+    ENEMY_ATTACK = 5,
+    ENEMY_SPEED = 6,
     ENEMY_APPEARANCE = 7
 }
 </string>

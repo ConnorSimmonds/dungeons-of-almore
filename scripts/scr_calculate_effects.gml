@@ -1,9 +1,10 @@
 #define scr_calculate_effects
 //scr_calculate_effects(id to calculate)
 //Note: id can be -1 to indicate all should be calculated.
-var partyID, i, equipStats, effects, totalEffects, startParse, parseCount, key, value;
+var partyID, i, equipStats, effects, totalEffect, startParse, parseCount, key, value;
 
 partyID = argument0;
+totalEffect = "";
 
 if(partyID == -1){
     for(i = 0; i < partySize; i++){
@@ -11,8 +12,12 @@ if(partyID == -1){
     }
 } else {
     for(i = 0; i < 6; i++){
-        equipStats = ds_map_find_value(global.equipment_stats,equipment[partyID,i]);
-        totalEffect += ds_map_find_value(equipStats,"Effects");
+        var tEffect;
+        equipStats = ds_map_find_value(global.equipment_stats,string(equipment[partyID,i]));
+        if(equipStats != undefined){
+            tEffect = ds_map_find_value(equipStats,"Effects");
+            totalEffect += tEffect + ",";
+        }
     }
     
     //clean up the total effect by merging together effects of the same type - I WOULD use someone else's solution but...
@@ -40,11 +45,10 @@ if(partyID == -1){
         }
     }
     
-    secondaryEffects = totalEffects;
+    secondaryEffects = totalEffect;
 }
 
 #define scr_get_equipment
 //scr_get_equipment
 //Loads in the equipment for the party from the map we got from the JSON
 #define scr_calculate_additions
-
