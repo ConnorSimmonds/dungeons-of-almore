@@ -18,8 +18,8 @@ seondaryEffects[mem2] = temp;
 scr_get_equipment(mem1);
 scr_get_equipment(mem2);
 
-scr_calculate_additions(mem1);
-scr_calculate_additions(mem2);
+scr_calculate_main(mem1);
+scr_calculate_main(mem2);
 
 #define scr_add_member
 //scr_swap_members((String) new party member, replaced party member spot)

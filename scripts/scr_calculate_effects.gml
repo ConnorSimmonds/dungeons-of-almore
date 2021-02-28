@@ -77,6 +77,10 @@ if(partyID == -1){
             switch(mainType){
                 case(0):{
                     main_increases[2] += ds_map_find_value(equipStats,"Main");
+                    break;
+                }
+                case(1):{
+                    main_increases[3] += ds_map_find_value(equipStats,"Main");
                 }
             }
         }
@@ -87,7 +91,8 @@ if(partyID == -1){
     parseCount = 0;
     for(i = 0; i < string_length(totalEffect); i++){
         if(string_char_at(totalEffect,i) == ",") {
-            main_increases[real(key)] += real(string_copy(totalEffect,startParse,parseCount));
+            value = string_copy(totalEffect,startParse,parseCount);
+            main_increases[real(key)] += real(value);
             //Reset the values
             startParse = i+2;
             key = "";
