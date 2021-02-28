@@ -89,11 +89,15 @@ inventory_i_dungeon = array_create(16);
 
 i = 0;
 repeat(5){
-    main_increases[i,0] = 0; //Attack
-    main_increases[i,1] = 0; //Defense
-    main_increases[i,3] = 0; //Magic
-    main_increases[i,4] = 0; //Speed
+    main_increases[i,0] = 0; //HP
+    main_increases[i,1] = 0; //MP
+    main_increases[i,2] = 0; //Attack
+    main_increases[i,3] = 0; //Defense
+    main_increases[i,4] = 0; //Magic
+    main_increases[i,5] = 0; //Speed
 }
+//now, calculate the main stat additions and main bonuses
+scr_calculate_main(-1);
 secondaryEffects = array_create(5);
 scr_calculate_effects(-1); //calculate the secondary effects based off of equipment
 

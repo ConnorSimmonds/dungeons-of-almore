@@ -19,7 +19,7 @@
 	},
 	"2": {
 		"Name": "Gloves",
-		"Description": "A basic cap.",
+		"Description": "Standard gloves, with nothing special about them.",
 		"Type": 1,
 		"Main": 5,
 		"Slot": 3,
