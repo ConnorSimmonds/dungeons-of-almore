@@ -7,7 +7,7 @@ partyID = argument0;
 totalEffect = "";
 
 if(partyID == -1){
-    for(i = 0; i < partySize; i++){
+    for(i = 0; i <= partySize; i++){
         scr_calculate_effects(i);
     }
 } else {
@@ -16,29 +16,31 @@ if(partyID == -1){
         equipStats = ds_map_find_value(global.equipment_stats,string(equipment[partyID,i]));
         if(equipStats != undefined){
             tEffect = ds_map_find_value(equipStats,"Effects");
-            totalEffect += tEffect + ",";
+            if(tEffect != ""){
+                totalEffect += tEffect + ",";
+            }
         }
     }
     
     //clean up the total effect by merging together effects of the same type - I WOULD use someone else's solution but...
     effects = ds_map_create();
-    startParse = 1;
+    startParse = 0;
     parseCount = 0;
-    for(i = 0; i < string_length(totalEffect); i++){
+    for(i = 1; i <= string_length(totalEffect); i++){
         if(string_char_at(totalEffect,i) == ",") {
             if(ds_map_exists(effects,key)){ //Check to see if we've already done this effect before
-                value = ds_map_find_value(effect,key);
+                value = ds_map_find_value(effects,key);
                 value += real(string_copy(totalEffect,startParse,parseCount));
                 ds_map_replace(effects,key,value);
             } else {
                 ds_map_add(effects,key,real(string_copy(totalEffect,startParse,parseCount)));
             } //Reset the values
-            startParse = i+2;
+            startParse = i+1;
             key = "";
             parseCount = 0;
         } else if(string_char_at(totalEffect,i) == ":") {
-            key = string_copy(totalEffect,startParse,parseCount);
-            startParse = i+2;
+            key = real(string_copy(totalEffect,startParse,parseCount));
+            startParse = i+1;
             parseCount = 0;
         } else {
             parseCount++;
@@ -60,8 +62,8 @@ partyID = argument0;
 totalEffect = "";
 
 if(partyID == -1){
-    for(i = 0; i < partySize; i++){
-        scr_calculate_effects(i);
+    for(i = 0; i <= partySize; i++){
+        scr_calculate_main(i);
     }
 } else {
     for(i = 0; i < 6; i++){
@@ -69,37 +71,40 @@ if(partyID == -1){
         equipStats = ds_map_find_value(global.equipment_stats,string(equipment[partyID,i]));
         if(equipStats != undefined){
             tEffect = ds_map_find_value(equipStats,"StatIncrease");
-            totalEffect += tEffect + ",";
+            if(tEffect != ""){
+                totalEffect += tEffect + ",";
+            }
+            
             
             //Add the main stat increases
             mainType = ds_map_find_value(equipStats,"Type");
             
             switch(mainType){
                 case(0):{
-                    main_increases[2] += ds_map_find_value(equipStats,"Main");
+                    main_increases[partyID,2] += ds_map_find_value(equipStats,"Main");
                     break;
                 }
                 case(1):{
-                    main_increases[3] += ds_map_find_value(equipStats,"Main");
+                    main_increases[partyID,3] += ds_map_find_value(equipStats,"Main");
                 }
             }
         }
     }
     
     //clean up the total effect by merging together effects of the same type - I WOULD use someone else's solution but...
-    startParse = 1;
+    startParse = 0;
     parseCount = 0;
-    for(i = 0; i < string_length(totalEffect); i++){
+    for(i = 1; i <= string_length(totalEffect); i++){
         if(string_char_at(totalEffect,i) == ",") {
             value = string_copy(totalEffect,startParse,parseCount);
-            main_increases[real(key)] += real(value);
+            main_increases[partyID,real(key)] += real(value);
             //Reset the values
-            startParse = i+2;
+            startParse = i+1;
             key = "";
             parseCount = 0;
         } else if(string_char_at(totalEffect,i) == ":") {
             key = string_copy(totalEffect,startParse,parseCount);
-            startParse = i+2;
+            startParse = i+1;
             parseCount = 0;
         } else {
             parseCount++;

@@ -95,6 +95,7 @@ repeat(5){
     main_increases[i,3] = 0; //Defense
     main_increases[i,4] = 0; //Magic
     main_increases[i,5] = 0; //Speed
+    i++;
 }
 //now, calculate the main stat additions and main bonuses
 scr_calculate_main(-1);
