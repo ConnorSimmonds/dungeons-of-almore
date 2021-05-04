@@ -1,7 +1,7 @@
 {
 	"0": {
 		"Name": "Sword",
-		"Description": "A battered sword, given out by the Adventurer's Guild and sold for cheap by merchants.",
+		"Description": "A battered sword, given out by the Adventurer's Guild#and sold for cheap by merchants.",
 		"Type": 0,
 		"Main": 5,
 		"Slot": 0,
@@ -28,7 +28,7 @@
 	},
 	"3": {
 		"Name": "Boots",
-		"Description": "A basic cap.",
+		"Description": "Sturdy boots, meant for walking in.",
 		"Type": 1,
 		"Main": 5,
 		"Slot": 4,
@@ -37,7 +37,7 @@
 	},
 	"4": {
 		"Name": "Shield",
-		"Description": "A basic cap.",
+		"Description": "A small, yet reliable shield.",
 		"Type": 1,
 		"Main": 5,
 		"Slot": 1,
@@ -46,7 +46,7 @@
 	},
 	"5": {
 		"Name": "Sword of Magic",
-		"Description": "A sword which harnesses magic.#MP+10, Magic+5#Refresh: 5",
+		"Description": "A sword which harnesses the arcane: enhancing#your abilities.#MP+10, Magic+5#Refresh: 5",
 		"Type": 0,
 		"Main": 10,
 		"Slot": 0,

@@ -12,10 +12,13 @@ maxY = real(string_copy(temp_string,string_pos(",",temp_string)+1,string_length(
 room_set_width(rm_dungeon,32*maxX);
 room_set_height(rm_dungeon,(32*maxY));
 
-obj_network.maxX = maxX;
-obj_network.maxY = maxY;
-with(obj_network){ //tell the server to open map 1_1
- scr_handle_messages(13,1,1);
+//Handle the networking stuff - this should go into it's own method eventually
+if(instance_exists(obj_network)){
+    obj_network.maxX = maxX;
+    obj_network.maxY = maxY;
+    with(obj_network){ //tell the server to open map 1_1
+     scr_handle_messages(13,1,1);
+    }
 }
 
 
@@ -29,8 +32,10 @@ room_instance_add(rm_dungeon,0,0,obj_floor);
 for(tempY = 0; tempY < maxY; tempY++){
     temp_string = file_text_readln(file);
     for(tempX = 0; tempX < maxX; tempX++){
-        switch(real(string_char_at(temp_string,tempX+1))){
-            case(0): temp_obj = obj_wall; break;
+        switch(string_char_at(temp_string,tempX+1)){
+            case('0'): temp_obj = obj_wall; break;
+            case('C'): temp_obj = obj_chest; break;
+            case('B'): temp_obj = obj_button; break;
             default: temp_obj = -1; break;
         }
         if(temp_obj != -1){        
