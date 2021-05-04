@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_solid</parentName>
+  <parentName>obj_interactable</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -49,7 +49,7 @@
           <argument>
             <kind>1</kind>
             <string>draw_set_colour(c_white);
-d3d_draw_block(x+(32/4),y+(32/4),0,x+(sprite_get_width(sprite_index)/2)+(32/4),y+(sprite_get_height(sprite_index)/2)+(32/4),sprite_get_height(sprite_index)/2,chest_tex,1,1);
+d3d_draw_block(x+(32/4),y+(32/4),0,x+(sprite_get_width(sprite_index))+(32/4),y+(sprite_get_height(sprite_index))+(32/4),sprite_get_height(sprite_index)/2,chest_tex,1,1);
 </string>
           </argument>
         </arguments>
