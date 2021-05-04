@@ -30,7 +30,7 @@ vect_x = lengthdir_x(32,target_dir);
 vect_y = lengthdir_y(32,target_dir);
 
 if(keyboard_check_pressed(vk_up)){
-    if(!scr_check_oob() && !place_meeting(target_x+vect_x,target_y+vect_y,obj_wall)){
+    if(!scr_check_oob() && !place_meeting(target_x+vect_x,target_y+vect_y,obj_solid)){
         target_x += vect_x;
         target_y += vect_y;
         
@@ -39,7 +39,7 @@ if(keyboard_check_pressed(vk_up)){
         }
     }
 } else if(keyboard_check_pressed(vk_down)){
-    if(!scr_check_oob_behind() && !place_meeting(target_x-vect_x,target_y-vect_y,obj_wall) ){
+    if(!scr_check_oob_behind() && !place_meeting(target_x-vect_x,target_y-vect_y,obj_solid) ){
         target_x -= vect_x;
         target_y -= vect_y;
         
