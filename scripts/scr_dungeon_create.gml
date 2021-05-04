@@ -36,6 +36,7 @@ for(tempY = 0; tempY < maxY; tempY++){
             case('0'): temp_obj = obj_wall; break;
             case('C'): temp_obj = obj_chest; break;
             case('B'): temp_obj = obj_button; break;
+            case('P'): temp_obj = obj_pillar; break;
             default: temp_obj = -1; break;
         }
         if(temp_obj != -1){        

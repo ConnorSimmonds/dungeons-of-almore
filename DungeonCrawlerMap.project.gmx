@@ -89,6 +89,7 @@
       <sprites name="Textures">
         <sprite>sprites\spr_floor</sprite>
         <sprite>sprites\spr_wall</sprite>
+        <sprite>sprites\spr_pillar</sprite>
         <sprite>sprites\spr_player</sprite>
         <sprite>sprites\spr_chest</sprite>
         <sprite>sprites\spr_button</sprite>
@@ -158,9 +159,11 @@
       <objects name="3D Rendering">
         <object>objects\obj_player</object>
         <object>objects\obj_wall</object>
+        <object>objects\obj_pillar</object>
         <object>objects\obj_floor</object>
         <object>objects\obj_chest</object>
         <object>objects\obj_button</object>
+        <object>objects\obj_solid</object>
       </objects>
       <object>objects\obj_music</object>
     </objects>
