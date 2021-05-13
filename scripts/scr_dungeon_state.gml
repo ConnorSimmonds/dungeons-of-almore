@@ -30,7 +30,7 @@ vect_x = lengthdir_x(32,target_dir);
 vect_y = lengthdir_y(32,target_dir);
 
 if(keyboard_check_pressed(vk_up)){
-    if(!scr_check_oob() && !place_meeting(target_x+vect_x,target_y+vect_y,obj_solid)){
+    if((!scr_check_oob() && !place_meeting(target_x+vect_x,target_y+vect_y,obj_solid)) || place_meeting(target_x+vect_x,target_y+vect_y,obj_door) && collision_point(target_x+vect_x,target_y+vect_y,obj_door, true, true).is_open){
         target_x += vect_x;
         target_y += vect_y;
         

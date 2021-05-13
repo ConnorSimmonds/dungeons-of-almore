@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>//Wall Init
 wall_tex = sprite_get_texture(sprite_index,0);
-is_open = true;
+is_open = false;
 
 z_rot = 0;
 </string>
@@ -53,7 +53,7 @@ z_rot = 0;
           <argument>
             <kind>1</kind>
             <string>if(is_open){
-    z_rot = 0;
+    z_rot = 90;
 } else {
     z_rot = 0;
 }
@@ -81,7 +81,7 @@ z_rot = 0;
             <kind>1</kind>
             <string>d3d_transform_set_identity();
 
- d3d_transform_set_rotation_z(0);
+ d3d_transform_set_rotation_z(z_rot);
  d3d_transform_add_translation(x,y+(sprite_get_width(sprite_index)/2),0)
  d3d_draw_block(0, 0, 0, sprite_get_width(sprite_index), sprite_get_height(sprite_index)/8, sprite_get_height(sprite_index), wall_tex, 1, 1);
  d3d_transform_set_identity();
