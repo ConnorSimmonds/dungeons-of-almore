@@ -13,7 +13,7 @@ maxY = real(string_copy(temp_string,string_pos(",",temp_string)+1,string_length(
 room_set_width(rm_dungeon,32*maxX);
 room_set_height(rm_dungeon,(32*maxY));
 
-//Handle the networking stuff - this should go into it's own method eventually
+//Handle the networking stuff - this should go into it's own script eventually
 if(instance_exists(obj_network)){
     obj_network.maxX = maxX;
     obj_network.maxY = maxY;
