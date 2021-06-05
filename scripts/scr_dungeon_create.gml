@@ -30,15 +30,33 @@ playerY = real(string_copy(temp_string,string_pos(",",temp_string)+1,string_leng
 room_instance_add(rm_dungeon,(32*playerX)+16, (32*playerY)+16, obj_player);
 room_instance_add(rm_dungeon,0,0,obj_floor);
 
+//TODO: replace this with a better, programatic solution. I don't know what but it'll be something.
+chest_index = 0;
+door_index = 0;
+button_index = 0;
+
 for(tempY = 0; tempY < maxY; tempY++){
     temp_string = file_text_readln(file);
     for(tempX = 0; tempX < maxX; tempX++){
         switch(string_char_at(temp_string,tempX+1)){
             case('0'): temp_obj = obj_wall; break;
-            case('C'): temp_obj = obj_chest; break;
-            case('B'): temp_obj = obj_button; break;
+            case('C'): temp_obj = obj_chest; //as with the others, the logic here needs to be changed to be cleaner. It works, however.
+            array = ds_map_find_value(items,"C");
+            temp_obj.item = array[chest_index];
+            chest_index = chest_index + 1;
+            break;
+            case('B'): temp_obj = obj_button;
+            array = ds_map_find_value(items,"B");
+            temp_obj.door_id = array[button_index];
+            button_index = button_index + 1;
+            break;
             case('P'): temp_obj = obj_pillar; break;
-            case('D'): temp_obj = obj_door; break;
+            case('D'): temp_obj = obj_door;
+            array = ds_map_find_value(items,"D");
+            temp_obj.is_open = array[door_index];
+            temp_obj.door_id = door_index;
+            door_index = door_index + 1;
+            break;
             default: temp_obj = -1; break;
         }
         if(temp_obj != -1){        

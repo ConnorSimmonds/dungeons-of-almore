@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="6" name="datafiles">
+  <datafiles number="7" name="datafiles">
     <datafile>
       <name>dungeon.dng</name>
       <exists>-1</exists>
@@ -72,6 +72,23 @@
       </ConfigOptions>
       <filename>master_equipment.json</filename>
     </datafile>
+    <datafile>
+      <name>dungeondetails</name>
+      <exists>-1</exists>
+      <size>19</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>dungeondetails</filename>
+    </datafile>
   </datafiles>
   <NewExtensions/>
   <sounds name="sound">
@@ -93,6 +110,7 @@
         <sprite>sprites\spr_player</sprite>
         <sprite>sprites\spr_chest</sprite>
         <sprite>sprites\spr_button</sprite>
+        <sprite>sprites\spr_door</sprite>
       </sprites>
     </sprites>
     <sprites name="Combat">
@@ -113,7 +131,9 @@
       <sprite>sprites\spr_town_arrow</sprite>
     </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bck_Wall</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="Dungeon Stuff">
@@ -161,11 +181,14 @@
         <object>objects\obj_wall</object>
         <object>objects\obj_pillar</object>
         <object>objects\obj_floor</object>
-        <object>objects\obj_chest</object>
-        <object>objects\obj_button</object>
         <objects name="Parents">
           <object>objects\obj_solid</object>
           <object>objects\obj_interactable</object>
+        </objects>
+        <objects name="Objects">
+          <object>objects\obj_door</object>
+          <object>objects\obj_button</object>
+          <object>objects\obj_chest</object>
         </objects>
       </objects>
       <object>objects\obj_music</object>

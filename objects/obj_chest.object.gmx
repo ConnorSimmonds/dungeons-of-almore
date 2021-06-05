@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>chest_tex = sprite_get_texture(sprite_index,0);
+item = -1;
 </string>
           </argument>
         </arguments>

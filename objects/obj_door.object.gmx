@@ -28,7 +28,7 @@
             <string>//Wall Init
 wall_tex = sprite_get_texture(sprite_index,0);
 is_open = false;
-
+door_id = -1;
 z_rot = 0;
 </string>
           </argument>
