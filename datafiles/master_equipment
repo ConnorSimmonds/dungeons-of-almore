@@ -1,8 +1,0 @@
-{
-	"0" : {
-		"Name": "Sword";,
-		"Description": "A battered sword, given out by the Adventurer's Guild and sold for cheap by merchants.",
-		"Attack": 5,
-		"StatIncrease": -1,
-		"Effects":-1
-	}
