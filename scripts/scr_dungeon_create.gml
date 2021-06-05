@@ -5,6 +5,7 @@ var tempX, tempY, maxX, maxY, file, temp_string, temp_map, playerX, playerY;
 
 file = file_text_open_read("dungeon.dng");
 temp_string = file_text_readln(file);
+items = scr_dungeon_load_objects();
 
 //Get the max x/y and set up the room
 maxX = real(string_copy(temp_string,0,string_pos(",",temp_string)-1));
@@ -45,6 +46,36 @@ for(tempY = 0; tempY < maxY; tempY++){
         }
     }
 }
+
+file_text_close(file);
+
+#define scr_dungeon_load_objects
+//scr_dungeon_load_objects
+//load the object details in from the dungeon details file
+file = file_text_open_read("dungeondetails");
+temp_collection = ds_map_create();
+
+while (!file_text_eof(file)){
+    //Get the line and then split it up. This is SUPER hacky
+    temp_string = file_text_readln(file);
+    show_debug_message(string_count(",",temp_string));
+    temp_array = array_create(string_count(",",temp_string));
+    object = string_copy(temp_string,0,string_pos("-",temp_string)-1);
+    show_debug_message(object);
+    temp_string = string_delete(temp_string,1,2);
+    show_debug_message(array_length_1d(temp_array));
+    for(i = 0; i < array_length_1d(temp_array); i++){ //read through the line, cut out the part that's relevant, then add it to the array
+        obj_details = string_copy(temp_string,1,string_pos(",",temp_string));
+        temp_string = string_delete(temp_string,1,string_pos(",",temp_string));
+        index = real(string_copy(obj_details,1,string_pos(":",obj_details)));
+        t_id = real(string_copy(obj_details,string_pos(":",obj_details),string_length(obj_details)));
+        show_debug_message(string(index) + " " + string(t_id));
+        temp_array[index] = t_id;
+    }
+    ds_map_add(temp_collection,object,temp_array);
+}
+file_text_close(file);
+return temp_collection;
 
 #define scr_check_oob
 //scr_check_oob
