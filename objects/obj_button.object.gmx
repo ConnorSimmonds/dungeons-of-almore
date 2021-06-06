@@ -53,7 +53,7 @@ is_stepped = false;
             <string>//check for a collision with the player. If we have a collision, set is_stepped to true and activate all the doors.
 //otherwise, ignore. We don't need to do the same piece of code over and over.
 var i, t_door;
-if(place_meeting(x,y,obj_player) &amp;&amp; !is_stepped){
+if(place_meeting(x+(sprite_get_width(sprite_index)/2),y+(sprite_get_height(sprite_index)/2),obj_player) &amp;&amp; !is_stepped){
     var i;
     for (i = 0; i &lt; instance_number(obj_door); i += 1) {
         t_door = instance_find(obj_door,i);
