@@ -50,7 +50,7 @@ for(tempY = 0; tempY < maxY; tempY++){
 file_text_close(file);
 
 #define scr_dungeon_load_objects
-//scr_dungeon_load_objects
+//scr_dungeon_load_objects 
 //load the object details in from the dungeon details file
 file = file_text_open_read("dungeondetails");
 temp_collection = ds_map_create();
