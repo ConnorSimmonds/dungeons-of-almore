@@ -5,7 +5,6 @@ var tempX, tempY, maxX, maxY, file, temp_string, temp_map, playerX, playerY;
 
 file = file_text_open_read("dungeon.dng");
 temp_string = file_text_readln(file);
-items = scr_dungeon_load_objects();
 
 //Get the max x/y and set up the room
 maxX = real(string_copy(temp_string,0,string_pos(",",temp_string)-1));
@@ -30,33 +29,16 @@ playerY = real(string_copy(temp_string,string_pos(",",temp_string)+1,string_leng
 room_instance_add(rm_dungeon,(32*playerX)+16, (32*playerY)+16, obj_player);
 room_instance_add(rm_dungeon,0,0,obj_floor);
 
-//TODO: replace this with a better, programatic solution. I don't know what but it'll be something.
-chest_index = 0;
-door_index = 0;
-button_index = 0;
-
 for(tempY = 0; tempY < maxY; tempY++){
     temp_string = file_text_readln(file);
     for(tempX = 0; tempX < maxX; tempX++){
         switch(string_char_at(temp_string,tempX+1)){
             case('0'): temp_obj = obj_wall; break;
             case('C'): temp_obj = obj_chest; //as with the others, the logic here needs to be changed to be cleaner. It works, however.
-            array = ds_map_find_value(items,"C");
-            temp_obj.item = array[chest_index];
-            chest_index = chest_index + 1;
             break;
-            case('B'): temp_obj = obj_button;
-            array = ds_map_find_value(items,"B");
-            temp_obj.door_id = array[button_index];
-            button_index = button_index + 1;
-            break;
+            case('B'): temp_obj = obj_button; break;
             case('P'): temp_obj = obj_pillar; break;
-            case('D'): temp_obj = obj_door;
-            array = ds_map_find_value(items,"D");
-            temp_obj.is_open = array[door_index];
-            temp_obj.door_id = door_index;
-            door_index = door_index + 1;
-            break;
+            case('D'): temp_obj = obj_door; break;
             default: temp_obj = -1; break;
         }
         if(temp_obj != -1){        
@@ -94,6 +76,34 @@ while (!file_text_eof(file)){
 }
 file_text_close(file);
 return temp_collection;
+
+#define scr_dungeon_set_objects
+//scr_dungeon_set_objects(collection)
+var items, chest_index, door_index, button_index, array;
+items = argument0;
+chest_index = 0;
+door_index = 0;
+button_index = 0;
+
+array = ds_map_find_value(items,"D");
+for (door_index = 0; door_index < instance_number(obj_door); door_index += 1) {
+    t_door = instance_find(obj_door,door_index);
+    t_door.is_open = array[door_index];
+    t_door.door_id = door_index;
+}
+
+array = ds_map_find_value(items,"B");
+for (button_index = 0; button_index < instance_number(obj_button); button_index += 1) {
+    t_button = instance_find(obj_button,button_index);
+    t_button.door_id = array[button_index];
+}
+
+array = ds_map_find_value(items,"C");          
+for (chest_index = 0;chest_index < instance_number(obj_chest); chest_index += 1) {
+    t_chest = instance_find(obj_chest,chest_index);
+    t_chest.item = array[chest_index];
+}         
+
 
 #define scr_check_oob
 //scr_check_oob

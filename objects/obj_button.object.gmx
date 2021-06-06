@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>button_tex = sprite_get_texture(sprite_index,0);
+door_id = -1;
 is_stepped = false;
 </string>
           </argument>
@@ -51,6 +52,17 @@ is_stepped = false;
             <kind>1</kind>
             <string>//check for a collision with the player. If we have a collision, set is_stepped to true and activate all the doors.
 //otherwise, ignore. We don't need to do the same piece of code over and over.
+var i, t_door;
+if(place_meeting(x,y,obj_player) &amp;&amp; !is_stepped){
+    var i;
+    for (i = 0; i &lt; instance_number(obj_door); i += 1) {
+        t_door = instance_find(obj_door,i);
+        if(t_door.door_id == door_id){
+            t_door.is_open = true;
+        }
+    }
+    is_stepped = true;
+}
 </string>
           </argument>
         </arguments>
