@@ -327,12 +327,12 @@ if(playerSelect != -1){ //If it's the player's turn...
                     row1Y +(sprite_get_height(spr_partyui)*global.guiScale),
                     global.guiScale,global.guiScale,image_blend,image_alpha);
                     
-                    draw_sprite_part_ext(spr_bar,1,0,0,(sprite_get_width(spr_bar)*(c_char[? obj_party.HP]/c_char[? obj_party.MAX_HP]))*global.guiScale,sprite_get_height(spr_bar)*global.guiScale,
-                    row1X  + (global.guiScale * (sprite_get_width(spr_partyui)*row_pos)+4),
+                    draw_sprite_part_ext(spr_partybars,0,0,0,(sprite_get_width(spr_partybars)*(c_char[? obj_party.HP]/c_char[? obj_party.MAX_HP]))*global.guiScale,sprite_get_height(spr_partybars)*global.guiScale,
+                    row1X  + (global.guiScale * ((sprite_get_width(spr_partyui)+1)*row_pos)+3),
                     row1Y+(16*global.guiScale),global.guiScale,global.guiScale,image_blend,image_alpha)
-                    draw_sprite_part_ext(spr_bar,2,0,0,(sprite_get_width(spr_bar)*(c_char[? obj_party.MP]/c_char[? obj_party.MAX_MP]))*global.guiScale,sprite_get_height(spr_bar)*global.guiScale,
-                    row1X  + (global.guiScale * (sprite_get_width(spr_partyui)*row_pos)+ 4),
-                    row1Y+(19*global.guiScale),global.guiScale,global.guiScale,image_blend,image_alpha)
+                    draw_sprite_part_ext(spr_partybars,1,0,0,(sprite_get_width(spr_partybars)*(c_char[? obj_party.MP]/c_char[? obj_party.MAX_MP]))*global.guiScale,sprite_get_height(spr_partybars)*global.guiScale,
+                    row1X  + (global.guiScale * ((sprite_get_width(spr_partyui)+1)*row_pos)+3),
+                    row1Y+(24*global.guiScale),global.guiScale,global.guiScale,image_blend,image_alpha)
                 } else {
                     draw_sprite_ext(spr_partyui,0,
                     row2X + (global.guiScale * (sprite_get_width(spr_partyui)+1)*(row_pos)),
@@ -343,8 +343,12 @@ if(playerSelect != -1){ //If it's the player's turn...
                     row2X + (global.guiScale * (sprite_get_width(spr_partyui)+1)*(row_pos)),
                     row2Y +(sprite_get_height(spr_partyui)*global.guiScale),
                     global.guiScale, global.guiScale,image_blend,image_alpha);
-                    draw_sprite_part_ext(spr_bar,1,0,0,(sprite_get_width(spr_bar)*(c_char[? obj_party.HP]/c_char[? obj_party.MAX_HP]))*global.guiScale,sprite_get_height(spr_bar)*global.guiScale,49*global.guiScale,2*global.guiScale,global.guiScale,global.guiScale,image_blend,image_alpha)
-                    draw_sprite_part_ext(spr_bar,2,0,0,(sprite_get_width(spr_bar)*(c_char[? obj_party.MP]/c_char[? obj_party.MAX_MP]))*global.guiScale,sprite_get_height(spr_bar)*global.guiScale,49*global.guiScale,9*global.guiScale,global.guiScale,global.guiScale,image_blend,image_alpha)
+                   draw_sprite_part_ext(spr_partybars,0,0,0,(sprite_get_width(spr_partybars)*(c_char[? obj_party.HP]/c_char[? obj_party.MAX_HP]))*global.guiScale,sprite_get_height(spr_partybars)*global.guiScale,
+                    row2X  + (global.guiScale * ((sprite_get_width(spr_partyui)+1)*row_pos)+3),
+                    row2Y+(16*global.guiScale),global.guiScale,global.guiScale,image_blend,image_alpha)
+                    draw_sprite_part_ext(spr_partybars,1,0,0,(sprite_get_width(spr_partybars)*(c_char[? obj_party.MP]/c_char[? obj_party.MAX_MP]))*global.guiScale,sprite_get_height(spr_partybars)*global.guiScale,
+                    row2X  + (global.guiScale * ((sprite_get_width(spr_partyui)+1)*row_pos)+3),
+                    row2Y+(24*global.guiScale),global.guiScale,global.guiScale,image_blend,image_alpha)
                 }
             t_index++;
             row_pos++;
