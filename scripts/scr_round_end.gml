@@ -64,7 +64,7 @@ for(i = 0; i < 5; i++){
     var t_char = obj_party.character[temp_turn[i]];
     if(temp_turn[i] != intended_turn_order[i]){
         //oh shoot we gotta use the PREVIOUS speed oh no
-        if(t_char[? obj_party.SPEED] < lowest_speed){
+        if(s < lowest_speed){
             lowest_speed = t_char[? obj_party.SPEED];
             lowest_index = i;
         }
@@ -86,7 +86,7 @@ for(i = 0; i < array_length_1d(enemies); i++){
     turn[1] = 0;
     turn[2] = i;
     turn[3] = 0;
-    ds_priority_add(turn_queue,player_turns[temp_turn[i]],t_char[? obj_party.SPEED]);
+    ds_priority_add(turn_queue,player_turns[temp_turn[i]],t_enemy[? enemy_constants.ENEMY_SPEED]);
 }
 
 #define scr_victory_script

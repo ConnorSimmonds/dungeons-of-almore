@@ -118,9 +118,9 @@ switch(battle_type){
     if(enemy_num == 1){
         battleMessage = "An enemy"
     } else {
-        battleMessage = string(enemy_num)
+        battleMessage = string(enemy_num) + "  enemies";
     }
-    battleMessage += " enemies approaches!";
+    battleMessage += " approaches!";
     break;
 }
 
