@@ -96,6 +96,7 @@ state = STATE_NORMAL;
           <argument>
             <kind>1</kind>
             <string>if(state == STATE_MENU){
+    draw_rectangle_color(0,0,view_wview[0],view_hview[0],c_white,c_white,c_white,c_white,false);
     draw_sprite_ext(spr_headIcons,0,0,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
 }
 </string>
