@@ -81,12 +81,13 @@ var t_enemy, i, turn;
 i = 0;
 for(i = 0; i < array_length_1d(enemies); i++){
     t_enemy = global.enemyStats[? string(enemies[i])];
+    
     turn = array_create(4);
     turn[0] = scr_turn_script;
     turn[1] = 0;
-    turn[2] = i;
-    turn[3] = 0;
-    ds_priority_add(turn_queue,player_turns[temp_turn[i]],t_enemy[? enemy_constants.ENEMY_SPEED]);
+    turn[2] = 0;
+    turn[3] = 5+i;
+    ds_priority_add(turn_queue,turn,t_enemy[? string(enemy_constants.ENEMY_SPEED)]);
 }
 
 #define scr_victory_script
