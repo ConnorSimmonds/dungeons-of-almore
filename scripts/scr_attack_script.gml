@@ -88,7 +88,7 @@ if(keyboard_check_pressed(vk_shift)){
 }
 
 #define scr_turn_script
-//scr_turn_script(action id, target, source)
+//scr_turn_script(action id, t, source)
 //Creates a turn, using the parameters given
 var action, targ, source;
 action = argument0;
@@ -104,7 +104,7 @@ if(source < 5){
         case(0): { //generic attack
             ds_queue_enqueue(battleMessageQueue,character[? obj_party.NAMES] + " attempts to attack!");
             if(enemyHP[targ] <= 0){
-                ds_queue_enqueue(battleMessageQueue,"But their target had been defeated...");
+                ds_queue_enqueue(battleMessageQueue,"But their t had been defeated...");
             } else {
                 //ROUND(DAMAGE * (DAMAGE/DEF)) - this is the damage formula
                 //DEF is defined by whether or not this is elemental damage. Currently, this is not accounted for in normal attacks (as I don't want to code in the other parts that'll require this)
@@ -115,8 +115,13 @@ if(source < 5){
                 def = scr_calculate_physical_defense(5,10);
                 damage = round(attack * (attack/def));
                 
-                enemyHP[targ] -= damage;
-                ds_queue_enqueue(battleMessageQueue,"Enemy takes " + string(damage) + " damage!");
+                ds_queue_enqueue(battleMessageQueue,"Enemy takes " + string(damage) + " damage!"); //TODO - replace this with the enemy's name
+                ds_queue_enqueue(battleMessageQueue,scr_deal_damage);
+                var damage_array = array_create(3);
+                damage_array[0] = source;
+                damage_array[1] = targ;
+                damage_array[2] = damage;
+                ds_queue_enqueue(battleMessageQueue,damage_array);
             }
             break;
         }
@@ -131,6 +136,8 @@ if(source < 5){
         ds_queue_enqueue(battleMessageQueue,scr_enemy_defeat);
         ds_queue_enqueue(battleMessageQueue,array);
         ds_queue_enqueue(battleMessageQueue,"Enemy down!");
+        //also remove their turn from the priority queue
+        //ds_priority
     }
 } else {
     //it's the enemy's turn! Damage is calculated the same way. We're faking this - we're actually just going to do the AI here, during the turn_script.
@@ -145,9 +152,19 @@ if(source < 5){
     character = obj_party.character[target];
     def = scr_calculate_physical_defense(character[? obj_party.DEFENSE],round(character[? obj_party.MAX_HP]/5));
     damage = round(attack * (attack/def));
-    ds_map_replace(character,obj_party.HP,character[? obj_party.HP]-damage);
     name = attacker[? string(enemy_constants.ENEMY_NAME)];
     ds_queue_enqueue(battleMessageQueue,name + " deals " + string(damage) + " damage to " + character[? obj_party.NAMES]);
+    ds_queue_enqueue(battleMessageQueue,scr_deal_damage);
+    var damage_array = array_create(3);
+    damage_array[0] = source+5;
+    damage_array[1] = target;
+    damage_array[2] = damage;
+    ds_queue_enqueue(battleMessageQueue,damage_array);
+    
+    //now we need to see if our target will die. If they have, we remove their action from the turn list.
+    if(character[? obj_party.HP]-damage <= 0){
+        
+    }
 }
 
 #define scr_turn_execute
@@ -157,7 +174,7 @@ var turn;
 
 while(!ds_priority_empty(turn_queue)){
     turn = ds_priority_delete_max(turn_queue);
-    show_debug_message(string(turn[1]) + " - Action of " + string(turn[2]));
+    show_debug_message(string(turn[1]) + " - Action of " + string(turn[3]));
     script_execute(turn[0], turn[1], turn[2], turn[3]);
 }
 
@@ -187,6 +204,10 @@ switch(skill){
         if(burst_damage != 0){
             ds_queue_enqueue(battleMessageQueue,"Enemy takes " + string(burst_damage) + " damage from the burst chain!");
         }
+        ds_queue_enqueue(battleMessageQueue,scr_deal_damage);
+        ds_queue_enqueue(battleMessageQueue,0);
+        ds_queue_enqueue(battleMessageQueue,targ);
+        ds_queue_enqueue(battleMessageQueue,burst_damage);
         break;
     }
     default: {
@@ -245,3 +266,17 @@ chain_multiplier = 0;
 ds_list_clear(element_chain_list);
 
 return burst_damage;
+#define scr_deal_damage
+//scr_deal_damage(source, target, damage)
+//Deals damage to the enemy. This is so we don't show the results of the turn visually
+//TODO - maybe add a shake or something?
+var source, target, damage;
+source = argument0[0];
+target = argument0[1];
+damage = argument0[2];
+if(source < 5){
+    obj_combat.enemyHP[target] = obj_combat.enemyHP[target] - damage; //TODO: enqueue the damage
+} else {
+    character = obj_party.character[target];
+    ds_map_replace(character,obj_party.HP,character[? obj_party.HP]-damage);
+}

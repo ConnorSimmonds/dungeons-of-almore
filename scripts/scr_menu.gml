@@ -166,6 +166,7 @@ if(battleMessageGetNext && (string_length(battleMessage)/2 <= string_length(batt
         if(is_string(message)){
             scr_set_battle_message(message);
         } else { //It's very likely the custom message script
+            //We need to dequeue until we DO get a string or a script.
             script_execute(message,ds_queue_dequeue(battleMessageQueue));
             battleMessageGetNext = true;
         }

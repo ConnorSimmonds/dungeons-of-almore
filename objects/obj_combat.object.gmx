@@ -151,6 +151,7 @@ target[4] = 0;
 action[4] = 0;
 turn_queue = ds_priority_create();
 player_turns[4] = 0;
+enemy_turns[array_length_1d(enemies)] = 0;
 intended_turn_order = scr_player_intended_turn();
 temp_turn = scr_player_intended_turn();
 turnSelect = -1;
