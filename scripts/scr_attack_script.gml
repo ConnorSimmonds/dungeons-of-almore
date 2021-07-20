@@ -98,6 +98,7 @@ source = argument2;
 if(source < 5){
     var initHP = enemyHP[targ];
     var character = obj_party.character[source];
+    var damage = 0;
     ds_queue_enqueue(battleMessageQueue,scr_player_select); //queue up the playerSelect script
     ds_queue_enqueue(battleMessageQueue,source); //and then the playerSelect variable, so the script is callec with the source as the argument.
     switch(action){
@@ -126,18 +127,18 @@ if(source < 5){
             break;
         }
         default: {
-            scr_skills(action, targ, source);
+            damage = scr_skills(action, targ, source);
             break;
         }
     }
     
-    if(enemyHP[targ] <= 0 && initHP != enemyHP[targ]){
+    if(enemyHP[targ]-damage <= 0 && initHP != enemyHP[targ]){
         array = targ;
         ds_queue_enqueue(battleMessageQueue,scr_enemy_defeat);
         ds_queue_enqueue(battleMessageQueue,array);
         ds_queue_enqueue(battleMessageQueue,"Enemy down!");
         //also remove their turn from the priority queue
-        //ds_priority
+        ds_priority_delete_value(turn_queue,enemy_turns[targ]);
     }
 } else {
     //it's the enemy's turn! Damage is calculated the same way. We're faking this - we're actually just going to do the AI here, during the turn_script.
@@ -163,7 +164,7 @@ if(source < 5){
     
     //now we need to see if our target will die. If they have, we remove their action from the turn list.
     if(character[? obj_party.HP]-damage <= 0){
-        
+        ds_priority_delete_value(turn_queue,player_turns[target]);
     }
 }
 
@@ -190,11 +191,13 @@ switch(skill){
     case(1): {
         ds_queue_enqueue(battleMessageQueue,"Skill Chain Test 1.");
         scr_add_chain(0);
+        return 0;
         break;
     }
     case(2):{
         ds_queue_enqueue(battleMessageQueue,"Skill Chain Test 2.");
         scr_add_chain(1);
+        return 0;
         break;
     }
     case(3):{
@@ -208,11 +211,13 @@ switch(skill){
         ds_queue_enqueue(battleMessageQueue,0);
         ds_queue_enqueue(battleMessageQueue,targ);
         ds_queue_enqueue(battleMessageQueue,burst_damage);
+        return burst_damage;
         break;
     }
     default: {
         show_debug_message("Skill not implemented yet.");
         ds_queue_enqueue(battleMessageQueue,"Skill has not been implemented yet.");
+        return 0;
         break;
     }
 }
