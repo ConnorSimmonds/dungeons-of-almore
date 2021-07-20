@@ -44,7 +44,7 @@ if(keyboard_check_pressed(vk_up)){
         target_y -= vect_y;
         
         if(scr_battle()){
-            state = STATE_BATTLE;
+            state = STATE_INIT_BATTLE;
         }
     }
 } else if(keyboard_check_pressed(vk_right)){
