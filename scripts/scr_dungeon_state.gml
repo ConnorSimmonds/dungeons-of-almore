@@ -65,6 +65,11 @@ if(keyboard_check_pressed(ord('A'))){
     }
 }
 
+if(keyboard_check_pressed(vk_enter)){
+    state = STATE_MENU;
+    //d3d_end();
+}
+
 #define scr_player_battle
 //scr_player_battle
 //nada
@@ -83,7 +88,11 @@ state = STATE_BATTLE;
 #define scr_player_menu
 //scr_player_menu
 //This is for any 2D-only menus (maybe?)
-d3d_end();
+if(keyboard_check_pressed(vk_enter)){
+    //d3d_start();
+    state = STATE_NORMAL;
+}
+
 #define scr_set_up_combat
 //Set up the enemy encounter
 enemy_num = irandom(3) +1;

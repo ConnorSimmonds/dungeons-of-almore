@@ -78,6 +78,31 @@ state = STATE_NORMAL;
         </arguments>
       </action>
     </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(state == STATE_MENU){
+    draw_sprite_ext(spr_headIcons,0,0,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -99,8 +124,8 @@ state = STATE_NORMAL;
 var vect_x, vect_y;
 vect_x = lengthdir_x(32,dir);
 vect_y = lengthdir_y(32,dir);
-
-
+    
+    
 d3d_set_projection(x,y,z,x+vect_x,y+vect_y,z-4,0,0,1);
 </string>
           </argument>
