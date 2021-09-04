@@ -213,9 +213,11 @@ switch(skill){
             c_char = obj_party.character[source]
             ds_queue_enqueue(battleMessageQueue,scr_cutin_display)
             ds_queue_enqueue(battleMessageQueue,(c_char[? obj_party.IMAGE]));
-            ds_queue_enqueue(battleMessageQueue,"Enemy takes " + string(burst_damage) + " damage from the burst chain!");
         }
         ds_queue_enqueue(battleMessageQueue,"Chain Burst Test");
+        if(burst_damage != 0) {
+            ds_queue_enqueue(battleMessageQueue,"Enemy takes " + string(burst_damage) + " damage from the burst chain!");
+        }
         var damage_array = array_create(3);
         damage_array[0] = source;
         damage_array[1] = targ;
