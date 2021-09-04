@@ -19,6 +19,7 @@ if(prevState != STATE_TARGET){
 //scr_skill_script
 //Logic for skill selection etc
 if(prevState == STATE_TARGET){
+    state = STATE_TURN_END;
     var turn;
     var character = obj_party.character[playerSelect];
     var skills = character[? obj_party.SKILLS];
@@ -28,9 +29,6 @@ if(prevState == STATE_TARGET){
     turn[2] = enemySelect;
     turn[3] = playerSelect;
     player_turns[playerSelect] = turn;
-    show_debug_message(string(turn[3]) + " will perform skill number " + string(turn[1]));
-    show_debug_message("");
-    state = STATE_TURN_END;
 } else {    
     if(keyboard_check_pressed(vk_space)){
         prevState = state;
@@ -105,7 +103,7 @@ if(source < 5){
         case(0): { //generic attack
             ds_queue_enqueue(battleMessageQueue,character[? obj_party.NAMES] + " attempts to attack!");
             if(enemyHP[targ] <= 0){
-                ds_queue_enqueue(battleMessageQueue,"But their t had been defeated...");
+                ds_queue_enqueue(battleMessageQueue,"But their target had been defeated...");
             } else {
                 //ROUND(DAMAGE * (DAMAGE/DEF)) - this is the damage formula
                 //DEF is defined by whether or not this is elemental damage. Currently, this is not accounted for in normal attacks (as I don't want to code in the other parts that'll require this)
@@ -188,31 +186,43 @@ targ = argument1;
 source = argument2;
 
 switch(skill){
-    case(1): {
-        ds_queue_enqueue(battleMessageQueue,"Skill Chain Test 1.");
+    case(1): { 
         scr_add_chain(0);
+        if(chain_multiplier > 1){
+            c_char = obj_party.character[source]
+            ds_queue_enqueue(battleMessageQueue,scr_cutin_display)
+            ds_queue_enqueue(battleMessageQueue,(c_char[? obj_party.IMAGE]));
+        }
+        ds_queue_enqueue(battleMessageQueue,"Skill Chain Test 1.");
         return 0;
-        break;
     }
     case(2):{
-        ds_queue_enqueue(battleMessageQueue,"Skill Chain Test 2.");
         scr_add_chain(1);
+        if(chain_multiplier > 1){
+            c_char = obj_party.character[source]
+            ds_queue_enqueue(battleMessageQueue,scr_cutin_display)
+            ds_queue_enqueue(battleMessageQueue,(c_char[? obj_party.IMAGE]));
+        }
+        ds_queue_enqueue(battleMessageQueue,"Skill Chain Test 2.");
         return 0;
-        break;
     }
     case(3):{
         var burst_damage;
-        ds_queue_enqueue(battleMessageQueue,"Chain Burst Test");
         burst_damage = scr_activate_chain(10);
         if(burst_damage != 0){
+            c_char = obj_party.character[source]
+            ds_queue_enqueue(battleMessageQueue,scr_cutin_display)
+            ds_queue_enqueue(battleMessageQueue,(c_char[? obj_party.IMAGE]));
             ds_queue_enqueue(battleMessageQueue,"Enemy takes " + string(burst_damage) + " damage from the burst chain!");
         }
+        ds_queue_enqueue(battleMessageQueue,"Chain Burst Test");
+        var damage_array = array_create(3);
+        damage_array[0] = source;
+        damage_array[1] = targ;
+        damage_array[2] = burst_damage;
         ds_queue_enqueue(battleMessageQueue,scr_deal_damage);
-        ds_queue_enqueue(battleMessageQueue,0);
-        ds_queue_enqueue(battleMessageQueue,targ);
-        ds_queue_enqueue(battleMessageQueue,burst_damage);
+        ds_queue_enqueue(battleMessageQueue,damage_array);
         return burst_damage;
-        break;
     }
     default: {
         show_debug_message("Skill not implemented yet.");
@@ -280,7 +290,7 @@ source = argument0[0];
 target = argument0[1];
 damage = argument0[2];
 if(source < 5){
-    obj_combat.enemyHP[target] = obj_combat.enemyHP[target] - damage; //TODO: enqueue the damage
+    obj_combat.enemyHP[target] = obj_combat.enemyHP[target] - damage;
 } else {
     character = obj_party.character[target];
     ds_map_replace(character,obj_party.HP,character[? obj_party.HP]-damage);

@@ -124,6 +124,9 @@
         <sprite>sprites\spr_faceplate</sprite>
         <sprite>sprites\spr_combat_message</sprite>
         <sprite>sprites\spr_ability_elements</sprite>
+        <sprites name="Cutins">
+          <sprite>sprites\spr_cutinBase</sprite>
+        </sprites>
       </sprites>
       <sprite>sprites\spr_enemy</sprite>
     </sprites>

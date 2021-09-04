@@ -83,7 +83,7 @@ enum enemy_constants {
           <argument>
             <kind>1</kind>
             <string>//Message vars
-battleMessage = "Enemies approach!";
+battleMessage = "";
 battleMessageDisplay = "";
 battleMessageTimer = 0;
 battleMessageMax = 2;
@@ -105,6 +105,17 @@ backButtonY = view_hport[0] - ((sprite_get_height(spr_backButton)/2) * global.gu
 
 doubleTeamX = view_wview[0] - (sprite_get_width(spr_menuBar) * global.guiScale)
 doubleTeamY = 50;
+
+//Cutin Vars
+cutin_id = -1;
+cutin_transparency = 1;
+cutin_final_y = 31;
+cutin_current_y = view_hport[0];
+cutin_time = 0;
+cutin_state = 0;
+
+CUTIN_STATE_UP = 0;
+CUTIN_STATE_DISAPPEAR = 1;
 
 for(i = 4; i &gt;= 0; i--){
     partyHeight[i] = 0;
@@ -252,11 +263,15 @@ draw_sprite_ext(spr_bar,0,72*global.guiScale,11*global.guiScale,global.guiScale,
 draw_sprite_part_ext(spr_bar,1,0,0,(sprite_get_width(spr_bar)*(c_char[? obj_party.HP]/c_char[? obj_party.MAX_HP]))*global.guiScale,sprite_get_height(spr_bar)*global.guiScale,49*global.guiScale,2*global.guiScale,global.guiScale,global.guiScale,image_blend,image_alpha)
 draw_sprite_part_ext(spr_bar,2,0,0,(sprite_get_width(spr_bar)*(c_char[? obj_party.MP]/c_char[? obj_party.MAX_MP]))*global.guiScale,sprite_get_height(spr_bar)*global.guiScale,49*global.guiScale,9*global.guiScale,global.guiScale,global.guiScale,image_blend,image_alpha)
 
+//Draw the player cutins if applicable
+if(cutin_id &gt;= 0){
+    draw_sprite_ext(spr_cutinBase, cutin_id, 283*global.guiScale,cutin_final_y+cutin_current_y,global.guiScale, global.guiScale,0,image_blend,cutin_transparency);
+}
 
 //Message box
 draw_set_colour(c_black);
 draw_sprite_ext(spr_combat_message,0,(sprite_get_width(spr_menuBar)-1)*global.guiScale,0,global.guiScale,global.guiScale,0,image_blend,image_alpha);
-draw_text_ext_transformed((sprite_get_width(spr_menuBar)+5)*global.guiScale,5*global.guiScale,battleMessageDisplay,-1,(sprite_get_width(spr_combat_message)-10)*global.guiScale,global.guiScale/2,global.guiScale/2,0);
+draw_text_ext_transformed((sprite_get_width(spr_menuBar)+5)*global.guiScale,5*global.guiScale,battleMessageDisplay,-1,360,global.guiScale/2,global.guiScale/2,0);
 
 //Menu stuff
 if(state != STATE_TARGET &amp;&amp; state != STATE_EXECUTE){
@@ -307,10 +322,6 @@ if(state != STATE_TARGET &amp;&amp; state != STATE_EXECUTE){
 }
 
 //Player Faceplates
-
-/*
-
-*/
 
 if(playerSelect != -1){ //If it's the player's turn...
     var t_index = 0

@@ -17,8 +17,8 @@ scr_dungeon_set_objects(items);</code>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
   <makerSettings>
     <isSet>-1</isSet>
-    <w>992</w>
-    <h>600</h>
+    <w>1936</w>
+    <h>1186</h>
     <showGrid>-1</showGrid>
     <showObjects>-1</showObjects>
     <showTiles>-1</showTiles>
@@ -27,7 +27,7 @@ scr_dungeon_set_objects(items);</code>
     <showViews>0</showViews>
     <deleteUnderlyingObj>0</deleteUnderlyingObj>
     <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
-    <page>1</page>
+    <page>4</page>
     <xoffset>-18</xoffset>
     <yoffset>-91</yoffset>
   </makerSettings>

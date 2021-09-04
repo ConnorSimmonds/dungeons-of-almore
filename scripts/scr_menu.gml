@@ -124,7 +124,9 @@ prevState = state;
 //scr_turn_end
 //Ends the turn
 if(playerSelect < 4){
-    playerSelect++;
+    do {
+        playerSelect++;
+    } until (ds_map_find_value(obj_party.character[playerSelect],obj_party.HP) > 0)  
     prevState = STATE_MAIN;
     state = STATE_MAIN;
 } else {
@@ -137,12 +139,15 @@ if(playerSelect < 4){
 //scr_combat_go_back()
 //Goes back to the previous person in the party list
 if(playerSelect != 0){
-    playerSelect--;
+    do {
+        playerSelect--;
+    } until (ds_map_find_value(obj_party.character[playerSelect],obj_party.HP) > 0)  
     ds_priority_delete_value(turn_queue,player_turns[playerSelect]);
     prevState = STATE_MAIN;
 } else {
     //give some feeedback
 }
+
 #define scr_battle_message
 //scr_battle_message
 //Displays the battle message until you press accept, then displays the next. Also handles things such as battle animations etc.
@@ -165,8 +170,8 @@ if(battleMessageGetNext && (string_length(battleMessage)/2 <= string_length(batt
         message = ds_queue_dequeue(battleMessageQueue);
         if(is_string(message)){
             scr_set_battle_message(message);
-        } else { //It's very likely the custom message script
-            //We need to dequeue until we DO get a string or a script.
+        } else { //It's very likely a custom script!
+            //We need to dequeue until we DO get a string or a script. Right now, we can only get ONE argument - this should change soonish
             script_execute(message,ds_queue_dequeue(battleMessageQueue));
             battleMessageGetNext = true;
         }

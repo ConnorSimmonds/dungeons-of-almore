@@ -18,6 +18,32 @@ if(string_length(battleMessageDisplay) != string_length(battleMessage)){
     }
 }
 
+if(cutin_id >= 0){
+    switch(cutin_state){
+        case CUTIN_STATE_UP: {
+        cutin_current_y = cutin_current_y * 0.9;
+        cutin_time += 1;
+        if(cutin_current_y <= 0.05){
+            cutin_current_y = 0;
+        }
+        if(cutin_time >= 120){
+            cutin_state = CUTIN_STATE_DISAPPEAR;
+            cutin_time = 0;
+        }
+        break;
+        }
+        case CUTIN_STATE_DISAPPEAR:{
+        cutin_transparency = cutin_transparency*.8;
+        if(cutin_transparency <= 0.05){
+            cutin_id = -1;
+            cutin_current_y = 560;
+            cutin_state = CUTIN_STATE_UP;
+        }
+        break;
+        }
+    }
+}
+
 #define scr_set_battle_message
 //scr_set_battle_message(string message)
 //sets the battle message and resets the display for you
@@ -65,3 +91,11 @@ enemies[argument0] = -1;
 //scr_player_select
 //A script to set the playerSelect variable to the argument
 playerSelect = argument0;
+#define scr_cutin_display
+//scr_cutin_display(cutin id)
+//Displays a cutin (with some slight movement) for skill chains and magic bursts
+cutin_id = argument0;
+cutin_time = 0;
+cutin_current_y = view_hport[0];
+cutin_transparency = 1;
+cutin_state = CUTIN_STATE_UP;
